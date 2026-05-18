@@ -5,74 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fantasy League Rivalries</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="data.js"></script>
   <style>
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #0f172a; }
-    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-    .tab-btn { color: #94a3b8; transition: all .15s; }
-    .tab-btn:hover:not(.active) { background: #1e293b; color: #e2e8f0; }
-    .tab-btn.active { background: #4f46e5; color: #fff; }
-    .sort-arrow::after { content: ' ↕'; opacity: .4; font-size: .7em; }
-    th.sorted-desc::after { content: ' ↓'; opacity: .8; font-size: .7em; }
-    th.sorted-asc::after  { content: ' ↑'; opacity: .8; font-size: .7em; }
+    ::-webkit-scrollbar{width:6px;height:6px}
+    ::-webkit-scrollbar-track{background:#0f172a}
+    ::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
+    .tab-btn{color:#94a3b8;transition:all .15s}
+    .tab-btn:hover:not(.active){background:#1e293b;color:#e2e8f0}
+    .tab-btn.active{background:#4f46e5;color:#fff}
+    .stat-card{background:#0f172a;border:1px solid #1e293b;border-radius:.75rem;padding:1.25rem}
   </style>
 </head>
 <body class="bg-slate-950 text-slate-200 min-h-screen">
 <div class="max-w-7xl mx-auto px-4 py-8">
 
   <!-- Header -->
-  <div class="mb-8 flex items-start justify-between flex-wrap gap-4">
-    <div>
-      <h1 class="text-3xl font-bold text-white tracking-tight">Fantasy Rivalries</h1>
-      <p id="meta-info" class="text-slate-500 mt-1 text-sm"></p>
-    </div>
-    <div id="alias-badge" class="hidden bg-indigo-900/40 border border-indigo-700/50 rounded-lg px-4 py-2 text-sm text-indigo-300"></div>
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-white tracking-tight">Fantasy Rivalries</h1>
+    <p id="meta-info" class="text-slate-500 mt-1 text-sm"></p>
   </div>
 
   <!-- Tab Bar -->
-  <div class="flex gap-1 mb-6 bg-slate-900 rounded-lg p-1 w-fit">
+  <div class="flex gap-1 mb-6 bg-slate-900 rounded-lg p-1 w-fit flex-wrap">
     <button onclick="showTab('rivalries')" id="tab-btn-rivalries" class="tab-btn active px-5 py-2 rounded-md text-sm font-medium">Rivalries</button>
     <button onclick="showTab('games')"     id="tab-btn-games"     class="tab-btn px-5 py-2 rounded-md text-sm font-medium">Epic Games</button>
     <button onclick="showTab('scoring')"   id="tab-btn-scoring"   class="tab-btn px-5 py-2 rounded-md text-sm font-medium">Scoring</button>
+    <button onclick="showTab('team')"      id="tab-btn-team"      class="tab-btn px-5 py-2 rounded-md text-sm font-medium">Team Stats</button>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════════ TAB: RIVALRIES -->
+  <!-- ═══════════════════════════════════ RIVALRIES -->
   <div id="section-rivalries" class="tab-section space-y-6">
-
-    <!-- Rivalry picker -->
     <div class="bg-slate-900 rounded-xl p-6">
       <h2 class="text-base font-semibold text-white mb-4">Pick a Rivalry</h2>
       <div class="flex gap-3 items-center flex-wrap">
-        <select id="owner-a" class="bg-slate-800 border border-slate-700 text-white px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-          <option value="">Select owner…</option>
-        </select>
+        <select id="owner-a" class="bg-slate-800 border border-slate-700 text-white px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"><option value="">Select owner…</option></select>
         <span class="text-slate-500 font-semibold">vs</span>
-        <select id="owner-b" class="bg-slate-800 border border-slate-700 text-white px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-          <option value="">Select owner…</option>
-        </select>
-        <button onclick="showRivalry()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-          View Rivalry
-        </button>
+        <select id="owner-b" class="bg-slate-800 border border-slate-700 text-white px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"><option value="">Select owner…</option></select>
+        <button onclick="showRivalry()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">View Rivalry</button>
       </div>
     </div>
-
-    <!-- Rivalry detail (injected) -->
     <div id="rivalry-detail" class="hidden"></div>
 
-    <!-- Full H2H table -->
+    <!-- Hot Takes -->
+    <div class="bg-slate-900 rounded-xl p-6">
+      <h2 class="text-base font-semibold text-white mb-1">🔥 Hot Takes</h2>
+      <p class="text-slate-500 text-xs mb-4">Auto-generated from league history. Use responsibly.</p>
+      <div id="hot-takes" class="space-y-3"></div>
+    </div>
+
     <div class="bg-slate-900 rounded-xl p-6">
       <h2 class="text-base font-semibold text-white mb-4">All Head-to-Head Records</h2>
+      <p class="text-slate-500 text-xs mb-3">Click any row to see the full rivalry breakdown.</p>
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
           <thead>
             <tr class="text-slate-400 border-b border-slate-800 text-left">
-              <th class="py-2 px-3 cursor-pointer sort-arrow" onclick="sortH2H('matchup', this)">Matchup</th>
-              <th class="py-2 px-3 cursor-pointer sort-arrow text-center" onclick="sortH2H('record', this)">Record</th>
-              <th class="py-2 px-3 cursor-pointer sort-arrow text-right" onclick="sortH2H('games', this)">Games</th>
-              <th class="py-2 px-3 cursor-pointer sort-arrow text-right" onclick="sortH2H('pf_a', this)">PF (A)</th>
-              <th class="py-2 px-3 cursor-pointer sort-arrow text-right" onclick="sortH2H('pf_b', this)">PF (B)</th>
-              <th class="py-2 px-3 cursor-pointer sort-arrow text-right" onclick="sortH2H('diff', this)">PF Diff</th>
+              <th class="py-2 px-3 cursor-pointer hover:text-white" onclick="sortH2H('matchup',this)">Matchup ↕</th>
+              <th class="py-2 px-3 cursor-pointer hover:text-white text-center" onclick="sortH2H('record',this)">Record ↕</th>
+              <th class="py-2 px-3 cursor-pointer hover:text-white text-right" onclick="sortH2H('games',this)">Games ↕</th>
+              <th class="py-2 px-3 cursor-pointer hover:text-white text-right" onclick="sortH2H('pf_a',this)">PF (A) ↕</th>
+              <th class="py-2 px-3 cursor-pointer hover:text-white text-right" onclick="sortH2H('pf_b',this)">PF (B) ↕</th>
+              <th class="py-2 px-3 cursor-pointer hover:text-white text-right" onclick="sortH2H('diff',this)">PF Diff ↕</th>
             </tr>
           </thead>
           <tbody id="h2h-tbody"></tbody>
@@ -81,65 +75,41 @@
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════════ TAB: GAMES -->
+  <!-- ═══════════════════════════════════ EPIC GAMES -->
   <div id="section-games" class="tab-section hidden space-y-6">
-    <div class="flex gap-2 items-center flex-wrap">
-      <button onclick="setGamesMode('closest')" id="games-btn-closest"
-        class="games-btn bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-        Nail-Biters
-      </button>
-      <button onclick="setGamesMode('blowouts')" id="games-btn-blowouts"
-        class="games-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-        Blowouts
-      </button>
+    <div class="flex gap-2 flex-wrap">
+      <button onclick="setGamesMode('closest')"  id="games-btn-closest"  class="games-btn bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Nail-Biters</button>
+      <button onclick="setGamesMode('blowouts')" id="games-btn-blowouts" class="games-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Blowouts</button>
     </div>
-
     <div class="bg-slate-900 rounded-xl p-6">
       <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
         <h2 id="games-title" class="text-base font-semibold text-white">Closest Games (Regular Season)</h2>
         <div class="flex items-center gap-3 text-sm flex-wrap">
-          <select id="games-year-filter" onchange="renderGames()"
-            class="bg-slate-800 border border-slate-700 text-white px-3 py-1.5 rounded-lg focus:outline-none">
-            <option value="all">All Years</option>
-          </select>
-          <select id="games-owner-filter" onchange="renderGames()"
-            class="bg-slate-800 border border-slate-700 text-white px-3 py-1.5 rounded-lg focus:outline-none">
-            <option value="all">All Owners</option>
-          </select>
-          <select id="games-count" onchange="renderGames()"
-            class="bg-slate-800 border border-slate-700 text-white px-3 py-1.5 rounded-lg focus:outline-none">
-            <option value="10">Top 10</option>
-            <option value="25">Top 25</option>
-            <option value="50">Top 50</option>
-            <option value="all">All</option>
+          <select id="games-year-filter"  onchange="renderGames()" class="bg-slate-800 border border-slate-700 text-white px-3 py-1.5 rounded-lg focus:outline-none"><option value="all">All Years</option></select>
+          <select id="games-owner-filter" onchange="renderGames()" class="bg-slate-800 border border-slate-700 text-white px-3 py-1.5 rounded-lg focus:outline-none"><option value="all">All Owners</option></select>
+          <select id="games-count"        onchange="renderGames()" class="bg-slate-800 border border-slate-700 text-white px-3 py-1.5 rounded-lg focus:outline-none">
+            <option value="10">Top 10</option><option value="25">Top 25</option><option value="50">Top 50</option><option value="all">All</option>
           </select>
         </div>
       </div>
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
-          <thead>
-            <tr class="text-slate-400 border-b border-slate-800 text-left">
-              <th class="py-2 px-3">Year</th>
-              <th class="py-2 px-3">Wk</th>
-              <th class="py-2 px-3">Winner</th>
-              <th class="py-2 px-3">Loser</th>
-              <th class="py-2 px-3 text-right">Score</th>
-              <th class="py-2 px-3 text-right">Margin</th>
-            </tr>
-          </thead>
+          <thead><tr class="text-slate-400 border-b border-slate-800 text-left">
+            <th class="py-2 px-3">Year</th><th class="py-2 px-3">Wk</th>
+            <th class="py-2 px-3">Winner</th><th class="py-2 px-3">Loser</th>
+            <th class="py-2 px-3 text-right">Score</th><th class="py-2 px-3 text-right">Margin</th>
+          </tr></thead>
           <tbody id="games-tbody"></tbody>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════════ TAB: SCORING -->
+  <!-- ═══════════════════════════════════ SCORING -->
   <div id="section-scoring" class="tab-section hidden space-y-6">
-
-    <!-- Season grid -->
     <div class="bg-slate-900 rounded-xl p-6">
       <h2 class="text-base font-semibold text-white mb-1">Points For by Season</h2>
-      <p class="text-slate-500 text-xs mb-4">Green = #1 scorer that year · Red = last place scorer</p>
+      <p class="text-slate-500 text-xs mb-4">Green = #1 scorer that year · Red = last place scorer · Click a name to jump to Team Stats</p>
       <div class="overflow-x-auto">
         <table class="text-sm whitespace-nowrap">
           <thead><tr id="scoring-head" class="text-slate-400 border-b border-slate-800"></tr></thead>
@@ -147,9 +117,7 @@
         </table>
       </div>
     </div>
-
-    <!-- Bottom cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <div class="bg-slate-900 rounded-xl p-6">
         <h2 class="text-base font-semibold text-white mb-4">Top Individual Seasons</h2>
         <div id="top-seasons"></div>
@@ -158,17 +126,34 @@
         <h2 class="text-base font-semibold text-white mb-4">All-Time Points Leaders</h2>
         <div id="alltime-leaders"></div>
       </div>
+      <div class="bg-slate-900 rounded-xl p-6">
+        <h2 class="text-base font-semibold text-white mb-1">Schedule Luck Rankings</h2>
+        <p class="text-slate-500 text-xs mb-4">Actual wins vs expected wins if everyone played each other every week.</p>
+        <div id="luck-rankings"></div>
+      </div>
     </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ TEAM STATS -->
+  <div id="section-team" class="tab-section hidden space-y-6">
+    <div class="bg-slate-900 rounded-xl p-6">
+      <h2 class="text-base font-semibold text-white mb-4">Choose Your Fighter</h2>
+      <select id="team-owner-select" onchange="renderTeamStats()" class="bg-slate-800 border border-slate-700 text-white px-4 py-2.5 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full max-w-xs">
+        <option value="">Select a team…</option>
+      </select>
+    </div>
+    <div id="team-stats-content" class="hidden space-y-6"></div>
   </div>
 
 </div>
 <script>
-// ── State ──────────────────────────────────────────────────────────────────────
-let gamesMode   = 'closest';
-let h2hSortKey  = 'games';
-let h2hSortDir  = -1;
+// ── State ─────────────────────────────────────────────────────────────────────
+let gamesMode  = 'closest';
+let h2hSortKey = 'games';
+let h2hSortDir = -1;
+let teamChart  = null;
 
-// ── Tabs ───────────────────────────────────────────────────────────────────────
+// ── Tabs ──────────────────────────────────────────────────────────────────────
 function showTab(name) {
   document.querySelectorAll('.tab-section').forEach(s => s.classList.add('hidden'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -176,40 +161,21 @@ function showTab(name) {
   document.getElementById('tab-btn-' + name).classList.add('active');
 }
 
-// ── Init ───────────────────────────────────────────────────────────────────────
+// ── Init ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   const d = LEAGUE_DATA;
-  const firstYear = d.meta.seasons[0];
-  const lastYear  = d.meta.seasons[d.meta.seasons.length - 1];
-
   document.getElementById('meta-info').textContent =
-    `League ${d.meta.league_id} · ${firstYear}–${lastYear} · ${d.meta.total_matchups} matchups · Updated ${d.meta.generated}`;
+    `League ${d.meta.league_id} · ${d.meta.seasons[0]}–${d.meta.seasons[d.meta.seasons.length-1]} · ${d.meta.total_matchups} matchups · Updated ${d.meta.generated}`;
 
-  // Alias badge
-  const aliases = d.meta.aliases_merged || {};
-  const aliasEntries = Object.entries(aliases);
-  if (aliasEntries.length > 0) {
-    const badge = document.getElementById('alias-badge');
-    badge.classList.remove('hidden');
-    badge.innerHTML = '🔗 Merged: ' + aliasEntries.map(([k, v]) => `<strong>${k}</strong> → ${v}`).join(', ');
-  }
-
-  // Owner dropdowns
-  ['owner-a', 'owner-b', 'games-owner-filter'].forEach(id => {
+  // Populate dropdowns
+  ['owner-a','owner-b','games-owner-filter','team-owner-select'].forEach(id => {
     const sel = document.getElementById(id);
-    if (id === 'games-owner-filter') {
-      const opt = document.createElement('option');
-      opt.value = 'all'; opt.textContent = 'All Owners';
-      // already present as default
-    }
     d.owners.forEach(o => {
       const opt = document.createElement('option');
       opt.value = o; opt.textContent = o;
       sel.appendChild(opt);
     });
   });
-
-  // Year filter
   const yearSel = document.getElementById('games-year-filter');
   d.meta.seasons.forEach(yr => {
     const opt = document.createElement('option');
@@ -218,188 +184,224 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   renderH2H();
+  renderHotTakes();
   renderGames();
   renderScoring();
 });
 
-// ── H2H ────────────────────────────────────────────────────────────────────────
-function sortH2H(key, thEl) {
-  if (h2hSortKey === key) h2hSortDir *= -1;
-  else { h2hSortKey = key; h2hSortDir = -1; }
-  document.querySelectorAll('#h2h-tbody').forEach(() => {});
-  document.querySelectorAll('thead th').forEach(th => {
-    th.classList.remove('sorted-asc', 'sorted-desc');
-    if (!th.classList.contains('sort-arrow')) return;
+// ── Luck computation ──────────────────────────────────────────────────────────
+function computeLuck() {
+  const reg = LEAGUE_DATA.matchups.filter(m => !m.is_playoff);
+  const weekMap = {};
+  reg.forEach(m => {
+    const k = `${m.year}_${m.week}`;
+    if (!weekMap[k]) weekMap[k] = [];
+    weekMap[k].push({owner: m.team_a, score: m.score_a});
+    weekMap[k].push({owner: m.team_b, score: m.score_b});
   });
-  if (thEl) {
-    thEl.classList.remove('sort-arrow', 'sorted-asc', 'sorted-desc');
-    thEl.classList.add(h2hSortDir === -1 ? 'sorted-desc' : 'sorted-asc');
-  }
-  renderH2H();
+  const expected = {}, actual = {};
+  LEAGUE_DATA.owners.forEach(o => { expected[o] = 0; actual[o] = 0; });
+  Object.values(weekMap).forEach(scores => {
+    const all = scores.map(s => s.score);
+    scores.forEach(({owner, score}) => {
+      expected[owner] += all.filter(s => score > s).length / (all.length - 1);
+    });
+  });
+  reg.forEach(m => { if (m.winner) actual[m.winner] = (actual[m.winner]||0) + 1; });
+  const luck = {};
+  LEAGUE_DATA.owners.forEach(o => { luck[o] = (actual[o]||0) - (expected[o]||0); });
+  return luck;
 }
 
-function renderH2H() {
-  const rows = [...LEAGUE_DATA.h2h].sort((a, b) => {
-    const vals = {
-      games:   [a.total,             b.total],
-      pf_a:    [a.a_pf,              b.a_pf],
-      pf_b:    [a.b_pf,              b.b_pf],
-      diff:    [a.a_pf - a.b_pf,    b.a_pf - b.b_pf],
-      record:  [a.a_wins / (a.total||1), b.a_wins / (b.total||1)],
-      matchup: [a.owner_a + a.owner_b, b.owner_a + b.owner_b],
-    };
-    const [va, vb] = vals[h2hSortKey] || [0, 0];
-    return typeof va === 'string'
-      ? va.localeCompare(vb) * h2hSortDir
-      : (va - vb) * h2hSortDir;
+// ── League avg per year ───────────────────────────────────────────────────────
+function leagueAvgByYear() {
+  const avg = {};
+  LEAGUE_DATA.meta.seasons.forEach(yr => {
+    const scores = LEAGUE_DATA.owners.map(o => LEAGUE_DATA.points_history[o]?.[yr]?.pf).filter(Boolean);
+    avg[yr] = scores.length ? scores.reduce((a,b)=>a+b,0)/scores.length : 0;
   });
+  return avg;
+}
 
-  document.getElementById('h2h-tbody').innerHTML = rows.map((r, i) => {
-    const pct   = r.total > 0 ? Math.round(r.a_wins / r.total * 100) : 0;
-    const diff  = (r.a_pf - r.b_pf).toFixed(1);
-    const diffCls = r.a_pf > r.b_pf ? 'text-green-400' : r.a_pf < r.b_pf ? 'text-red-400' : 'text-slate-400';
+// ── H2H ───────────────────────────────────────────────────────────────────────
+function sortH2H(key) {
+  if (h2hSortKey === key) h2hSortDir *= -1; else { h2hSortKey = key; h2hSortDir = -1; }
+  renderH2H();
+}
+function renderH2H() {
+  const rows = [...LEAGUE_DATA.h2h].sort((a,b) => {
+    const map = {
+      games:  [a.total, b.total],
+      pf_a:   [a.a_pf, b.a_pf],
+      pf_b:   [a.b_pf, b.b_pf],
+      diff:   [a.a_pf-a.b_pf, b.a_pf-b.b_pf],
+      record: [a.a_wins/(a.total||1), b.a_wins/(b.total||1)],
+      matchup:[a.owner_a+a.owner_b, b.owner_a+b.owner_b],
+    };
+    const [va,vb] = map[h2hSortKey]||[0,0];
+    return typeof va==='string' ? va.localeCompare(vb)*h2hSortDir : (va-vb)*h2hSortDir;
+  });
+  document.getElementById('h2h-tbody').innerHTML = rows.map((r,i) => {
+    const pct   = r.total>0 ? Math.round(r.a_wins/r.total*100) : 0;
+    const diff  = (r.a_pf-r.b_pf).toFixed(1);
+    const diffCls = r.a_pf>r.b_pf?'text-green-400':r.a_pf<r.b_pf?'text-red-400':'text-slate-400';
     const rec   = r.ties ? `${r.a_wins}-${r.b_wins}-${r.ties}` : `${r.a_wins}-${r.b_wins}`;
-    const recCls = r.a_wins > r.b_wins ? 'text-green-400' : r.a_wins < r.b_wins ? 'text-red-400' : 'text-slate-300';
-    const bg    = i % 2 === 0 ? '' : 'bg-slate-800/30';
-
-    return `<tr class="${bg} hover:bg-slate-700/40 transition-colors cursor-pointer"
-              onclick="quickRivalry('${esc(r.owner_a)}','${esc(r.owner_b)}')">
+    const recCls= r.a_wins>r.b_wins?'text-green-400':r.a_wins<r.b_wins?'text-red-400':'text-slate-300';
+    return `<tr class="${i%2?'bg-slate-800/30':''} hover:bg-slate-700/40 transition-colors cursor-pointer"
+      onclick="quickRivalry('${esc(r.owner_a)}','${esc(r.owner_b)}')">
       <td class="py-2 px-3">${r.owner_a} <span class="text-slate-600">vs</span> ${r.owner_b}</td>
-      <td class="py-2 px-3 text-center">
-        <span class="${recCls} font-medium">${rec}</span>
-        <span class="text-slate-600 text-xs ml-1">(${pct}%)</span>
-      </td>
+      <td class="py-2 px-3 text-center"><span class="${recCls} font-medium">${rec}</span> <span class="text-slate-600 text-xs">(${pct}%)</span></td>
       <td class="py-2 px-3 text-right text-slate-400">${r.total}</td>
       <td class="py-2 px-3 text-right">${r.a_pf.toFixed(1)}</td>
       <td class="py-2 px-3 text-right">${r.b_pf.toFixed(1)}</td>
-      <td class="py-2 px-3 text-right ${diffCls}">${r.a_pf > r.b_pf ? '+' : ''}${diff}</td>
+      <td class="py-2 px-3 text-right ${diffCls}">${r.a_pf>r.b_pf?'+':''}${diff}</td>
     </tr>`;
   }).join('');
 }
-
-function esc(s) { return s.replace(/'/g, "\\'"); }
-
-function quickRivalry(a, b) {
-  document.getElementById('owner-a').value = a;
-  document.getElementById('owner-b').value = b;
+function esc(s){ return s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
+function quickRivalry(a,b){
+  document.getElementById('owner-a').value=a;
+  document.getElementById('owner-b').value=b;
   showRivalry();
-  document.getElementById('rivalry-detail').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  setTimeout(()=>document.getElementById('rivalry-detail').scrollIntoView({behavior:'smooth',block:'start'}),50);
 }
 
-// ── Rivalry detail ─────────────────────────────────────────────────────────────
-function showRivalry() {
-  const a = document.getElementById('owner-a').value;
-  const b = document.getElementById('owner-b').value;
-  const el = document.getElementById('rivalry-detail');
-  if (!a || !b || a === b) { el.classList.add('hidden'); return; }
+// ── Hot Takes ─────────────────────────────────────────────────────────────────
+function renderHotTakes() {
+  const d = LEAGUE_DATA;
+  const takes = [];
 
-  const h2h = LEAGUE_DATA.h2h.find(r =>
-    (r.owner_a === a && r.owner_b === b) ||
-    (r.owner_a === b && r.owner_b === a)
-  );
-
-  if (!h2h) {
-    el.innerHTML = '<div class="bg-slate-900 rounded-xl p-6 text-slate-400">No matchups found between these owners.</div>';
-    el.classList.remove('hidden');
-    return;
+  // Most lopsided rivalry (min 3 games)
+  const lopsided = [...d.h2h].filter(r=>r.total>=3)
+    .sort((a,b)=>Math.abs(b.a_wins-b.b_wins)-Math.abs(a.a_wins-a.b_wins));
+  if (lopsided.length) {
+    const r = lopsided[0];
+    const dom = r.a_wins>r.b_wins?r.owner_a:r.owner_b;
+    const sub = dom===r.owner_a?r.owner_b:r.owner_a;
+    const dW  = Math.max(r.a_wins,r.b_wins), dL = Math.min(r.a_wins,r.b_wins);
+    takes.push({icon:'💀', text:`<strong>${dom}</strong> completely owns <strong>${sub}</strong> — a brutal ${dW}-${dL} all-time record. ${sub} might want to start a new league.`});
   }
 
-  const flip = h2h.owner_a !== a;
-  const aW   = flip ? h2h.b_wins : h2h.a_wins;
-  const bW   = flip ? h2h.a_wins : h2h.b_wins;
-  const aPF  = flip ? h2h.b_pf   : h2h.a_pf;
-  const bPF  = flip ? h2h.a_pf   : h2h.b_pf;
+  // Closest rivalry by win %
+  const closest = [...d.h2h].filter(r=>r.total>=4)
+    .sort((a,b)=>Math.abs(a.a_wins-a.b_wins)-Math.abs(b.a_wins-b.b_wins));
+  if (closest.length) {
+    const r = closest[0];
+    takes.push({icon:'⚔️', text:`The most evenly matched rivalry is <strong>${r.owner_a} vs ${r.owner_b}</strong> at ${r.a_wins}-${r.b_wins}${r.ties?'-'+r.ties:''}. Neither has figured out the other after ${r.total} tries.`});
+  }
 
-  const games = LEAGUE_DATA.matchups
-    .filter(m => (m.team_a === a && m.team_b === b) || (m.team_a === b && m.team_b === a))
-    .sort((x, y) => y.year - x.year || y.week - x.week);
+  // Most points scored in a single rivalry
+  const bigPF = [...d.h2h].filter(r=>r.total>=3)
+    .sort((a,b)=>(b.a_pf+b.b_pf)-(a.a_pf+a.b_pf));
+  if (bigPF.length) {
+    const r = bigPF[0];
+    const avg = ((r.a_pf+r.b_pf)/r.total).toFixed(1);
+    takes.push({icon:'🔥', text:`<strong>${r.owner_a} vs ${r.owner_b}</strong> is the highest-scoring rivalry in league history — averaging ${avg} combined points per game. Tune in every time these two meet.`});
+  }
 
-  const aFirst = a.split(' ')[0];
-  const bFirst = b.split(' ')[0];
+  // Most heartbreakers (games decided by ≤ 5 pts)
+  const rivalryClose = {};
+  d.matchups.filter(m=>!m.is_playoff&&m.margin<=5).forEach(m=>{
+    const k = [m.team_a,m.team_b].sort().join('|||');
+    rivalryClose[k] = (rivalryClose[k]||0)+1;
+  });
+  const topClose = Object.entries(rivalryClose).sort((a,b)=>b[1]-a[1])[0];
+  if (topClose && topClose[1]>=2) {
+    const [a,b] = topClose[0].split('|||');
+    takes.push({icon:'💔', text:`<strong>${a}</strong> and <strong>${b}</strong> have played ${topClose[1]} games decided by 5 points or fewer. Someone owes someone a drink.`});
+  }
 
-  const gameRows = games.map(m => {
-    const flipGame  = m.team_a !== a;
-    const myScore   = flipGame ? m.score_b : m.score_a;
-    const theirScore = flipGame ? m.score_a : m.score_b;
-    const won = m.winner === a;
-    const resultCls = won ? 'text-green-400 font-semibold' : m.winner === null ? 'text-slate-400' : 'text-red-400';
-    const result = m.winner === null ? 'TIE' : won ? 'W' : 'L';
-    const weekLabel = m.is_playoff ? '<span class="text-purple-400">PO</span>' : 'W' + m.week;
-    return `<tr class="border-b border-slate-800/60 hover:bg-slate-800/40 transition-colors">
+  // Biggest total scoring edge in a rivalry
+  const bigEdge = [...d.h2h].filter(r=>r.total>=3)
+    .sort((a,b)=>Math.abs(b.a_pf-b.b_pf)-Math.abs(a.a_pf-a.b_pf));
+  if (bigEdge.length) {
+    const r = bigEdge[0];
+    const dom = r.a_pf>r.b_pf?r.owner_a:r.owner_b;
+    const sub = dom===r.owner_a?r.owner_b:r.owner_a;
+    const edge = Math.abs(r.a_pf-r.b_pf).toFixed(1);
+    takes.push({icon:'📊', text:`<strong>${dom}</strong> has outscored <strong>${sub}</strong> by ${edge} total points across their matchups. The numbers don't lie.`});
+  }
+
+  document.getElementById('hot-takes').innerHTML = takes.map(t =>
+    `<div class="flex gap-3 items-start bg-slate-800/50 rounded-lg px-4 py-3">
+      <span class="text-xl mt-0.5 shrink-0">${t.icon}</span>
+      <p class="text-slate-300 text-sm leading-relaxed">${t.text}</p>
+    </div>`
+  ).join('');
+}
+
+// ── Rivalry Detail ────────────────────────────────────────────────────────────
+function showRivalry() {
+  const a  = document.getElementById('owner-a').value;
+  const b  = document.getElementById('owner-b').value;
+  const el = document.getElementById('rivalry-detail');
+  if (!a||!b||a===b){el.classList.add('hidden');return;}
+
+  const h2h = LEAGUE_DATA.h2h.find(r=>(r.owner_a===a&&r.owner_b===b)||(r.owner_a===b&&r.owner_b===a));
+  if (!h2h){
+    el.innerHTML='<div class="bg-slate-900 rounded-xl p-6 text-slate-400">No matchups found between these owners.</div>';
+    el.classList.remove('hidden'); return;
+  }
+
+  const flip=h2h.owner_a!==a;
+  const aW=flip?h2h.b_wins:h2h.a_wins, bW=flip?h2h.a_wins:h2h.b_wins;
+  const aPF=flip?h2h.b_pf:h2h.a_pf,   bPF=flip?h2h.a_pf:h2h.b_pf;
+
+  const games=LEAGUE_DATA.matchups
+    .filter(m=>(m.team_a===a&&m.team_b===b)||(m.team_a===b&&m.team_b===a))
+    .sort((x,y)=>y.year-x.year||y.week-x.week);
+
+  const aFirst=a.split(' ')[0], bFirst=b.split(' ')[0];
+  const dominant=aW>bW?a:bW>aW?b:null;
+  const aBar=aW+bW>0?Math.round(aW/(aW+bW)*100):50;
+
+  const gameRows=games.map(m=>{
+    const fg=m.team_a!==a;
+    const myS=fg?m.score_b:m.score_a, thS=fg?m.score_a:m.score_b;
+    const won=m.winner===a;
+    const rc=m.winner===null?'text-slate-400':won?'text-green-400 font-semibold':'text-red-400';
+    const res=m.winner===null?'TIE':won?'W':'L';
+    const wkLbl=m.is_playoff?'<span class="text-purple-400 text-xs">PLAYOFF</span>':'W'+m.week;
+    return `<tr class="border-b border-slate-800/50 hover:bg-slate-800/40 transition-colors">
       <td class="py-1.5 px-3 text-slate-400">${m.year}</td>
-      <td class="py-1.5 px-3 text-slate-500 text-xs">${weekLabel}</td>
-      <td class="py-1.5 px-3 ${resultCls}">${result}</td>
-      <td class="py-1.5 px-3 text-right font-mono">${myScore.toFixed(2)}</td>
-      <td class="py-1.5 px-3 text-center text-slate-600 text-xs">–</td>
-      <td class="py-1.5 px-3 text-right font-mono">${theirScore.toFixed(2)}</td>
+      <td class="py-1.5 px-3 text-slate-500 text-xs">${wkLbl}</td>
+      <td class="py-1.5 px-3 ${rc}">${res}</td>
+      <td class="py-1.5 px-3 text-right font-mono">${myS.toFixed(2)}</td>
+      <td class="py-1.5 px-3 text-center text-slate-600">–</td>
+      <td class="py-1.5 px-3 text-right font-mono">${thS.toFixed(2)}</td>
       <td class="py-1.5 px-3 text-right text-slate-500 text-xs">${m.margin.toFixed(2)}</td>
     </tr>`;
   }).join('');
 
-  const dominant = aW > bW ? a : bW > aW ? b : null;
-  const tagline  = dominant
-    ? `<span class="text-indigo-400 font-semibold">${dominant}</span> leads this rivalry`
-    : 'Dead even rivalry';
-
-  const aBar = aW + bW > 0 ? Math.round(aW / (aW + bW) * 100) : 50;
-  const bBar = 100 - aBar;
-
-  el.innerHTML = `
+  el.innerHTML=`
     <div class="bg-slate-900 rounded-xl p-6">
       <div class="flex items-start justify-between flex-wrap gap-4 mb-6">
         <div>
           <h2 class="text-xl font-bold text-white">${a} <span class="text-slate-600">vs</span> ${b}</h2>
-          <p class="text-slate-400 mt-1 text-sm">${tagline}</p>
+          <p class="text-slate-400 mt-1 text-sm">${dominant?`<span class="text-indigo-400 font-semibold">${dominant}</span> leads this rivalry`:'Dead even rivalry'}</p>
         </div>
         <div class="flex items-center gap-6 text-center">
-          <div>
-            <div class="text-4xl font-bold ${aW >= bW ? 'text-green-400' : 'text-slate-300'}">${aW}</div>
-            <div class="text-slate-500 text-xs mt-1">${aFirst}</div>
-          </div>
-          ${h2h.ties ? `<div><div class="text-4xl font-bold text-slate-600">${h2h.ties}</div><div class="text-slate-500 text-xs mt-1">TIE</div></div>` : ''}
-          <div>
-            <div class="text-4xl font-bold ${bW >= aW ? 'text-green-400' : 'text-slate-300'}">${bW}</div>
-            <div class="text-slate-500 text-xs mt-1">${bFirst}</div>
-          </div>
+          <div><div class="text-4xl font-bold ${aW>=bW?'text-green-400':'text-slate-300'}">${aW}</div><div class="text-slate-500 text-xs mt-1">${aFirst}</div></div>
+          ${h2h.ties?`<div><div class="text-4xl font-bold text-slate-600">${h2h.ties}</div><div class="text-slate-500 text-xs mt-1">TIE</div></div>`:''}
+          <div><div class="text-4xl font-bold ${bW>=aW?'text-green-400':'text-slate-300'}">${bW}</div><div class="text-slate-500 text-xs mt-1">${bFirst}</div></div>
         </div>
       </div>
-
-      <!-- Win bar -->
-      <div class="flex rounded-full overflow-hidden h-2 mb-6">
+      <div class="flex rounded-full overflow-hidden h-2 mb-6 bg-slate-700">
         <div class="bg-indigo-500 transition-all" style="width:${aBar}%"></div>
-        <div class="bg-slate-700 transition-all" style="width:${bBar}%"></div>
       </div>
-
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-        <div class="bg-slate-800 rounded-lg p-3 text-center">
-          <div class="text-slate-400 text-xs mb-1">Avg pts (${aFirst})</div>
-          <div class="text-white font-semibold">${games.length ? (aPF / games.length).toFixed(1) : '–'}</div>
-        </div>
-        <div class="bg-slate-800 rounded-lg p-3 text-center">
-          <div class="text-slate-400 text-xs mb-1">Avg pts (${bFirst})</div>
-          <div class="text-white font-semibold">${games.length ? (bPF / games.length).toFixed(1) : '–'}</div>
-        </div>
-        <div class="bg-slate-800 rounded-lg p-3 text-center">
-          <div class="text-slate-400 text-xs mb-1">Total PF (${aFirst})</div>
-          <div class="text-white font-semibold">${aPF.toFixed(1)}</div>
-        </div>
-        <div class="bg-slate-800 rounded-lg p-3 text-center">
-          <div class="text-slate-400 text-xs mb-1">Total PF (${bFirst})</div>
-          <div class="text-white font-semibold">${bPF.toFixed(1)}</div>
-        </div>
+        <div class="bg-slate-800 rounded-lg p-3 text-center"><div class="text-slate-400 text-xs mb-1">Avg (${aFirst})</div><div class="text-white font-semibold">${games.length?(aPF/games.length).toFixed(1):'–'}</div></div>
+        <div class="bg-slate-800 rounded-lg p-3 text-center"><div class="text-slate-400 text-xs mb-1">Avg (${bFirst})</div><div class="text-white font-semibold">${games.length?(bPF/games.length).toFixed(1):'–'}</div></div>
+        <div class="bg-slate-800 rounded-lg p-3 text-center"><div class="text-slate-400 text-xs mb-1">Total PF (${aFirst})</div><div class="text-white font-semibold">${aPF.toFixed(1)}</div></div>
+        <div class="bg-slate-800 rounded-lg p-3 text-center"><div class="text-slate-400 text-xs mb-1">Total PF (${bFirst})</div><div class="text-white font-semibold">${bPF.toFixed(1)}</div></div>
       </div>
-
       <h3 class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2">Full History — ${a}'s perspective</h3>
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
           <thead><tr class="text-slate-600 border-b border-slate-800 text-xs uppercase tracking-wide">
-            <th class="text-left py-1.5 px-3">Year</th>
-            <th class="text-left py-1.5 px-3">Wk</th>
-            <th class="text-left py-1.5 px-3">Result</th>
-            <th class="text-right py-1.5 px-3">${aFirst}</th>
-            <th class="text-center py-1.5 px-3"></th>
-            <th class="text-right py-1.5 px-3">${bFirst}</th>
-            <th class="text-right py-1.5 px-3">Margin</th>
+            <th class="text-left py-1.5 px-3">Year</th><th class="text-left py-1.5 px-3">Wk</th><th class="text-left py-1.5 px-3">Result</th>
+            <th class="text-right py-1.5 px-3">${aFirst}</th><th class="text-center py-1.5 px-3"></th>
+            <th class="text-right py-1.5 px-3">${bFirst}</th><th class="text-right py-1.5 px-3">Margin</th>
           </tr></thead>
           <tbody>${gameRows}</tbody>
         </table>
@@ -408,152 +410,397 @@ function showRivalry() {
   el.classList.remove('hidden');
 }
 
-// ── Games ──────────────────────────────────────────────────────────────────────
+// ── Games ─────────────────────────────────────────────────────────────────────
 function setGamesMode(mode) {
-  gamesMode = mode;
-  ['closest', 'blowouts'].forEach(m => {
-    const btn = document.getElementById('games-btn-' + m);
-    if (m === mode) {
-      btn.classList.replace('bg-slate-800', 'bg-indigo-600');
-      btn.classList.replace('text-slate-300', 'text-white');
-    } else {
-      btn.classList.replace('bg-indigo-600', 'bg-slate-800');
-      btn.classList.replace('text-white', 'text-slate-300');
-    }
+  gamesMode=mode;
+  ['closest','blowouts'].forEach(m=>{
+    const btn=document.getElementById('games-btn-'+m);
+    if(m===mode){btn.classList.replace('bg-slate-800','bg-indigo-600');btn.classList.replace('text-slate-300','text-white');}
+    else{btn.classList.replace('bg-indigo-600','bg-slate-800');btn.classList.replace('text-white','text-slate-300');}
   });
-  document.getElementById('games-title').textContent =
-    (mode === 'closest' ? 'Closest Games' : 'Biggest Blowouts') + ' (Regular Season)';
+  document.getElementById('games-title').textContent=(mode==='closest'?'Closest Games':'Biggest Blowouts')+' (Regular Season)';
   renderGames();
 }
-
 function renderGames() {
-  const yearFilter  = document.getElementById('games-year-filter').value;
-  const ownerFilter = document.getElementById('games-owner-filter').value;
-  const countFilter = document.getElementById('games-count').value;
-
-  let games = LEAGUE_DATA.matchups.filter(m => !m.is_playoff);
-  if (yearFilter  !== 'all') games = games.filter(m => m.year === parseInt(yearFilter));
-  if (ownerFilter !== 'all') games = games.filter(m => m.team_a === ownerFilter || m.team_b === ownerFilter);
-
-  games = games.sort((a, b) =>
-    gamesMode === 'closest' ? a.margin - b.margin : b.margin - a.margin
-  );
-  if (countFilter !== 'all') games = games.slice(0, parseInt(countFilter));
-
-  const accentCls = gamesMode === 'blowouts' ? 'text-orange-400' : 'text-yellow-400';
-
-  document.getElementById('games-tbody').innerHTML = games.map((m, i) => {
-    const hasWinner = m.winner !== null;
-    const flip      = hasWinner && m.winner !== m.team_a;
-    const winner    = m.winner || 'TIE';
-    const loser     = flip ? m.team_a : m.team_b;
-    const wScore    = (flip ? m.score_b : m.score_a).toFixed(2);
-    const lScore    = (flip ? m.score_a : m.score_b).toFixed(2);
-    const bg        = i % 2 === 0 ? '' : 'bg-slate-800/30';
-    return `<tr class="${bg} hover:bg-slate-700/30 transition-colors">
-      <td class="py-2 px-3 text-slate-400">${m.year}</td>
-      <td class="py-2 px-3 text-slate-500">${m.week}</td>
-      <td class="py-2 px-3 text-green-400 font-medium">${winner}</td>
-      <td class="py-2 px-3 text-slate-400">${loser}</td>
-      <td class="py-2 px-3 text-right font-mono text-slate-300">${wScore}–${lScore}</td>
-      <td class="py-2 px-3 text-right font-mono font-semibold ${accentCls}">${m.margin.toFixed(2)}</td>
+  const yr=document.getElementById('games-year-filter').value;
+  const ow=document.getElementById('games-owner-filter').value;
+  const ct=document.getElementById('games-count').value;
+  let g=LEAGUE_DATA.matchups.filter(m=>!m.is_playoff);
+  if(yr!=='all') g=g.filter(m=>m.year===parseInt(yr));
+  if(ow!=='all') g=g.filter(m=>m.team_a===ow||m.team_b===ow);
+  g=g.sort((a,b)=>gamesMode==='closest'?a.margin-b.margin:b.margin-a.margin);
+  if(ct!=='all') g=g.slice(0,parseInt(ct));
+  const ac=gamesMode==='blowouts'?'text-orange-400':'text-yellow-400';
+  document.getElementById('games-tbody').innerHTML=g.map((m,i)=>{
+    const flip=m.winner&&m.winner!==m.team_a;
+    const win=m.winner||'TIE', los=flip?m.team_a:m.team_b;
+    const ws=(flip?m.score_b:m.score_a).toFixed(2), ls=(flip?m.score_a:m.score_b).toFixed(2);
+    return `<tr class="${i%2?'bg-slate-800/30':''} hover:bg-slate-700/30 transition-colors">
+      <td class="py-2 px-3 text-slate-400">${m.year}</td><td class="py-2 px-3 text-slate-500">${m.week}</td>
+      <td class="py-2 px-3 text-green-400 font-medium">${win}</td><td class="py-2 px-3 text-slate-400">${los}</td>
+      <td class="py-2 px-3 text-right font-mono text-slate-300">${ws}–${ls}</td>
+      <td class="py-2 px-3 text-right font-mono font-semibold ${ac}">${m.margin.toFixed(2)}</td>
     </tr>`;
   }).join('');
 }
 
-// ── Scoring ────────────────────────────────────────────────────────────────────
+// ── Scoring ───────────────────────────────────────────────────────────────────
 function renderScoring() {
-  const d      = LEAGUE_DATA;
-  const years  = d.meta.seasons;
-  const owners = d.owners;
-
-  const totals = {};
-  owners.forEach(o => {
-    const h = d.points_history[o] || {};
-    totals[o] = Object.values(h).reduce((s, v) => s + v.pf, 0);
-  });
-  const sorted = [...owners].sort((a, b) => totals[b] - totals[a]);
-
-  // Per-year rank lookup for color coding
-  const yearRank = {};
-  years.forEach(yr => {
-    const scores = owners
-      .map(o => ({ o, pf: d.points_history[o]?.[yr]?.pf || 0 }))
-      .filter(x => x.pf > 0)
-      .sort((a, b) => b.pf - a.pf);
-    yearRank[yr] = {};
-    scores.forEach((x, i) => yearRank[yr][x.o] = { rank: i + 1, total: scores.length });
+  const d=LEAGUE_DATA, years=d.meta.seasons;
+  const totals={};
+  d.owners.forEach(o=>{const h=d.points_history[o]||{};totals[o]=Object.values(h).reduce((s,v)=>s+v.pf,0);});
+  const sorted=[...d.owners].sort((a,b)=>totals[b]-totals[a]);
+  const yearRank={};
+  years.forEach(yr=>{
+    const sc=d.owners.map(o=>({o,pf:d.points_history[o]?.[yr]?.pf||0})).filter(x=>x.pf>0).sort((a,b)=>b.pf-a.pf);
+    yearRank[yr]={};sc.forEach((x,i)=>yearRank[yr][x.o]={rank:i+1,total:sc.length});
   });
 
-  // Header
-  document.getElementById('scoring-head').innerHTML =
-    `<th class="text-left py-2 px-3 sticky left-0 bg-slate-900 z-10">Owner</th>` +
-    years.map(y => `<th class="text-right py-2 px-3">${y}</th>`).join('') +
+  document.getElementById('scoring-head').innerHTML=
+    `<th class="text-left py-2 px-3 sticky left-0 bg-slate-900 z-10">Owner</th>`+
+    years.map(y=>`<th class="text-right py-2 px-3">${y}</th>`).join('')+
     `<th class="text-right py-2 px-3 pl-5">Total</th><th class="text-right py-2 px-3">Avg/Yr</th>`;
 
-  // Body
-  document.getElementById('scoring-tbody').innerHTML = sorted.map((owner, i) => {
-    const h    = d.points_history[owner] || {};
-    const n    = Object.keys(h).length;
-    const avg  = n > 0 ? totals[owner] / n : 0;
-    const bg   = i % 2 === 0 ? '' : 'bg-slate-800/30';
-
-    const cells = years.map(yr => {
-      const pf = h[yr]?.pf;
-      if (!pf) return `<td class="py-2 px-3 text-right text-slate-700">–</td>`;
-      const { rank, total } = yearRank[yr][owner] || { rank: 0, total: 0 };
-      let cls = 'text-slate-300';
-      if (rank === 1)     cls = 'bg-green-500/15 text-green-300 font-semibold rounded';
-      if (rank === total) cls = 'bg-red-500/15 text-red-400 rounded';
-      return `<td class="py-2 px-3 text-right"><span class="${cls} px-1">${pf.toFixed(0)}</span></td>`;
+  document.getElementById('scoring-tbody').innerHTML=sorted.map((owner,i)=>{
+    const h=d.points_history[owner]||{}, n=Object.keys(h).length;
+    const avg=n>0?totals[owner]/n:0, bg=i%2?'bg-slate-800/30':'';
+    const cells=years.map(yr=>{
+      const pf=h[yr]?.pf;
+      if(!pf) return `<td class="py-2 px-3 text-right text-slate-700">–</td>`;
+      const {rank,total}=yearRank[yr][owner]||{};
+      let cls='text-slate-300';
+      if(rank===1) cls='bg-green-500/15 text-green-300 font-semibold';
+      if(rank===total) cls='bg-red-500/15 text-red-400';
+      return `<td class="py-2 px-3 text-right"><span class="${cls} px-1 rounded">${pf.toFixed(0)}</span></td>`;
     }).join('');
-
-    return `<tr class="${bg} hover:bg-slate-700/30 transition-colors">
-      <td class="py-2 px-3 font-medium sticky left-0 bg-slate-900 z-10 ${bg}">${owner}</td>
+    return `<tr class="${bg} hover:bg-slate-700/30 transition-colors cursor-pointer" onclick="jumpToTeam('${esc(owner)}')">
+      <td class="py-2 px-3 font-medium sticky left-0 ${bg||'bg-slate-900'} z-10">${owner}</td>
       ${cells}
       <td class="py-2 px-3 text-right font-bold text-white pl-5">${totals[owner].toFixed(1)}</td>
       <td class="py-2 px-3 text-right text-slate-400">${avg.toFixed(1)}</td>
     </tr>`;
   }).join('');
 
-  // Top individual seasons
-  const allSeasons = [];
-  owners.forEach(o => {
-    Object.entries(d.points_history[o] || {}).forEach(([yr, data]) => {
-      allSeasons.push({ owner: o, year: yr, pf: data.pf, rank: data.pts_rank });
-    });
-  });
-  allSeasons.sort((a, b) => b.pf - a.pf);
-
-  document.getElementById('top-seasons').innerHTML = allSeasons.slice(0, 8).map((s, i) =>
-    `<div class="flex items-center justify-between py-2 ${i < 7 ? 'border-b border-slate-800' : ''}">
-      <div>
-        <span class="text-white font-medium">${s.owner}</span>
-        <span class="text-slate-500 text-xs ml-2">${s.year}</span>
-      </div>
-      <div class="text-right">
-        <span class="text-yellow-400 font-semibold">${s.pf.toFixed(1)}</span>
-        <span class="text-slate-600 text-xs ml-1">#${s.rank}</span>
-      </div>
+  const allS=[];
+  d.owners.forEach(o=>Object.entries(d.points_history[o]||{}).forEach(([yr,dt])=>allS.push({owner:o,year:yr,pf:dt.pf,rank:dt.pts_rank})));
+  allS.sort((a,b)=>b.pf-a.pf);
+  document.getElementById('top-seasons').innerHTML=allS.slice(0,8).map((s,i)=>
+    `<div class="flex items-center justify-between py-2 ${i<7?'border-b border-slate-800':''}">
+      <div><span class="text-white font-medium">${s.owner}</span><span class="text-slate-500 text-xs ml-2">${s.year}</span></div>
+      <div class="text-right"><span class="text-yellow-400 font-semibold">${s.pf.toFixed(1)}</span><span class="text-slate-600 text-xs ml-1">#${s.rank}</span></div>
     </div>`
   ).join('');
 
-  // All-time leaders
-  document.getElementById('alltime-leaders').innerHTML = sorted.map((o, i) => {
-    const n   = Object.keys(d.points_history[o] || {}).length;
-    const avg = n > 0 ? totals[o] / n : 0;
-    const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `<span class="text-slate-600 text-sm">${i + 1}.</span>`;
-    return `<div class="flex items-center justify-between py-2 ${i < sorted.length - 1 ? 'border-b border-slate-800' : ''}">
-      <div class="flex items-center gap-3">
-        <span class="w-6 text-center">${medal}</span>
-        <span class="text-white font-medium">${o}</span>
-      </div>
-      <div class="text-right">
-        <span class="text-white font-semibold">${totals[o].toFixed(1)}</span>
-        <span class="text-slate-500 text-xs ml-1">${avg.toFixed(1)}/yr</span>
-      </div>
+  document.getElementById('alltime-leaders').innerHTML=sorted.map((o,i)=>{
+    const n=Object.keys(d.points_history[o]||{}).length, avg=n>0?totals[o]/n:0;
+    const medal=i===0?'🥇':i===1?'🥈':i===2?'🥉':`<span class="text-slate-600 text-sm">${i+1}.</span>`;
+    return `<div class="flex items-center justify-between py-2 ${i<sorted.length-1?'border-b border-slate-800':''}">
+      <div class="flex items-center gap-3"><span class="w-6 text-center">${medal}</span><span class="text-white font-medium">${o}</span></div>
+      <div class="text-right"><span class="text-white font-semibold">${totals[o].toFixed(1)}</span><span class="text-slate-500 text-xs ml-1">${avg.toFixed(1)}/yr</span></div>
     </div>`;
   }).join('');
+
+  // Luck rankings
+  const luck=computeLuck();
+  const luckSorted=[...LEAGUE_DATA.owners].sort((a,b)=>luck[b]-luck[a]);
+  const luckLabels=['🍀 The Chosen One','⭐ Lucky Star','😊 Catches Breaks','😐 Straight Up','😤 Gets Robbed','💀 Cursed'];
+  document.getElementById('luck-rankings').innerHTML=luckSorted.map((o,i)=>{
+    const n=luckSorted.length, pct=n>1?i/(n-1):0;
+    const idx=Math.min(Math.floor(pct*luckLabels.length),luckLabels.length-1);
+    const lbl=luckLabels[idx];
+    const sign=luck[o]>=0?'+':'';
+    const col=luck[o]>1?'text-green-400':luck[o]<-1?'text-red-400':'text-slate-300';
+    return `<div class="flex items-center justify-between py-2 ${i<luckSorted.length-1?'border-b border-slate-800':''}">
+      <div><span class="text-white font-medium">${o}</span><div class="text-slate-500 text-xs">${lbl}</div></div>
+      <div class="text-right font-mono ${col} font-semibold">${sign}${luck[o].toFixed(1)}</div>
+    </div>`;
+  }).join('');
+}
+
+function jumpToTeam(owner) {
+  document.getElementById('team-owner-select').value=owner;
+  showTab('team');
+  renderTeamStats();
+}
+
+// ── Team Stats ────────────────────────────────────────────────────────────────
+function renderTeamStats() {
+  const owner=document.getElementById('team-owner-select').value;
+  const el=document.getElementById('team-stats-content');
+  if(!owner){el.classList.add('hidden');return;}
+  el.classList.remove('hidden');
+
+  const d=LEAGUE_DATA;
+  const history=d.points_history[owner]||{};
+  const years=Object.keys(history).map(Number).sort();
+  const luck=computeLuck();
+  const avg=leagueAvgByYear();
+  const n=d.owners.length;
+
+  // Aggregates
+  const totalPF=years.reduce((s,yr)=>s+(history[yr].pf||0),0);
+  const totalPA=years.reduce((s,yr)=>s+(history[yr].pa||0),0);
+  const allTimeW=years.reduce((s,yr)=>s+(history[yr].wins||0),0);
+  const allTimeL=years.reduce((s,yr)=>s+(history[yr].losses||0),0);
+  const winPct=allTimeW+allTimeL>0?allTimeW/(allTimeW+allTimeL):0;
+  const championships=years.filter(yr=>history[yr].standing===1);
+  const pfRatio=totalPA>0?totalPF/totalPA:1;
+
+  // All-time rankings
+  const ownerTotals={};
+  d.owners.forEach(o=>{
+    const h=d.points_history[o]||{};
+    ownerTotals[o]={
+      pf:Object.values(h).reduce((s,v)=>s+v.pf,0),
+      pa:Object.values(h).reduce((s,v)=>s+v.pa,0),
+      w:Object.values(h).reduce((s,v)=>s+v.wins,0),
+      l:Object.values(h).reduce((s,v)=>s+v.losses,0),
+      seasons:Object.keys(h).length,
+    };
+  });
+  const pfRank=[...d.owners].sort((a,b)=>ownerTotals[b].pf-ownerTotals[a].pf).indexOf(owner)+1;
+  const paRank=[...d.owners].sort((a,b)=>ownerTotals[b].pa-ownerTotals[a].pa).indexOf(owner)+1;
+  const ratioRank=[...d.owners].sort((a,b)=>{
+    const ra=ownerTotals[a].pa>0?ownerTotals[a].pf/ownerTotals[a].pa:1;
+    const rb=ownerTotals[b].pa>0?ownerTotals[b].pf/ownerTotals[b].pa:1;
+    return rb-ra;
+  }).indexOf(owner)+1;
+  const winRank=[...d.owners].sort((a,b)=>{
+    const wa=ownerTotals[a].w+ownerTotals[a].l>0?ownerTotals[a].w/(ownerTotals[a].w+ownerTotals[a].l):0;
+    const wb=ownerTotals[b].w+ownerTotals[b].l>0?ownerTotals[b].w/(ownerTotals[b].w+ownerTotals[b].l):0;
+    return wb-wa;
+  }).indexOf(owner)+1;
+  const luckRank=[...d.owners].sort((a,b)=>luck[b]-luck[a]).indexOf(owner)+1;
+
+  // Persona
+  const pfPct=(n-pfRank)/(n-1||1), winPctPct=(n-winRank)/(n-1||1), luckPct=(n-luckRank)/(n-1||1);
+  let persona;
+  if(championships.length>=3)                              persona={title:'The Dynasty',icon:'👑',desc:`${championships.length} championships. This is not a league — it's their personal trophy case.`,color:'text-yellow-400'};
+  else if(championships.length===2)                        persona={title:'Back-to-Back Champion',icon:'🏆🏆',desc:'Two rings. A legitimate dynasty in the making.',color:'text-yellow-400'};
+  else if(pfPct>=.7&&luckPct<=.3&&championships.length===0)persona={title:'The Most Robbed Team',icon:'😤',desc:'One of the best scorers in league history with zero championships. The schedule gods owe them an apology.',color:'text-red-400'};
+  else if(pfPct<=.3&&luckPct>=.7)                          persona={title:'The Lucky Bastard',icon:'🍀',desc:"Low scores, somehow keeps winning. Either a genius or the universe's favorite child.",color:'text-green-400'};
+  else if(pfPct<=.2&&winPctPct<=.3)                        persona={title:'The Perennial Doormat',icon:'💩',desc:"A reliable fixture at the bottom of the standings. Year after year, the league's favorite win.",color:'text-slate-400'};
+  else if(pfPct>=.7&&winPctPct>=.7&&championships.length===0)persona={title:'The Eternal Contender',icon:'🙄',desc:"Always dangerous, never the champion. A hall-of-fame regular season résumé with nothing to show for it.",color:'text-orange-400'};
+  else if(pfPct>=.7&&winPctPct>=.7)                        persona={title:'The Franchise',icon:'🔥',desc:'A pillar of this league. Consistently scores big and wins big.',color:'text-indigo-400'};
+  else if(championships.length===1)                        persona={title:'One-Time Champion',icon:'🏆',desc:"Got the ring. Now the question is whether they can do it again.",color:'text-yellow-500'};
+  else if(pfPct>=.6)                                       persona={title:'The Scoring Machine',icon:'📈',desc:"One of the top scorers in league history. The wins don't always follow, but the points do.",color:'text-blue-400'};
+  else if(luckPct>=.7)                                     persona={title:'The Schedule God',icon:'🎲',desc:"Their wins don't come from scoring — they come from catching the right opponent on the right week.",color:'text-purple-400'};
+  else                                                     persona={title:'The Competitor',icon:'⚔️',desc:"Has been in the mix every year. Not the best, not the worst — just always there.",color:'text-slate-300'};
+
+  // Their matchups
+  const myGames=d.matchups
+    .filter(m=>!m.is_playoff&&(m.team_a===owner||m.team_b===owner))
+    .map(m=>{
+      const isA=m.team_a===owner;
+      return{...m,myScore:isA?m.score_a:m.score_b,oppScore:isA?m.score_b:m.score_a,opponent:isA?m.team_b:m.team_a,won:m.winner===owner};
+    });
+  const bigWin=[...myGames].filter(g=>g.won).sort((a,b)=>b.margin-a.margin)[0];
+  const bigLoss=[...myGames].filter(g=>!g.won&&g.winner).sort((a,b)=>b.margin-a.margin)[0];
+  const closeWin=[...myGames].filter(g=>g.won).sort((a,b)=>a.margin-b.margin)[0];
+  const heartbreak=[...myGames].filter(g=>!g.won&&g.winner).sort((a,b)=>a.margin-b.margin)[0];
+  const highScore=[...myGames].sort((a,b)=>b.myScore-a.myScore)[0];
+  const lowScore=[...myGames].filter(g=>g.myScore>0).sort((a,b)=>a.myScore-b.myScore)[0];
+
+  // Nemesis / punching bag
+  const vsRecords={};
+  d.h2h.filter(r=>r.owner_a===owner||r.owner_b===owner).forEach(r=>{
+    const flip=r.owner_a!==owner;
+    const opp=flip?r.owner_a:r.owner_b;
+    vsRecords[opp]={wins:flip?r.b_wins:r.a_wins, losses:flip?r.a_wins:r.b_wins, total:r.total};
+  });
+  const opponents=Object.entries(vsRecords).filter(([,r])=>r.total>=2);
+  const nemesis=opponents.sort(([,a],[,b])=>(a.wins/a.total)-(b.wins/b.total))[0];
+  const punchingBag=opponents.sort(([,a],[,b])=>(b.wins/b.total)-(a.wins/a.total))[0];
+
+  // H2H record summary for display
+  const h2hRows=opponents.sort(([,a],[,b])=>b.total-a.total).map(([opp,r])=>{
+    const wp=r.total>0?Math.round(r.wins/r.total*100):0;
+    const cls=r.wins>r.losses?'text-green-400':r.wins<r.losses?'text-red-400':'text-slate-300';
+    return `<tr class="border-b border-slate-800/50">
+      <td class="py-1.5 px-3 text-slate-200">${opp}</td>
+      <td class="py-1.5 px-3 text-center ${cls} font-medium">${r.wins}-${r.losses}</td>
+      <td class="py-1.5 px-3 text-right text-slate-400 text-xs">${wp}%</td>
+    </tr>`;
+  }).join('');
+
+  // Avg score
+  const avgScore=myGames.length?myGames.reduce((s,g)=>s+g.myScore,0)/myGames.length:0;
+
+  // Build HTML
+  el.innerHTML=`
+    <!-- Title card -->
+    <div class="bg-slate-900 rounded-xl p-6 border border-slate-800">
+      <div class="flex items-start justify-between flex-wrap gap-4">
+        <div>
+          <div class="text-slate-400 text-xs uppercase tracking-widest mb-1">Team Profile</div>
+          <h2 class="text-2xl font-bold text-white">${owner}</h2>
+          <p class="text-slate-400 text-sm mt-1">${years[0]}–${years[years.length-1]} · ${years.length} season${years.length!==1?'s':''} · ${allTimeW}-${allTimeL} all-time</p>
+        </div>
+        <div class="bg-slate-800 rounded-xl p-4 text-center min-w-[180px]">
+          <div class="text-3xl mb-1">${persona.icon}</div>
+          <div class="font-bold ${persona.color} text-sm">${persona.title}</div>
+          <p class="text-slate-400 text-xs mt-1 leading-relaxed max-w-[200px]">${persona.desc}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat cards -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+      ${statCard('Win %', (winPct*100).toFixed(1)+'%', `#${winRank} in league`)}
+      ${statCard('All-Time PF', totalPF.toFixed(0), `#${pfRank} scorer all-time`)}
+      ${statCard('All-Time PA', totalPA.toFixed(0), `#${paRank} most given up`)}
+      ${statCard('PF/PA Ratio', pfRatio.toFixed(3)+'x', `#${ratioRank} dominance ratio`)}
+      ${statCard('Schedule Luck', (luck[owner]>=0?'+':'')+luck[owner].toFixed(1)+' W', `#${luckRank} luckiest`)}
+      ${statCard('Championships', championships.length, championships.length?championships.join(', '):'Zero rings 💀')}
+    </div>
+
+    <!-- Scoring chart -->
+    <div class="bg-slate-900 rounded-xl p-6">
+      <h3 class="text-base font-semibold text-white mb-1">Scoring by Season</h3>
+      <p class="text-slate-500 text-xs mb-4">Blue = above league avg · Red = below league avg</p>
+      <div class="relative h-64">
+        <canvas id="team-chart"></canvas>
+      </div>
+    </div>
+
+    <!-- Season W/L breakdown -->
+    <div class="bg-slate-900 rounded-xl p-6">
+      <h3 class="text-base font-semibold text-white mb-4">Season-by-Season Breakdown</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead><tr class="text-slate-500 border-b border-slate-800 text-xs uppercase tracking-wide">
+            <th class="text-left py-2 px-3">Year</th><th class="text-right py-2 px-3">Record</th>
+            <th class="text-right py-2 px-3">PF</th><th class="text-right py-2 px-3">PA</th>
+            <th class="text-right py-2 px-3">vs Avg</th><th class="text-right py-2 px-3">Finish</th>
+          </tr></thead>
+          <tbody>${years.map((yr,i)=>{
+            const s=history[yr];
+            const diff=s.pf-(avg[yr]||0);
+            const diffCls=diff>=0?'text-green-400':'text-red-400';
+            const finishIcon=s.standing===1?'🏆':s.standing<=3?'🥈':'';
+            return `<tr class="${i%2?'bg-slate-800/30':''} hover:bg-slate-700/30">
+              <td class="py-2 px-3 font-medium">${yr}</td>
+              <td class="py-2 px-3 text-right">${s.wins}-${s.losses}</td>
+              <td class="py-2 px-3 text-right">${s.pf.toFixed(1)}</td>
+              <td class="py-2 px-3 text-right text-slate-400">${s.pa.toFixed(1)}</td>
+              <td class="py-2 px-3 text-right ${diffCls}">${diff>=0?'+':''}${diff.toFixed(1)}</td>
+              <td class="py-2 px-3 text-right">${finishIcon} <span class="text-slate-400">#${s.standing}</span></td>
+            </tr>`;
+          }).join('')}</tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Nemesis + Punching Bag + H2H -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-slate-900 rounded-xl p-6">
+        <h3 class="text-base font-semibold text-white mb-1">😈 Nemesis</h3>
+        ${nemesis?`<p class="text-slate-500 text-xs mb-3">The one they just can't beat</p>
+          <div class="text-lg font-bold text-red-400">${nemesis[0]}</div>
+          <div class="text-slate-400 text-sm">${nemesis[1].wins}-${nemesis[1].losses} all-time (${Math.round(nemesis[1].wins/nemesis[1].total*100)}% win rate)</div>
+          <p class="text-slate-500 text-xs mt-2">${nemesis[1].wins===0?`${owner} has literally never beaten them.`:`Wins ${nemesis[1].wins} out of ${nemesis[1].total} — not exactly inspiring.`}</p>`
+          :'<p class="text-slate-500 text-sm">Not enough data.</p>'}
+      </div>
+      <div class="bg-slate-900 rounded-xl p-6">
+        <h3 class="text-base font-semibold text-white mb-1">🥊 Punching Bag</h3>
+        ${punchingBag?`<p class="text-slate-500 text-xs mb-3">Their personal win column</p>
+          <div class="text-lg font-bold text-green-400">${punchingBag[0]}</div>
+          <div class="text-slate-400 text-sm">${punchingBag[1].wins}-${punchingBag[1].losses} all-time (${Math.round(punchingBag[1].wins/punchingBag[1].total*100)}% win rate)</div>
+          <p class="text-slate-500 text-xs mt-2">${punchingBag[1].losses===0?`${punchingBag[0]} has never beaten them. Not once.`:`Dominates ${punchingBag[0]} ${punchingBag[1].wins} out of ${punchingBag[1].total} times.`}</p>`
+          :'<p class="text-slate-500 text-sm">Not enough data.</p>'}
+      </div>
+      <div class="bg-slate-900 rounded-xl p-6">
+        <h3 class="text-base font-semibold text-white mb-4">All H2H Records</h3>
+        <table class="w-full text-sm"><tbody>${h2hRows}</tbody></table>
+      </div>
+    </div>
+
+    <!-- Notable games -->
+    <div class="bg-slate-900 rounded-xl p-6">
+      <h3 class="text-base font-semibold text-white mb-4">Notable Games</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        ${notableGame('Biggest Win 💪', bigWin, true)}
+        ${notableGame('Biggest Loss 😭', bigLoss, false)}
+        ${notableGame('Closest Win 😅', closeWin, true)}
+        ${notableGame('Heartbreaker 💔', heartbreak, false)}
+        ${notableGame('High Score 🔥', highScore, null, true)}
+        ${notableGame('Low Score 😬', lowScore, null, false, true)}
+      </div>
+    </div>
+
+    <!-- Fun stats -->
+    <div class="bg-slate-900 rounded-xl p-6">
+      <h3 class="text-base font-semibold text-white mb-4">By the Numbers</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        ${miniStat('Avg Score/Game', avgScore.toFixed(1))}
+        ${miniStat('Career High', highScore?highScore.myScore.toFixed(2):'–')}
+        ${miniStat('Career Low', lowScore?lowScore.myScore.toFixed(2):'–')}
+        ${miniStat('Seasons Above Avg', years.filter(yr=>(history[yr]?.pf||0)>(avg[yr]||0)).length+' / '+years.length)}
+        ${miniStat('Games Played', myGames.length+'')}
+        ${miniStat('Total Wins', allTimeW+'')}
+        ${miniStat('Biggest Win Margin', bigWin?bigWin.margin.toFixed(2):'–')}
+        ${miniStat('Worst Loss Margin', bigLoss?bigLoss.margin.toFixed(2):'–')}
+      </div>
+    </div>
+  `;
+
+  // Render chart (must happen after DOM insert)
+  renderTeamChart(owner, history, avg);
+}
+
+function statCard(label, value, sub) {
+  return `<div class="stat-card text-center">
+    <div class="text-slate-400 text-xs mb-2 uppercase tracking-wide">${label}</div>
+    <div class="text-xl font-bold text-white">${value}</div>
+    <div class="text-slate-500 text-xs mt-1">${sub}</div>
+  </div>`;
+}
+function miniStat(label, value) {
+  return `<div class="bg-slate-800 rounded-lg p-3">
+    <div class="text-slate-400 text-xs mb-1">${label}</div>
+    <div class="text-white font-semibold">${value}</div>
+  </div>`;
+}
+function notableGame(title, game, won, isHighScore=false, isLowScore=false) {
+  if(!game) return `<div class="bg-slate-800 rounded-lg p-4"><div class="text-slate-500 text-xs uppercase tracking-wide mb-1">${title}</div><div class="text-slate-600 text-sm">No data</div></div>`;
+  const scoreText=isHighScore||isLowScore
+    ? `${game.myScore.toFixed(2)} pts vs ${game.opponent}`
+    : `${game.myScore.toFixed(2)}–${game.oppScore.toFixed(2)} vs ${game.opponent}`;
+  const marginText=!isHighScore&&!isLowScore?`<div class="text-xs ${won?'text-green-400':'text-red-400'} mt-0.5">Margin: ${game.margin.toFixed(2)}</div>`:'';
+  return `<div class="bg-slate-800 rounded-lg p-4">
+    <div class="text-slate-400 text-xs uppercase tracking-wide mb-1">${title}</div>
+    <div class="text-white text-sm font-medium">${scoreText}</div>
+    ${marginText}
+    <div class="text-slate-500 text-xs mt-1">${game.year} Week ${game.week}</div>
+  </div>`;
+}
+
+function renderTeamChart(owner, history, avg) {
+  const years=Object.keys(history).map(Number).sort();
+  const ctx=document.getElementById('team-chart');
+  if(!ctx) return;
+  if(teamChart) teamChart.destroy();
+  const pfData=years.map(yr=>history[yr].pf);
+  const avgData=years.map(yr=>avg[yr]||0);
+  const barColors=years.map(yr=>history[yr].pf>=(avg[yr]||0)?'rgba(99,102,241,0.8)':'rgba(239,68,68,0.6)');
+  teamChart=new Chart(ctx,{
+    data:{
+      labels:years,
+      datasets:[
+        {type:'bar',label:owner.split(' ')[0]+' PF',data:pfData,backgroundColor:barColors,borderRadius:4},
+        {type:'line',label:'League Avg',data:avgData,borderColor:'rgba(148,163,184,0.6)',borderDash:[6,3],
+         borderWidth:2,pointRadius:3,pointBackgroundColor:'rgba(148,163,184,0.6)',fill:false,tension:.3}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{color:'#94a3b8',font:{size:12}}},tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${c.parsed.y.toFixed(1)}`}}},
+      scales:{
+        x:{ticks:{color:'#94a3b8'},grid:{color:'rgba(30,41,59,0.8)'}},
+        y:{ticks:{color:'#94a3b8'},grid:{color:'rgba(30,41,59,0.8)'},beginAtZero:false}
+      }
+    }
+  });
 }
 </script>
 </body>
