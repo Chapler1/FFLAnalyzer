@@ -90,8 +90,10 @@
   <!-- ═══ GAMES -->
   <div id="section-games" class="tab-section hidden space-y-4 sm:space-y-6">
     <div class="flex gap-2 flex-wrap">
-      <button onclick="setGamesMode('closest')"  id="games-btn-closest"  class="games-btn bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Nail-Biters</button>
-      <button onclick="setGamesMode('blowouts')" id="games-btn-blowouts" class="games-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Blowouts</button>
+      <button onclick="setGamesMode('closest')"     id="games-btn-closest"     class="games-btn bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Nail-Biters</button>
+      <button onclick="setGamesMode('blowouts')"    id="games-btn-blowouts"    class="games-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Blowouts</button>
+      <button onclick="setGamesMode('highscoring')" id="games-btn-highscoring" class="games-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">High Scoring</button>
+      <button onclick="setGamesMode('lowscoring')"  id="games-btn-lowscoring"  class="games-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Low Scoring</button>
     </div>
     <div class="bg-slate-900 rounded-xl p-4 sm:p-6">
       <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
@@ -281,19 +283,19 @@ function renderHotTakes() {
   if (lopsided.length) {
     const r=lopsided[0], dom=r.a_wins>r.b_wins?r.owner_a:r.owner_b, sub=dom===r.owner_a?r.owner_b:r.owner_a;
     const dW=Math.max(r.a_wins,r.b_wins), dL=Math.min(r.a_wins,r.b_wins);
-    takes.push(`<strong>${dom}</strong> leads <strong>${sub}</strong> ${dW}–${dL} all-time.`);
+    takes.push({icon:'💀', text:`<strong>${dom}</strong> completely owns <strong>${sub}</strong> — a brutal ${dW}-${dL} all-time record. ${sub} might want to find a new league.`});
   }
 
   const closest = [...d.h2h].filter(r=>r.total>=4).sort((a,b)=>Math.abs(a.a_wins-a.b_wins)-Math.abs(b.a_wins-b.b_wins));
   if (closest.length) {
     const r=closest[0];
-    takes.push(`<strong>${r.owner_a}</strong> and <strong>${r.owner_b}</strong> are the most evenly matched at ${r.a_wins}–${r.b_wins}${r.ties?'–'+r.ties:''} over ${r.total} games.`);
+    takes.push({icon:'⚔️', text:`The most evenly matched rivalry is <strong>${r.owner_a} vs ${r.owner_b}</strong> at ${r.a_wins}-${r.b_wins}${r.ties?'-'+r.ties:''} over ${r.total} games. Neither has figured the other out.`});
   }
 
   const bigPF = [...d.h2h].filter(r=>r.total>=3).sort((a,b)=>(b.a_pf+b.b_pf)-(a.a_pf+a.b_pf));
   if (bigPF.length) {
     const r=bigPF[0], avg=((r.a_pf+r.b_pf)/r.total).toFixed(1);
-    takes.push(`<strong>${r.owner_a}</strong> vs <strong>${r.owner_b}</strong> averages ${avg} combined points per game — the highest-scoring matchup in the league.`);
+    takes.push({icon:'🔥', text:`<strong>${r.owner_a} vs ${r.owner_b}</strong> is the highest-scoring rivalry in league history — averaging ${avg} combined points per game. Tune in every time these two meet.`});
   }
 
   const rivalryClose = {};
@@ -304,19 +306,20 @@ function renderHotTakes() {
   const topClose = Object.entries(rivalryClose).sort((a,b)=>b[1]-a[1])[0];
   if (topClose&&topClose[1]>=2) {
     const [a,b]=topClose[0].split('|||');
-    takes.push(`<strong>${a}</strong> and <strong>${b}</strong> have played ${topClose[1]} games decided by 5 points or fewer.`);
+    takes.push({icon:'💔', text:`<strong>${a}</strong> and <strong>${b}</strong> have played ${topClose[1]} games decided by 5 points or fewer. Someone owes someone a drink.`});
   }
 
   const bigEdge = [...d.h2h].filter(r=>r.total>=3).sort((a,b)=>Math.abs(b.a_pf-b.b_pf)-Math.abs(a.a_pf-a.b_pf));
   if (bigEdge.length) {
     const r=bigEdge[0], dom=r.a_pf>r.b_pf?r.owner_a:r.owner_b, sub=dom===r.owner_a?r.owner_b:r.owner_a;
     const edge=Math.abs(r.a_pf-r.b_pf).toFixed(1);
-    takes.push(`<strong>${dom}</strong> has outscored <strong>${sub}</strong> by ${edge} total points across their ${r.total} matchups.`);
+    takes.push({icon:'📊', text:`<strong>${dom}</strong> has outscored <strong>${sub}</strong> by ${edge} total points across their ${r.total} matchups. The numbers don't lie.`});
   }
 
   document.getElementById('hot-takes').innerHTML = takes.map(t =>
     `<div class="flex gap-3 items-start bg-slate-800/40 rounded-lg px-3 py-2.5">
-      <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">${t}</p>
+      <span class="text-lg shrink-0">${t.icon}</span>
+      <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">${t.text}</p>
     </div>`
   ).join('');
 }
@@ -401,12 +404,14 @@ function showRivalry() {
 // ── Games ─────────────────────────────────────────────────────────────────────
 function setGamesMode(mode) {
   gamesMode=mode;
-  ['closest','blowouts'].forEach(m=>{
+  const titles={closest:'Closest Games',blowouts:'Biggest Blowouts',highscoring:'Highest Scoring Games',lowscoring:'Lowest Scoring Games'};
+  ['closest','blowouts','highscoring','lowscoring'].forEach(m=>{
     const btn=document.getElementById('games-btn-'+m);
-    if (m===mode){btn.classList.replace('bg-slate-800','bg-indigo-600');btn.classList.replace('text-slate-300','text-white');}
-    else{btn.classList.replace('bg-indigo-600','bg-slate-800');btn.classList.replace('text-white','text-slate-300');}
+    if (!btn) return;
+    if (m===mode){btn.classList.replace('bg-slate-800','bg-indigo-600');btn.classList.replace('text-slate-300','text-white');btn.classList.remove('hover:bg-slate-700');}
+    else{btn.classList.replace('bg-indigo-600','bg-slate-800');btn.classList.replace('text-white','text-slate-300');if(!btn.classList.contains('hover:bg-slate-700'))btn.classList.add('hover:bg-slate-700');}
   });
-  document.getElementById('games-title').textContent=(mode==='closest'?'Closest Games':'Biggest Blowouts')+' (Regular Season)';
+  document.getElementById('games-title').textContent=(titles[mode]||'Games')+' (Regular Season)';
   renderGames();
 }
 function renderGames() {
@@ -416,9 +421,13 @@ function renderGames() {
   let g=LEAGUE_DATA.matchups.filter(m=>!m.is_playoff);
   if (yr!=='all') g=g.filter(m=>m.year===parseInt(yr));
   if (ow!=='all') g=g.filter(m=>m.team_a===ow||m.team_b===ow);
-  g=g.sort((a,b)=>gamesMode==='closest'?a.margin-b.margin:b.margin-a.margin);
+  if (gamesMode==='closest')     g=g.sort((a,b)=>a.margin-b.margin);
+  else if (gamesMode==='blowouts')    g=g.sort((a,b)=>b.margin-a.margin);
+  else if (gamesMode==='highscoring') g=g.sort((a,b)=>(b.score_a+b.score_b)-(a.score_a+a.score_b));
+  else if (gamesMode==='lowscoring')  g=g.sort((a,b)=>(a.score_a+a.score_b)-(b.score_a+b.score_b));
   if (ct!=='all') g=g.slice(0,parseInt(ct));
-  const ac=gamesMode==='blowouts'?'text-orange-400':'text-yellow-400';
+  const isScoring=gamesMode==='highscoring'||gamesMode==='lowscoring';
+  const ac=gamesMode==='blowouts'?'text-orange-400':isScoring?'text-cyan-400':'text-yellow-400';
   document.getElementById('games-tbody').innerHTML=g.map((m,i)=>{
     let t1,t2,s1,s2,t1cls,t2cls;
     if (!m.winner){
@@ -431,11 +440,12 @@ function renderGames() {
       t1cls='text-green-400 font-medium'; t2cls='text-slate-400';
     }
     const tie=!m.winner?'<span class="ml-1 text-xs text-yellow-500 bg-yellow-500/10 px-1 rounded">TIE</span>':'';
+    const statVal=isScoring?(m.score_a+m.score_b).toFixed(2):m.margin.toFixed(2);
     return `<tr class="${i%2?'bg-slate-800/30':''} hover:bg-slate-700/30 transition-colors">
       <td class="py-1.5 px-2 sm:px-3 text-slate-400">${m.year}</td><td class="py-1.5 px-2 sm:px-3 text-slate-500">${m.week}</td>
       <td class="py-1.5 px-2 sm:px-3 ${t1cls}">${t1}${tie}</td><td class="py-1.5 px-2 sm:px-3 ${t2cls}">${t2}</td>
       <td class="py-1.5 px-2 sm:px-3 text-right font-mono text-slate-300">${s1}–${s2}</td>
-      <td class="py-1.5 px-2 sm:px-3 text-right font-mono font-semibold ${ac}">${m.margin.toFixed(2)}</td>
+      <td class="py-1.5 px-2 sm:px-3 text-right font-mono font-semibold ${ac}">${statVal}</td>
     </tr>`;
   }).join('');
 }
@@ -457,6 +467,7 @@ function renderScoring() {
     years.map(y=>`<th class="text-right py-2 px-2 sm:px-3">${y}</th>`).join('')+
     `<th class="text-right py-2 px-2 sm:px-3 pl-4">Total</th><th class="text-right py-2 px-2 sm:px-3">Avg</th>`;
 
+  const champMap=d.meta.champions||{};
   document.getElementById('scoring-tbody').innerHTML=sorted.map((owner,i)=>{
     const h=d.points_history[owner]||{}, n=Object.keys(h).length;
     const avg=n>0?totals[owner]/n:0;
@@ -467,7 +478,8 @@ function renderScoring() {
       let cls='text-slate-300';
       if (rank===1)     cls='bg-green-500/15 text-green-300 font-semibold';
       if (rank===total) cls='bg-red-500/15 text-red-400';
-      return `<td class="py-2 px-2 sm:px-3 text-right"><span class="${cls} px-1 rounded">${pf.toFixed(0)}</span></td>`;
+      const crown=champMap[String(yr)]===owner?' <span title="Champion">👑</span>':'';
+      return `<td class="py-2 px-2 sm:px-3 text-right"><span class="${cls} px-1 rounded">${pf.toFixed(0)}${crown}</span></td>`;
     }).join('');
     return `<tr class="${i%2?'bg-slate-800/30':''} hover:bg-slate-700/30 transition-colors cursor-pointer" onclick="jumpToTeam('${esc(owner)}')">
       <td class="py-2 px-2 sm:px-3 font-medium sticky-col">${owner}</td>
@@ -519,22 +531,29 @@ function jumpToTeam(owner) {
 }
 
 // ── Superlatives ──────────────────────────────────────────────────────────────
-function supCard(title, rows) {
+const RANK_BADGE=['<span class="text-yellow-400 font-bold text-xs">1st</span>','<span class="text-slate-300 font-semibold text-xs">2nd</span>','<span class="text-amber-600 font-semibold text-xs">3rd</span>'];
+function supCard(title, rows, border='border-slate-700') {
   const items=rows.map((r,i)=>`
     <div class="flex gap-2 items-start py-2 ${i<rows.length-1?'border-b border-slate-800':''}">
-      <span class="text-slate-600 text-xs w-4 text-right shrink-0 mt-0.5">${i+1}.</span>
+      <span class="w-6 text-right shrink-0 mt-0.5">${RANK_BADGE[i]||`<span class="text-slate-600 text-xs">${i+1}.</span>`}</span>
       <div class="text-xs sm:text-sm text-slate-200 leading-snug">${r}</div>
     </div>`).join('');
-  return `<div class="bg-slate-900 rounded-xl p-4 sm:p-6">
+  return `<div class="bg-slate-900 rounded-xl p-4 sm:p-6 border-l-4 ${border}">
     <h3 class="text-sm font-semibold text-white mb-3">${title}</h3>${items}</div>`;
 }
 function supChamps(title, champions) {
+  const champMap=LEAGUE_DATA.meta.champions||{};
+  const countMap={};
+  Object.values(champMap).forEach(o=>{countMap[o]=(countMap[o]||0)+1;});
   const items=champions.map((c,i)=>`
     <div class="flex items-center justify-between py-2 ${i<champions.length-1?'border-b border-slate-800':''}">
-      <span class="text-slate-200 text-xs sm:text-sm">${c.owner}</span>
-      <span class="text-slate-500 text-xs">${c.year}</span>
+      <div class="flex items-center gap-2">
+        <span class="text-yellow-400 text-sm">👑</span>
+        <span class="text-white text-xs sm:text-sm font-medium">${c.owner}</span>
+      </div>
+      <span class="text-amber-400 font-semibold text-xs">${c.year}</span>
     </div>`).join('');
-  return `<div class="bg-slate-900 rounded-xl p-4 sm:p-6">
+  return `<div class="bg-slate-900 rounded-xl p-4 sm:p-6 border-l-4 border-yellow-500">
     <h3 class="text-sm font-semibold text-white mb-3">${title}</h3>${items}</div>`;
 }
 
@@ -543,19 +562,27 @@ function renderSuperlatives() {
   const luck=computeLuck();
   const reg=d.matchups.filter(m=>!m.is_playoff);
 
-  // All-time PF
-  const ownerPF={};
-  d.owners.forEach(o=>{const h=d.points_history[o]||{};ownerPF[o]=Object.values(h).reduce((s,v)=>s+v.pf,0);});
-  const byPF=[...d.owners].sort((a,b)=>ownerPF[b]-ownerPF[a]);
+  // All-time PF — ranked by avg PF per game
+  const ownerPF={}, ownerGPG={};
+  d.owners.forEach(o=>{
+    const h=d.points_history[o]||{};
+    const totalPF=Object.values(h).reduce((s,v)=>s+v.pf,0);
+    const totalGames=Object.values(h).reduce((s,v)=>s+(v.wins||0)+(v.losses||0),0);
+    ownerPF[o]=totalPF;
+    ownerGPG[o]=totalGames>0?totalPF/totalGames:0;
+  });
+  const byPF=[...d.owners].sort((a,b)=>ownerGPG[b]-ownerGPG[a]);
 
   // Champions
   const champMap=d.meta.champions||{};
   const champions=Object.entries(champMap).map(([yr,owner])=>({year:parseInt(yr),owner})).sort((a,b)=>b.year-a.year);
 
-  // Season stats
+  // Season stats — include per-game averages
   const seasonStats=[];
   d.owners.forEach(o=>Object.entries(d.points_history[o]||{}).forEach(([yr,dt])=>{
-    seasonStats.push({owner:o,year:parseInt(yr),pf:dt.pf,pa:dt.pa,diff:dt.pf-dt.pa,wins:dt.wins,losses:dt.losses});
+    const games=(dt.wins||0)+(dt.losses||0)||1;
+    seasonStats.push({owner:o,year:parseInt(yr),pf:dt.pf,pa:dt.pa,diff:dt.pf-dt.pa,
+                      pfpg:dt.pf/games,papg:dt.pa/games,diffpg:(dt.pf-dt.pa)/games,games,wins:dt.wins,losses:dt.losses});
   }));
 
   // Games
@@ -572,46 +599,53 @@ function renderSuperlatives() {
 
   const grid=document.getElementById('superlatives-grid');
   grid.innerHTML=[
-    supCard('Highest Scoring Teams (All-Time)',
-      byPF.slice(0,3).map(o=>`${o} <span class="text-slate-400">${ownerPF[o].toFixed(1)} pts</span>`)),
+    supCard('Highest Scoring Teams (Avg/Game)',
+      byPF.slice(0,3).map(o=>`${o} <span class="text-amber-400 font-semibold">${ownerGPG[o].toFixed(1)}</span><span class="text-slate-500 text-xs"> pts/gm</span>`),
+      'border-amber-500'),
 
-    supCard('Lowest Scoring Teams (All-Time)',
-      [...byPF].reverse().slice(0,3).map(o=>`${o} <span class="text-slate-400">${ownerPF[o].toFixed(1)} pts</span>`)),
+    supCard('Lowest Scoring Teams (Avg/Game)',
+      [...byPF].reverse().slice(0,3).map(o=>`${o} <span class="text-red-400 font-semibold">${ownerGPG[o].toFixed(1)}</span><span class="text-slate-500 text-xs"> pts/gm</span>`),
+      'border-red-700'),
 
     supChamps('League Champions', champions),
 
     supCard('Unluckiest Teams',
       [...d.owners].sort((a,b)=>luck[a]-luck[b]).slice(0,3).map(o=>{
         const sign=luck[o]>=0?'+':'';
-        return `${o} <span class="text-slate-400">${sign}${luck[o].toFixed(1)} wins vs expected</span>`;
-      })),
+        return `${o} <span class="text-purple-400 font-semibold">${sign}${luck[o].toFixed(1)}</span><span class="text-slate-500 text-xs"> wins vs expected</span>`;
+      }), 'border-purple-600'),
 
-    supCard('Highest Scoring Seasons',
-      [...seasonStats].sort((a,b)=>b.pf-a.pf).slice(0,3).map(s=>`${s.owner} ${s.year} <span class="text-slate-400">${s.pf.toFixed(1)} pts</span>`)),
+    supCard('Highest Scoring Seasons (Avg/Game)',
+      [...seasonStats].sort((a,b)=>b.pfpg-a.pfpg).slice(0,3).map(s=>`<span class="text-white font-medium">${s.owner}</span> <span class="text-slate-500 text-xs">${s.year}</span> <span class="text-emerald-400 font-semibold">${s.pfpg.toFixed(1)}</span><span class="text-slate-500 text-xs"> pts/gm</span>`),
+      'border-emerald-500'),
 
-    supCard('Lowest Scoring Seasons',
-      [...seasonStats].sort((a,b)=>a.pf-b.pf).slice(0,3).map(s=>`${s.owner} ${s.year} <span class="text-slate-400">${s.pf.toFixed(1)} pts</span>`)),
+    supCard('Lowest Scoring Seasons (Avg/Game)',
+      [...seasonStats].sort((a,b)=>a.pfpg-b.pfpg).slice(0,3).map(s=>`<span class="text-white font-medium">${s.owner}</span> <span class="text-slate-500 text-xs">${s.year}</span> <span class="text-red-400 font-semibold">${s.pfpg.toFixed(1)}</span><span class="text-slate-500 text-xs"> pts/gm</span>`),
+      'border-red-600'),
 
-    supCard('Best Point Differential Season',
-      [...seasonStats].sort((a,b)=>b.diff-a.diff).slice(0,3).map(s=>{
-        const sign=s.diff>=0?'+':'';
-        return `${s.owner} ${s.year} <span class="text-slate-400">${sign}${s.diff.toFixed(1)} (${s.pf.toFixed(0)} PF / ${s.pa.toFixed(0)} PA)</span>`;
-      })),
+    supCard('Best Point Differential Season (Avg/Game)',
+      [...seasonStats].sort((a,b)=>b.diffpg-a.diffpg).slice(0,3).map(s=>{
+        const sign=s.diffpg>=0?'+':'';
+        return `<span class="text-white font-medium">${s.owner}</span> <span class="text-slate-500 text-xs">${s.year}</span> <span class="text-green-400 font-semibold">${sign}${s.diffpg.toFixed(1)}/gm</span> <span class="text-slate-500 text-xs">(${s.pf.toFixed(0)} PF / ${s.pa.toFixed(0)} PA)</span>`;
+      }), 'border-green-500'),
 
-    supCard('Worst Point Differential Season',
-      [...seasonStats].sort((a,b)=>a.diff-b.diff).slice(0,3).map(s=>{
-        const sign=s.diff>=0?'+':'';
-        return `${s.owner} ${s.year} <span class="text-slate-400">${sign}${s.diff.toFixed(1)} (${s.pf.toFixed(0)} PF / ${s.pa.toFixed(0)} PA)</span>`;
-      })),
+    supCard('Worst Point Differential Season (Avg/Game)',
+      [...seasonStats].sort((a,b)=>a.diffpg-b.diffpg).slice(0,3).map(s=>{
+        const sign=s.diffpg>=0?'+':'';
+        return `<span class="text-white font-medium">${s.owner}</span> <span class="text-slate-500 text-xs">${s.year}</span> <span class="text-red-400 font-semibold">${sign}${s.diffpg.toFixed(1)}/gm</span> <span class="text-slate-500 text-xs">(${s.pf.toFixed(0)} PF / ${s.pa.toFixed(0)} PA)</span>`;
+      }), 'border-red-500'),
 
     supCard('Biggest Blowouts',
-      [...reg].sort((a,b)=>b.margin-a.margin).slice(0,3).map(m=>`${gameLabel(m)} <span class="text-orange-400 font-semibold">${m.margin.toFixed(2)} margin</span>`)),
+      [...reg].sort((a,b)=>b.margin-a.margin).slice(0,3).map(m=>`${gameLabel(m)} <span class="text-orange-400 font-semibold">${m.margin.toFixed(2)} margin</span>`),
+      'border-orange-500'),
 
     supCard('Highest Scoring Games',
-      [...withCombined].sort((a,b)=>b.combined-a.combined).slice(0,3).map(m=>`${gameLabel(m)} <span class="text-yellow-400 font-semibold">${m.combined.toFixed(2)} combined</span>`)),
+      [...withCombined].sort((a,b)=>b.combined-a.combined).slice(0,3).map(m=>`${gameLabel(m)} <span class="text-cyan-400 font-semibold">${m.combined.toFixed(2)} combined</span>`),
+      'border-cyan-500'),
 
     supCard('Lowest Scoring Games',
-      [...withCombined].sort((a,b)=>a.combined-b.combined).slice(0,3).map(m=>`${gameLabel(m)} <span class="text-slate-400 font-semibold">${m.combined.toFixed(2)} combined</span>`)),
+      [...withCombined].sort((a,b)=>a.combined-b.combined).slice(0,3).map(m=>`${gameLabel(m)} <span class="text-slate-400 font-semibold">${m.combined.toFixed(2)} combined</span>`),
+      'border-slate-500'),
   ].join('');
 }
 
