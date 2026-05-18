@@ -34,6 +34,7 @@
     <button onclick="showTab('games')"        id="tab-btn-games"        class="tab-btn px-3 sm:px-5 py-2 rounded-md text-xs sm:text-sm font-medium">Games</button>
     <button onclick="showTab('scoring')"      id="tab-btn-scoring"      class="tab-btn px-3 sm:px-5 py-2 rounded-md text-xs sm:text-sm font-medium">Scoring</button>
     <button onclick="showTab('superlatives')" id="tab-btn-superlatives" class="tab-btn px-3 sm:px-5 py-2 rounded-md text-xs sm:text-sm font-medium">Superlatives</button>
+    <button onclick="showTab('bench')"        id="tab-btn-bench"        class="tab-btn px-3 sm:px-5 py-2 rounded-md text-xs sm:text-sm font-medium">Roster Mgmt</button>
   </div>
 
   <!-- ═══ TEAM STATS -->
@@ -153,10 +154,22 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6" id="superlatives-grid"></div>
   </div>
 
+  <!-- ═══ BENCH -->
+  <div id="section-bench" class="tab-section hidden space-y-4 sm:space-y-6">
+    <div class="flex gap-2 flex-wrap">
+      <button onclick="setBenchMode('mismanagement')" id="bench-btn-mismanagement" class="bench-btn bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Mismanagement</button>
+      <button onclick="setBenchMode('blunders')"      id="bench-btn-blunders"      class="bench-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Biggest Blunders</button>
+      <button onclick="setBenchMode('blownwins')"     id="bench-btn-blownwins"     class="bench-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Blown Wins</button>
+      <button onclick="setBenchMode('loyalty')"       id="bench-btn-loyalty"       class="bench-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">Player Loyalty</button>
+    </div>
+    <div id="bench-content" class="bg-slate-900 rounded-xl p-4 sm:p-6"></div>
+  </div>
+
 </div>
 <script>
 // ── State ─────────────────────────────────────────────────────────────────────
 let gamesMode  = 'closest';
+let benchMode  = 'mismanagement';
 let h2hSortKey = 'games';
 let h2hSortDir = -1;
 let teamChart  = null;
@@ -194,6 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderGames();
   renderScoring();
   renderSuperlatives();
+  renderBench();
 });
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -654,6 +668,8 @@ function renderTeamStats() {
   const years=Object.keys(history).map(Number).sort();
   const luck=computeLuck();
   const avg=leagueAvgByYear();
+  const finalRosters=d.lineups?.final_rosters?.[owner]||{};
+  const rosterYears=Object.keys(finalRosters).map(Number).sort((a,b)=>b-a);
   const n=d.owners.length;
 
   const totalPF=years.reduce((s,yr)=>s+(history[yr].pf||0),0);
@@ -840,8 +856,21 @@ function renderTeamStats() {
         ${miniStat('Biggest Loss Margin',bigLoss?bigLoss.margin.toFixed(2):'–')}
       </div>
     </div>
+
+    ${rosterYears.length?`
+    <div class="bg-slate-900 rounded-xl p-4 sm:p-6">
+      <div class="flex items-center justify-between mb-3 flex-wrap gap-3">
+        <h3 class="text-sm font-semibold text-white">Final Roster by Season</h3>
+        <select id="roster-year-select" data-owner="${esc(owner)}" onchange="renderRosterView()"
+                class="bg-slate-800 border border-slate-700 text-white px-3 py-1.5 rounded-lg text-sm focus:outline-none">
+          ${rosterYears.map(yr=>`<option value="${yr}">${yr}</option>`).join('')}
+        </select>
+      </div>
+      <div id="roster-view-content"></div>
+    </div>`:''}
   `;
   renderTeamChart(owner,history,avg);
+  if (rosterYears.length) renderRosterView();
 }
 
 function statCard(label,value,sub){
@@ -894,6 +923,279 @@ function renderTeamChart(owner,history,avg){
       }
     }
   });
+}
+
+// ── Roster View ───────────────────────────────────────────────────────────────
+function renderRosterView() {
+  const sel = document.getElementById('roster-year-select');
+  const cnt = document.getElementById('roster-view-content');
+  if (!sel||!cnt) return;
+  const owner = sel.dataset.owner;
+  const year  = sel.value;
+  const rosters = LEAGUE_DATA.lineups?.final_rosters?.[owner]||{};
+  const roster  = rosters[String(year)];
+  if (!roster||!roster.length) { cnt.innerHTML='<p class="text-slate-500 text-sm">No roster data for this year.</p>'; return; }
+
+  const SE = {
+    QB:['QB'], RB:['RB'], WR:['WR'], TE:['TE'], K:['K'], 'D/ST':['D/ST'],
+    FLEX:['RB','WR','TE'], 'RB/WR':['RB','WR'], 'WR/TE':['WR','TE'],
+    'RB/WR/TE':['RB','WR','TE'], OP:['QB','RB','WR','TE'],
+  };
+  const SLOT_ORDER = ['QB','RB','WR','TE','FLEX','RB/WR','WR/TE','RB/WR/TE','OP','K','D/ST'];
+  const POS_COL = {QB:'#818cf8',RB:'#34d399',WR:'#38bdf8',TE:'#fbbf24',K:'#f472b6','D/ST':'#a78bfa'};
+
+  const slotConfig = {};
+  roster.filter(p=>p.slot!=='BE').forEach(p=>{ slotConfig[p.slot]=(slotConfig[p.slot]||0)+1; });
+
+  const slots = [];
+  SLOT_ORDER.forEach(s=>{ if (slotConfig[s]) for (let i=0;i<slotConfig[s];i++) slots.push(s); });
+  slots.sort((a,b)=>(SE[a]?.length||1)-(SE[b]?.length||1));
+
+  const used = new Set();
+  const starters = [];
+  for (const slot of slots) {
+    const elig = SE[slot]||[slot];
+    const best = roster.filter(p=>!used.has(p.name)&&elig.includes(p.pos))
+                       .sort((a,b)=>(b.season_pts||0)-(a.season_pts||0))[0];
+    if (!best) continue;
+    used.add(best.name);
+    starters.push({...best, dslot:slot});
+  }
+  starters.sort((a,b)=>SLOT_ORDER.indexOf(a.dslot)-SLOT_ORDER.indexOf(b.dslot));
+  const bench = roster.filter(p=>!used.has(p.name)).sort((a,b)=>(b.season_pts||0)-(a.season_pts||0));
+
+  function pRow(p, slotLabel, isLast) {
+    const ini = p.name.split(' ').filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    const col = POS_COL[p.pos]||'#94a3b8';
+    const face = p.pid
+      ? `<div class="w-9 h-9 rounded-full overflow-hidden bg-slate-700 shrink-0 relative flex items-center justify-center">
+           <img src="https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/${p.pid}.png&w=72&h=52&scale=crop&location=origin&transparent=true"
+                class="w-full h-full object-cover object-top"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+           <div class="absolute inset-0 items-center justify-center text-xs font-bold" style="display:none;color:${col}">${ini}</div>
+         </div>`
+      : `<div class="w-9 h-9 rounded-full bg-slate-700 flex items-center justify-center shrink-0 text-xs font-bold" style="color:${col}">${ini}</div>`;
+    return `<div class="flex items-center gap-3 py-1.5 ${!isLast?'border-b border-slate-800/40':''}">
+      <span class="text-xs font-medium text-slate-500 w-12 shrink-0 text-right">${slotLabel}</span>
+      ${face}
+      <div class="flex-1 min-w-0">
+        <div class="text-white text-sm font-medium truncate">${p.name}</div>
+        <div class="text-slate-600 text-xs">${p.pos}</div>
+      </div>
+      <div class="text-right shrink-0">
+        <span class="text-emerald-400 font-semibold text-sm">${(p.season_pts||0).toFixed(1)}</span>
+        <span class="text-slate-600 text-xs ml-0.5">pts</span>
+      </div>
+    </div>`;
+  }
+
+  const startersHtml = starters.map((p,i)=>pRow(p,p.dslot,i===starters.length-1&&!bench.length)).join('');
+  const benchHtml = bench.length ? `
+    <div class="mt-3 pt-3 border-t border-slate-700/50">
+      <p class="text-slate-600 text-xs uppercase tracking-wider mb-2">Bench</p>
+      ${bench.map((p,i)=>pRow(p,'',i===bench.length-1)).join('')}
+    </div>` : '';
+
+  cnt.innerHTML = `<p class="text-slate-500 text-xs mb-3">Optimal ${year} lineup by season points · ${starters.length} starters · ${bench.length} bench</p>${startersHtml}${benchHtml}`;
+}
+
+// ── Bench ─────────────────────────────────────────────────────────────────────
+function setBenchMode(mode) {
+  benchMode = mode;
+  ['mismanagement','blunders','blownwins','loyalty'].forEach(m => {
+    const btn = document.getElementById('bench-btn-' + m);
+    if (!btn) return;
+    if (m === mode) { btn.classList.replace('bg-slate-800','bg-indigo-600'); btn.classList.replace('text-slate-300','text-white'); btn.classList.remove('hover:bg-slate-700'); }
+    else            { btn.classList.replace('bg-indigo-600','bg-slate-800'); btn.classList.replace('text-white','text-slate-300'); if (!btn.classList.contains('hover:bg-slate-700')) btn.classList.add('hover:bg-slate-700'); }
+  });
+  renderBench();
+}
+
+function renderBench() {
+  const lin = LEAGUE_DATA.lineups;
+  const el  = document.getElementById('bench-content');
+  if (!lin) { el.innerHTML = '<p class="text-slate-400 text-sm">No lineup data — re-run the export script.</p>'; return; }
+  if (benchMode === 'mismanagement') renderMismanagement(lin, el);
+  else if (benchMode === 'blunders') renderBlunders(lin, el);
+  else if (benchMode === 'blownwins') renderBlownWins(lin, el);
+  else if (benchMode === 'loyalty')   renderLoyalty(lin, el);
+}
+
+function renderMismanagement(lin, el) {
+  const stats = Object.entries(lin.owner_stats)
+    .map(([owner, s]) => ({owner, ...s}))
+    .sort((a, b) => b.pts_left - a.pts_left);
+  el.innerHTML = `
+    <p class="text-slate-500 text-xs mb-4">Best possible lineup each week vs what was actually started. Points left = wasted bench production.</p>
+    <div class="overflow-x-auto">
+      <table class="text-xs sm:text-sm w-full">
+        <thead><tr class="text-slate-500 text-xs uppercase tracking-wide border-b border-slate-800">
+          <th class="text-left py-2 px-3">Owner</th>
+          <th class="text-right py-2 px-3">Gms</th>
+          <th class="text-right py-2 px-3">Actual</th>
+          <th class="text-right py-2 px-3">Optimal</th>
+          <th class="text-right py-2 px-3">Left</th>
+          <th class="text-right py-2 px-3">Per Gm</th>
+          <th class="text-right py-2 px-3">Blown W</th>
+          <th class="text-right py-2 px-3">Effic.</th>
+        </tr></thead>
+        <tbody>${stats.map((s, i) => {
+          const eff = s.optimal_pts > 0 ? s.starter_pts / s.optimal_pts * 100 : 0;
+          const effCls = eff >= 97 ? 'text-green-400' : eff >= 93 ? 'text-yellow-400' : 'text-red-400';
+          return `<tr class="${i%2?'bg-slate-800/20':''} hover:bg-slate-700/20 transition-colors">
+            <td class="py-2.5 px-3 font-medium text-white">${s.owner}</td>
+            <td class="py-2.5 px-3 text-right text-slate-500">${s.games}</td>
+            <td class="py-2.5 px-3 text-right text-slate-300">${s.starter_pts.toFixed(0)}</td>
+            <td class="py-2.5 px-3 text-right text-emerald-400">${s.optimal_pts.toFixed(0)}</td>
+            <td class="py-2.5 px-3 text-right text-red-400 font-semibold">${s.pts_left.toFixed(1)}</td>
+            <td class="py-2.5 px-3 text-right text-orange-400">${s.avg_left.toFixed(1)}</td>
+            <td class="py-2.5 px-3 text-right ${s.blown_wins>0?'text-red-400 font-bold':'text-slate-600'}">${s.blown_wins}</td>
+            <td class="py-2.5 px-3 text-right font-semibold ${effCls}">${eff.toFixed(1)}%</td>
+          </tr>`;
+        }).join('')}</tbody>
+      </table>
+    </div>`;
+}
+
+function renderBlunders(lin, el) {
+  const top = [...(lin.blunders || [])].sort((a,b)=>b.swap_gain-a.swap_gain).slice(0, 40);
+  el.innerHTML = `
+    <p class="text-slate-500 text-xs mb-5">The single worst benching decision each game — biggest gap between who they sat and who they played at the same position.</p>
+    <div class="space-y-2">
+      ${top.map(b => {
+        const badge = b.would_win
+          ? `<span class="bg-red-500/20 text-red-400 text-xs font-semibold px-2 py-0.5 rounded-full">Blown Win</span>`
+          : b.actual > b.opp_score
+            ? `<span class="bg-emerald-500/10 text-emerald-500 text-xs px-2 py-0.5 rounded-full">Won anyway</span>`
+            : `<span class="text-slate-600 text-xs">Loss</span>`;
+        return `<div class="bg-slate-800/40 rounded-lg px-4 py-3 flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+              <span class="text-white font-semibold text-sm">${b.owner}</span>
+              <span class="text-slate-600 text-xs">${b.year} Wk ${b.week} vs ${b.opp}</span>
+              ${badge}
+            </div>
+            <div class="text-sm leading-snug">
+              <span class="text-slate-400">Sat </span><span class="text-white font-medium">${b.benched}</span><span class="text-emerald-400 font-semibold"> (${b.benched_pts})</span>
+              <span class="text-slate-500"> · started </span><span class="text-slate-300">${b.started}</span><span class="text-slate-500"> (${b.started_pts})</span>
+            </div>
+          </div>
+          <div class="text-right shrink-0">
+            <div class="text-red-400 font-bold text-xl">−${b.swap_gain.toFixed(1)}</div>
+            <div class="text-slate-600 text-xs">pts left</div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderBlownWins(lin, el) {
+  const stats = Object.entries(lin.owner_stats || {})
+    .map(([owner, s]) => ({owner, blown: s.blown_wins, games: s.games}))
+    .sort((a, b) => b.blown - a.blown);
+
+  // blown wins = games where FULL optimal lineup would have won
+  const blown = (lin.blunders || []).filter(b => b.would_win).sort((a, b) => b.left - a.left);
+  const owners = [...new Set(blown.map(b => b.owner))].sort();
+
+  const selEl = document.getElementById('blown-team-filter');
+  const sel   = selEl ? selEl.value : 'all';
+  const filtered = sel === 'all' ? blown : blown.filter(b => b.owner === sel);
+
+  el.innerHTML = `
+    <p class="text-slate-500 text-xs mb-4">Losses where the optimal starting lineup would have scored enough to win.</p>
+    <div class="overflow-x-auto mb-5">
+      <table class="text-xs sm:text-sm w-full">
+        <thead><tr class="text-slate-500 text-xs uppercase tracking-wide border-b border-slate-800">
+          <th class="text-left py-2 px-3">Owner</th>
+          <th class="text-right py-2 px-3">Blown Wins</th>
+          <th class="text-right py-2 px-3">Games</th>
+          <th class="text-right py-2 px-3">Rate</th>
+        </tr></thead>
+        <tbody>${stats.map((s, i) => `<tr class="${i%2?'bg-slate-800/20':''} hover:bg-slate-700/20 transition-colors">
+          <td class="py-2.5 px-3 font-medium text-white">${s.owner}</td>
+          <td class="py-2.5 px-3 text-right ${s.blown>0?'text-red-400 font-bold':'text-slate-600'}">${s.blown}</td>
+          <td class="py-2.5 px-3 text-right text-slate-500">${s.games}</td>
+          <td class="py-2.5 px-3 text-right text-slate-500">${s.games>0?(s.blown/s.games*100).toFixed(1):0}%</td>
+        </tr>`).join('')}</tbody>
+      </table>
+    </div>
+    ${blown.length ? `
+    <div class="flex items-center gap-3 mb-4 flex-wrap">
+      <p class="text-slate-500 text-xs flex-1">Game details</p>
+      <select id="blown-team-filter" onchange="renderBlownWins(LEAGUE_DATA.lineups, document.getElementById('bench-content'))"
+              class="bg-slate-800 border border-slate-700 text-white px-3 py-1.5 rounded-lg text-sm focus:outline-none">
+        <option value="all" ${sel==='all'?'selected':''}>All Teams</option>
+        ${owners.map(o=>`<option value="${esc(o)}" ${o===sel?'selected':''}>${o}</option>`).join('')}
+      </select>
+    </div>
+    <div class="space-y-2">
+      ${filtered.map(b => `
+        <div class="bg-slate-800/40 rounded-lg px-4 py-3">
+          <div class="flex items-center justify-between gap-2 mb-2 flex-wrap">
+            <div class="flex items-center gap-2">
+              <span class="text-white font-semibold text-sm">${b.owner}</span>
+              <span class="text-slate-500 text-xs">${b.year} Wk ${b.week} vs ${b.opp}</span>
+            </div>
+            <span class="bg-red-500/20 text-red-400 text-xs font-semibold px-2 py-0.5 rounded-full">${b.left.toFixed(1)} pts left</span>
+          </div>
+          <div class="flex items-center gap-4 text-sm flex-wrap">
+            <span><span class="text-slate-500 text-xs">Scored</span> <span class="text-slate-300 font-semibold">${b.actual.toFixed(1)}</span></span>
+            <span class="text-slate-700">→</span>
+            <span><span class="text-slate-500 text-xs">Optimal</span> <span class="text-emerald-400 font-semibold">${b.optimal.toFixed(1)}</span></span>
+            <span class="text-slate-700">vs</span>
+            <span><span class="text-slate-500 text-xs">Opp</span> <span class="text-slate-300 font-semibold">${b.opp_score.toFixed(1)}</span></span>
+          </div>
+          <div class="text-xs text-slate-500 mt-1.5">Worst miss: sat <span class="text-white">${b.benched}</span> (${b.benched_pts}) · started <span class="text-slate-300">${b.started}</span> (${b.started_pts})</div>
+        </div>`).join('')}
+    </div>` : '<p class="text-slate-600 text-sm">No blown wins found.</p>'}`;
+}
+
+function renderLoyalty(lin, el) {
+  const loyalty = lin.loyalty || {};
+  const owners  = Object.keys(loyalty).sort();
+  if (!owners.length) { el.innerHTML = '<p class="text-slate-400 text-sm">No loyalty data.</p>'; return; }
+
+  const selEl = document.getElementById('loyalty-team-filter');
+  const sel   = selEl ? selEl.value : 'all';
+
+  const all = [];
+  owners.forEach(owner => (loyalty[owner] || []).forEach(p => all.push({owner, ...p})));
+  const filtered = (sel === 'all' ? all : all.filter(p => p.owner === sel))
+    .sort((a, b) => b.weeks - a.weeks);
+  const maxW = filtered[0]?.weeks || 1;
+
+  el.innerHTML = `
+    <div class="flex items-center gap-3 mb-5 flex-wrap">
+      <p class="text-slate-500 text-xs flex-1">Most weeks rostering the same player across all seasons.</p>
+      <select id="loyalty-team-filter" onchange="renderLoyalty(LEAGUE_DATA.lineups, document.getElementById('bench-content'))"
+              class="bg-slate-800 border border-slate-700 text-white px-3 py-1.5 rounded-lg text-sm focus:outline-none">
+        <option value="all" ${sel==='all'?'selected':''}>All Teams</option>
+        ${owners.map(o => `<option value="${esc(o)}" ${o===sel?'selected':''}>${o}</option>`).join('')}
+      </select>
+    </div>
+    <div>
+      ${filtered.map((p, i) => {
+        const barW = Math.round(p.weeks / maxW * 100);
+        return `<div class="flex items-center gap-3 py-2.5 ${i<filtered.length-1?'border-b border-slate-800/40':''}">
+          <span class="text-slate-600 text-xs w-6 text-right shrink-0">${i+1}.</span>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between gap-2 mb-1">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="text-white font-medium text-sm truncate">${p.name}</span>
+                <span class="text-slate-500 text-xs shrink-0">${p.owner}</span>
+              </div>
+              <div class="flex items-center gap-3 text-xs shrink-0">
+                <span class="text-cyan-400 font-semibold">${p.weeks} wks</span>
+                <span class="text-slate-600">${p.seasons} szn${p.seasons!==1?'s':''}</span>
+              </div>
+            </div>
+            <div class="h-0.5 bg-slate-800 rounded-full"><div class="h-0.5 bg-indigo-500/60 rounded-full" style="width:${barW}%"></div></div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+    <p class="text-xs text-slate-700 mt-4">2019–present · min 4 weeks on roster</p>`;
 }
 </script>
 </body>

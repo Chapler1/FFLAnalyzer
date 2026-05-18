@@ -163,6 +163,195 @@ def build_h2h(matchups):
     return records
 
 
+# Which lineup slots a player at each position can fill
+POSITION_SLOTS = {
+    'QB':  {'QB', 'OP'},
+    'RB':  {'RB', 'FLEX', 'RB/WR', 'RB/WR/TE', 'OP'},
+    'WR':  {'WR', 'FLEX', 'WR/TE', 'RB/WR', 'RB/WR/TE', 'OP'},
+    'TE':  {'TE', 'FLEX', 'WR/TE', 'RB/WR/TE', 'OP'},
+    'K':   {'K'},
+    'D/ST': {'D/ST'},
+}
+
+# Which player positions can fill each lineup slot
+SLOT_ELIGIBLE = {
+    'QB':       {'QB'},
+    'RB':       {'RB'},
+    'WR':       {'WR'},
+    'TE':       {'TE'},
+    'K':        {'K'},
+    'D/ST':     {'D/ST'},
+    'FLEX':     {'RB', 'WR', 'TE'},
+    'RB/WR':    {'RB', 'WR'},
+    'WR/TE':    {'WR', 'TE'},
+    'RB/WR/TE': {'RB', 'WR', 'TE'},
+    'OP':       {'QB', 'RB', 'WR', 'TE'},
+}
+
+
+def compute_optimal(lineup):
+    """Greedy optimal lineup using position-based slot matching."""
+    active = [p for p in lineup if p.slot_position not in ('IR',)]
+
+    from collections import Counter
+    slot_counts = Counter(p.slot_position for p in active if p.slot_position not in ('BE', 'IR'))
+    slots = [s for s, n in slot_counts.items() for _ in range(n)]
+
+    def flexibility(s):
+        eligible = SLOT_ELIGIBLE.get(s, {s})
+        return sum(1 for p in active if getattr(p, 'position', '') in eligible)
+
+    slots_sorted = sorted(slots, key=flexibility)
+
+    used  = set()
+    total = 0.0
+    for slot in slots_sorted:
+        eligible = SLOT_ELIGIBLE.get(slot, {slot})
+        best = max(
+            (p for p in active
+             if id(p) not in used and getattr(p, 'position', '') in eligible),
+            key=lambda p: p.points,
+            default=None,
+        )
+        if best:
+            used.add(id(best))
+            total += best.points
+    return total
+
+
+def build_lineup_data(seasons, aliases):
+    print("\nFetching lineup/bench data (2019+)...")
+
+    owner_stats       = defaultdict(lambda: {'starter_pts': 0.0, 'optimal_pts': 0.0, 'games': 0, 'blown_wins': 0})
+    blunders          = []
+    player_weeks      = defaultdict(lambda: defaultdict(int))
+    player_seasons    = defaultdict(lambda: defaultdict(set))
+    player_season_pts = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
+    final_rosters     = defaultdict(dict)
+
+    for year, league in sorted(seasons.items()):
+        if year < 2019:
+            print(f"  {year}: skipped (box scores unavailable before 2019)")
+            continue
+        reg_weeks = league.settings.reg_season_count
+        print(f"  {year}: ", end='', flush=True)
+
+        for week in range(1, reg_weeks + 1):
+            try:
+                boxes = league.box_scores(week)
+            except Exception:
+                continue
+
+            for box in boxes:
+                if not box.home_team or not box.away_team:
+                    continue
+                for team, lineup, opp_score, opp_team in [
+                    (box.home_team, box.home_lineup, box.away_score, box.away_team),
+                    (box.away_team, box.away_lineup, box.home_score, box.home_team),
+                ]:
+                    if not lineup:
+                        continue
+                    owner = resolve(get_owner(team),     aliases)
+                    opp   = resolve(get_owner(opp_team), aliases)
+
+                    actual  = sum(p.points for p in lineup if p.slot_position not in ('BE', 'IR'))
+                    optimal = compute_optimal(lineup)
+                    left    = max(0.0, optimal - actual)
+
+                    owner_stats[owner]['starter_pts'] += actual
+                    owner_stats[owner]['optimal_pts'] += optimal
+                    owner_stats[owner]['games']       += 1
+
+                    for p in lineup:
+                        name = getattr(p, 'name', None)
+                        if p.slot_position == 'IR' or not name or name == 'None':
+                            continue
+                        player_weeks[owner][name]   += 1
+                        player_seasons[owner][name].add(year)
+                        player_season_pts[owner][year][name] += p.points
+
+                    # Snapshot final regular-season roster (last week only)
+                    if week == reg_weeks and str(year) not in final_rosters[owner]:
+                        sp_map = player_season_pts[owner][year]
+                        final_rosters[owner][str(year)] = sorted(
+                            [{'name': getattr(p,'name','?'), 'pos': getattr(p,'position','?'),
+                              'slot': p.slot_position, 'pts': round(p.points, 2),
+                              'season_pts': round(sp_map.get(getattr(p,'name','?'), 0.0), 2),
+                              'pid': getattr(p, 'playerId', 0)}
+                             for p in lineup
+                             if getattr(p,'name',None) and getattr(p,'name','') != 'None'
+                             and p.slot_position != 'IR'],
+                            key=lambda x: (x['slot'] in ('BE',), x['slot'], -x['pts'])
+                        )
+
+                    would_win = opp_score > 0 and actual < opp_score and optimal > opp_score
+                    if would_win:
+                        owner_stats[owner]['blown_wins'] += 1
+
+                    # Find the single worst individual benching decision this game
+                    benched  = sorted([p for p in lineup if p.slot_position == 'BE'
+                                       and getattr(p, 'name', None)],
+                                      key=lambda p: p.points, reverse=True)
+                    starters = [p for p in lineup if p.slot_position not in ('BE', 'IR')]
+                    best_swap, best_gain = None, 0.0
+                    for bp in benched:
+                        eligible_slots = POSITION_SLOTS.get(getattr(bp, 'position', ''), set())
+                        for sp in starters:
+                            if sp.slot_position in eligible_slots:
+                                gain = bp.points - sp.points
+                                if gain > best_gain:
+                                    best_gain = gain
+                                    best_swap = {
+                                        'benched':      bp.name,
+                                        'started':      sp.name,
+                                        'benched_pts':  round(bp.points, 2),
+                                        'started_pts':  round(sp.points, 2),
+                                        'swap_gain':    round(gain,      2),
+                                    }
+
+                    if best_swap:
+                        blunders.append({
+                            'year': year, 'week': week,
+                            'owner': owner, 'opp': opp,
+                            'actual':    round(actual,    2),
+                            'optimal':   round(optimal,   2),
+                            'left':      round(left,      2),
+                            'opp_score': round(opp_score, 2),
+                            'would_win': would_win,
+                            **best_swap,
+                        })
+            print('.', end='', flush=True)
+        print()
+
+    final_stats = {}
+    for owner, s in owner_stats.items():
+        g = s['games'] or 1
+        final_stats[owner] = {
+            'games':       s['games'],
+            'starter_pts': round(s['starter_pts'], 2),
+            'optimal_pts': round(s['optimal_pts'], 2),
+            'pts_left':    round(s['optimal_pts'] - s['starter_pts'], 2),
+            'avg_left':    round((s['optimal_pts'] - s['starter_pts']) / g, 2),
+            'blown_wins':  s['blown_wins'],
+        }
+
+    loyalty = {}
+    for owner in player_weeks:
+        players = [
+            {'name': name, 'weeks': weeks, 'seasons': len(player_seasons[owner].get(name, set()))}
+            for name, weeks in player_weeks[owner].items() if weeks >= 4
+        ]
+        loyalty[owner] = sorted(players, key=lambda x: x['weeks'], reverse=True)[:15]
+
+    blunders.sort(key=lambda x: x['left'], reverse=True)
+    return {
+        'owner_stats':   final_stats,
+        'blunders':      blunders[:300],
+        'loyalty':       loyalty,
+        'final_rosters': {owner: dict(years) for owner, years in final_rosters.items()},
+    }
+
+
 def build_points_history(seasons, aliases):
     history = defaultdict(dict)
     for year, league in seasons.items():
@@ -307,7 +496,7 @@ def print_points_history(history, seasons):
 
 # ── Export ────────────────────────────────────────────────────────────────────
 
-def export_data(seasons, aliases, matchups, h2h, history, champions):
+def export_data(seasons, aliases, matchups, h2h, history, champions, lineup_data=None):
     seen, h2h_list = set(), []
     for (a, b), rec in h2h.items():
         key = tuple(sorted([a, b]))
@@ -364,6 +553,7 @@ def export_data(seasons, aliases, matchups, h2h, history, champions):
             for o, yrs in history.items()
         },
         "season_rankings": season_rankings,
+        "lineups": lineup_data,
     }
 
     os.makedirs("docs", exist_ok=True)
@@ -410,7 +600,8 @@ def main():
     if args.export:
         print("\nFinding champions from playoff brackets...")
         champions = find_champions(seasons, aliases)
-        export_data(seasons, aliases, matchups, h2h, history, champions)
+        lineup_data = build_lineup_data(seasons, aliases)
+        export_data(seasons, aliases, matchups, h2h, history, champions, lineup_data)
     else:
         print_h2h(h2h)
         print_closest(matchups)
