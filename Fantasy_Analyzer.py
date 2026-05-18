@@ -75,7 +75,7 @@ def detect_aliases(seasons):
                     canonical = max([a, b], key=lambda o: (max(owner_years[o]), len(owner_years[o])))
                     old = b if canonical == a else a
                     aliases[old] = canonical
-                    print(f"  Alias: '{old}' → '{canonical}' "
+                    print(f"  Alias: '{old}' -> '{canonical}' "
                           f"(years {sorted(owner_years[old])} merged into {sorted(owner_years[canonical])})")
     return aliases
 
@@ -162,6 +162,34 @@ def build_points_history(seasons, aliases):
                 "pts_rank": rank,
             }
     return history
+
+
+def find_champions(seasons, aliases):
+    """Find the actual champion each year from the WINNERS_BRACKET final game."""
+    champions = {}
+    for year, league in seasons.items():
+        reg_weeks = league.settings.reg_season_count
+        total_weeks = max(len(t.schedule) for t in league.teams) if league.teams else reg_weeks
+
+        for week in range(total_weeks, reg_weeks, -1):
+            try:
+                boxes = league.box_scores(week)
+                wb = [b for b in boxes
+                      if getattr(b, "matchup_type", "") == "WINNERS_BRACKET"
+                      and b.home_team and b.away_team
+                      and (b.home_score > 0 or b.away_score > 0)]
+
+                if len(wb) == 1:  # exactly one WINNERS_BRACKET game = championship
+                    b = wb[0]
+                    winner = b.home_team if b.home_score > b.away_score else b.away_team
+                    champ = resolve(get_owner(winner), aliases)
+                    champions[year] = champ
+                    print(f"  {year} champion: {champ}")
+                    break
+            except Exception:
+                pass
+
+    return champions
 
 
 # ── CLI display ───────────────────────────────────────────────────────────────
@@ -263,7 +291,7 @@ def print_points_history(history, seasons):
 
 # ── Export ────────────────────────────────────────────────────────────────────
 
-def export_data(seasons, aliases, matchups, h2h, history):
+def export_data(seasons, aliases, matchups, h2h, history, champions):
     seen, h2h_list = set(), []
     for (a, b), rec in h2h.items():
         key = tuple(sorted([a, b]))
@@ -307,6 +335,7 @@ def export_data(seasons, aliases, matchups, h2h, history):
             "generated":      str(date.today()),
             "total_matchups": len(clean_matchups),
             "aliases_merged": aliases,
+            "champions":      {str(yr): name for yr, name in champions.items()},
         },
         "owners": sorted(history.keys()),
         "h2h":    h2h_list,
@@ -326,7 +355,7 @@ def export_data(seasons, aliases, matchups, h2h, history):
     with open(out, "w", encoding="utf-8") as f:
         f.write(f"const LEAGUE_DATA = {json.dumps(data, indent=2)};\n")
 
-    print(f"\nExported → {out}")
+    print(f"\nExported -> {out}")
     print(f"  {len(clean_matchups)} matchups | {len(history)} owners | {len(seasons)} seasons")
     print(f"  Owners: {', '.join(sorted(history.keys()))}")
     if aliases:
@@ -363,7 +392,9 @@ def main():
     history = build_points_history(seasons, aliases)
 
     if args.export:
-        export_data(seasons, aliases, matchups, h2h, history)
+        print("\nFinding champions from playoff brackets...")
+        champions = find_champions(seasons, aliases)
+        export_data(seasons, aliases, matchups, h2h, history, champions)
     else:
         print_h2h(h2h)
         print_closest(matchups)

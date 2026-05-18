@@ -15,6 +15,15 @@ const LEAGUE_DATA = {
     "total_matchups": 806,
     "aliases_merged": {
       "Ken Ehrman": "Tyler Ehrman"
+    },
+    "champions": {
+      "2019": "Sahsnak Kommineni",
+      "2020": "Matthew Durante",
+      "2021": "Colin Arber",
+      "2022": "Billy Chapler",
+      "2023": "Logan Zayas",
+      "2024": "Matthew Ruffolo",
+      "2025": "Preston Jicka"
     }
   },
   "owners": [

@@ -549,13 +549,8 @@ function renderSuperlatives() {
   const byPF=[...d.owners].sort((a,b)=>ownerPF[b]-ownerPF[a]);
 
   // Champions
-  const champions=[];
-  d.meta.seasons.forEach(yr=>{
-    d.owners.forEach(o=>{
-      if (d.points_history[o]?.[yr]?.standing===1) champions.push({owner:o,year:yr});
-    });
-  });
-  champions.sort((a,b)=>b.year-a.year);
+  const champMap=d.meta.champions||{};
+  const champions=Object.entries(champMap).map(([yr,owner])=>({year:parseInt(yr),owner})).sort((a,b)=>b.year-a.year);
 
   // Season stats
   const seasonStats=[];
@@ -639,7 +634,8 @@ function renderTeamStats() {
   const allTimeW=years.reduce((s,yr)=>s+(history[yr].wins||0),0);
   const allTimeL=years.reduce((s,yr)=>s+(history[yr].losses||0),0);
   const winPct=allTimeW+allTimeL>0?allTimeW/(allTimeW+allTimeL):0;
-  const championships=years.filter(yr=>history[yr].standing===1);
+  const champMap=d.meta.champions||{};
+  const championships=Object.entries(champMap).filter(([,name])=>name===owner).map(([yr])=>parseInt(yr)).sort();
   const pfRatio=totalPA>0?totalPF/totalPA:1;
 
   const ownerTotals={};
@@ -757,7 +753,7 @@ function renderTeamStats() {
             const s=history[yr];
             const diff=s.pf-(avg[yr]||0);
             const dCls=diff>=0?'text-green-400':'text-red-400';
-            const fi=s.standing===1?'🏆':s.standing<=3?'🥈':'';
+            const fi=championships.includes(yr)?'🏆':'';
             return `<tr class="${i%2?'bg-slate-800/30':''} hover:bg-slate-700/30">
               <td class="py-1.5 px-2 sm:px-3 font-medium">${yr}</td>
               <td class="py-1.5 px-2 sm:px-3 text-right">${s.wins}-${s.losses}</td>
