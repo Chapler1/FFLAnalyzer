@@ -227,6 +227,7 @@ def build_lineup_data(seasons, aliases):
     player_weeks      = defaultdict(lambda: defaultdict(int))
     player_seasons    = defaultdict(lambda: defaultdict(set))
     player_season_pts = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
+    player_pid        = {}
     final_rosters     = defaultdict(dict)
 
     for year, league in sorted(seasons.items()):
@@ -269,6 +270,9 @@ def build_lineup_data(seasons, aliases):
                         player_weeks[owner][name]   += 1
                         player_seasons[owner][name].add(year)
                         player_season_pts[owner][year][name] += p.points
+                        pid = getattr(p, 'playerId', 0)
+                        if pid and pid > 0:
+                            player_pid[name] = pid
 
                     # Snapshot final regular-season roster (last week only)
                     if week == reg_weeks and str(year) not in final_rosters[owner]:
@@ -304,6 +308,8 @@ def build_lineup_data(seasons, aliases):
                                     best_swap = {
                                         'benched':      bp.name,
                                         'started':      sp.name,
+                                        'benched_pid':  getattr(bp, 'playerId', 0),
+                                        'started_pid':  getattr(sp, 'playerId', 0),
                                         'benched_pts':  round(bp.points, 2),
                                         'started_pts':  round(sp.points, 2),
                                         'swap_gain':    round(gain,      2),
@@ -338,7 +344,9 @@ def build_lineup_data(seasons, aliases):
     loyalty = {}
     for owner in player_weeks:
         players = [
-            {'name': name, 'weeks': weeks, 'seasons': len(player_seasons[owner].get(name, set()))}
+            {'name': name, 'weeks': weeks,
+             'seasons': len(player_seasons[owner].get(name, set())),
+             'pid': player_pid.get(name, 0)}
             for name, weeks in player_weeks[owner].items() if weeks >= 4
         ]
         loyalty[owner] = sorted(players, key=lambda x: x['weeks'], reverse=True)[:15]

@@ -11549,6 +11549,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Aaron Rodgers",
         "started": "Jeff Driskel",
+        "benched_pid": 8439,
+        "started_pid": 2574630,
         "benched_pts": 27.4,
         "started_pts": 0.0,
         "swap_gain": 27.4
@@ -11565,6 +11567,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Chase Claypool",
         "started": "Diontae Johnson",
+        "benched_pid": 4046692,
+        "started_pid": 3932905,
         "benched_pts": 39.1,
         "started_pts": 0.3,
         "swap_gain": 38.8
@@ -11581,6 +11585,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Sammy Watkins",
         "started": "Dante Pettis",
+        "benched_pid": 16725,
+        "started_pid": 3127306,
         "benched_pts": 42.3,
         "started_pts": 1.2,
         "swap_gain": 41.1
@@ -11597,6 +11603,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "J.D. McKissic",
         "started": "Tony Jones Jr.",
+        "benched_pid": 2572861,
+        "started_pid": 4046676,
         "benched_pts": 17.8,
         "started_pts": 0.7,
         "swap_gain": 17.1
@@ -11613,6 +11621,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Emmanuel Sanders",
         "started": "James White",
+        "benched_pid": 13295,
+        "started_pid": 16913,
         "benched_pts": 23.9,
         "started_pts": 0.6,
         "swap_gain": 23.3
@@ -11629,6 +11639,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Myles Gaskin",
         "started": "Van Jefferson",
+        "benched_pid": 3886818,
+        "started_pid": 3930066,
         "benched_pts": 26.9,
         "started_pts": 2.1,
         "swap_gain": 24.8
@@ -11645,6 +11657,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Tony Pollard",
         "started": "Deebo Samuel",
+        "benched_pid": 3916148,
+        "started_pid": 3126486,
         "benched_pts": 28.1,
         "started_pts": 4.7,
         "swap_gain": 23.4
@@ -11661,6 +11675,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Jordan Love",
         "started": "Dak Prescott",
+        "benched_pid": 4036378,
+        "started_pid": 2577417,
         "benched_pts": 25.3,
         "started_pts": 3.1,
         "swap_gain": 22.2
@@ -11677,6 +11693,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "DeAndre Hopkins",
         "started": "Joshua Palmer",
+        "benched_pid": 15795,
+        "started_pid": 4242433,
         "benched_pts": 32.8,
         "started_pts": 3.9,
         "swap_gain": 28.9
@@ -11693,6 +11711,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Ladd McConkey",
         "started": "Romeo Doubs",
+        "benched_pid": 4612826,
+        "started_pid": 4361432,
         "benched_pts": 26.1,
         "started_pts": 8.7,
         "swap_gain": 17.4
@@ -11709,6 +11729,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "T.J. Hockenson",
         "started": "Garrett Wilson",
+        "benched_pid": 4036133,
+        "started_pid": 4569618,
         "benched_pts": 35.9,
         "started_pts": 5.1,
         "swap_gain": 30.8
@@ -11725,6 +11747,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Devin Singletary",
         "started": "Aaron Jones",
+        "benched_pid": 4040761,
+        "started_pid": 3042519,
         "benched_pts": 22.6,
         "started_pts": 7.4,
         "swap_gain": 15.2
@@ -11741,6 +11765,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Josh Jacobs",
         "started": "Devin Singletary",
+        "benched_pid": 4047365,
+        "started_pid": 4040761,
         "benched_pts": 45.3,
         "started_pts": 8.5,
         "swap_gain": 36.8
@@ -11757,6 +11783,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Kenny Golladay",
         "started": "Will Fuller V",
+        "benched_pid": 2974858,
+        "started_pid": 3052876,
         "benched_pts": 23.8,
         "started_pts": 1.3,
         "swap_gain": 22.5
@@ -11773,6 +11801,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "DeAndre Hopkins",
         "started": "A.J. Brown",
+        "benched_pid": 15795,
+        "started_pid": 4047646,
         "benched_pts": 24.6,
         "started_pts": 4.6,
         "swap_gain": 20.0
@@ -11789,6 +11819,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Justin Fields",
         "started": "Anthony Richardson",
+        "benched_pid": 4362887,
+        "started_pid": 4429084,
         "benched_pts": 32.7,
         "started_pts": 3.5,
         "swap_gain": 29.2
@@ -11805,6 +11837,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Khalil Herbert",
         "started": "Alvin Kamara",
+        "benched_pid": 4035886,
+        "started_pid": 3054850,
         "benched_pts": 29.9,
         "started_pts": 6.3,
         "swap_gain": 23.6
@@ -11821,6 +11855,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Derrius Guice",
         "started": "Kenyan Drake",
+        "benched_pid": 3843750,
+        "started_pid": 2979843,
         "benched_pts": 26.7,
         "started_pts": 6.1,
         "swap_gain": 20.6
@@ -11837,6 +11873,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Russell Gage",
         "started": "Jerry Jeudy",
+        "benched_pid": 3115378,
+        "started_pid": 4241463,
         "benched_pts": 18.7,
         "started_pts": 2.7,
         "swap_gain": 16.0
@@ -11853,6 +11891,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Rashaad Penny",
         "started": "Alvin Kamara",
+        "benched_pid": 3139925,
+        "started_pid": 3054850,
         "benched_pts": 28.2,
         "started_pts": 0.0,
         "swap_gain": 28.2
@@ -11869,6 +11909,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jerick McKinnon",
         "started": "Michael Carter",
+        "benched_pid": 16782,
+        "started_pid": 4240657,
         "benched_pts": 28.9,
         "started_pts": 1.5,
         "swap_gain": 27.4
@@ -11885,6 +11927,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Leonard Fournette",
         "started": "Todd Gurley II",
+        "benched_pid": 3115364,
+        "started_pid": 2977644,
         "benched_pts": 25.6,
         "started_pts": 6.1,
         "swap_gain": 19.5
@@ -11901,6 +11945,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Sam Darnold",
         "started": "Kirk Cousins",
+        "benched_pid": 3912547,
+        "started_pid": 14880,
         "benched_pts": 31.5,
         "started_pts": 10.0,
         "swap_gain": 21.5
@@ -11917,6 +11963,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Dak Prescott",
         "started": "Geno Smith",
+        "benched_pid": 2577417,
+        "started_pid": 15864,
         "benched_pts": 30.96,
         "started_pts": 9.78,
         "swap_gain": 21.18
@@ -11933,6 +11981,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "David Montgomery",
         "started": "Jakobi Meyers",
+        "benched_pid": 4035538,
+        "started_pid": 3916433,
         "benched_pts": 33.1,
         "started_pts": 4.3,
         "swap_gain": 28.8
@@ -11949,6 +11999,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Zack Moss",
         "started": "Le'Veon Bell",
+        "benched_pid": 4035676,
+        "started_pid": 15825,
         "benched_pts": 20.1,
         "started_pts": 5.3,
         "swap_gain": 14.8
@@ -11965,6 +12017,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Tyler Higbee",
         "started": "Sammy Watkins",
+        "benched_pid": 2573401,
+        "started_pid": 16725,
         "benched_pts": 25.9,
         "started_pts": 1.6,
         "swap_gain": 24.3
@@ -11981,6 +12035,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "JuJu Smith-Schuster",
         "started": "Curtis Samuel",
+        "benched_pid": 3120348,
+        "started_pid": 3121427,
         "benched_pts": 19.8,
         "started_pts": 1.6,
         "swap_gain": 18.2
@@ -11997,6 +12053,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "D'Andre Swift",
         "started": "Mark Ingram II",
+        "benched_pid": 4259545,
+        "started_pid": 13981,
         "benched_pts": 25.8,
         "started_pts": 2.0,
         "swap_gain": 23.8
@@ -12013,6 +12071,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "DeeJay Dallas",
         "started": "Ronald Jones II",
+        "benched_pid": 4240631,
+        "started_pid": 3912550,
         "benched_pts": 20.3,
         "started_pts": 4.6,
         "swap_gain": 15.7
@@ -12029,6 +12089,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Justin Fields",
         "started": "Josh Allen",
+        "benched_pid": 4362887,
+        "started_pid": 3918298,
         "benched_pts": 31.5,
         "started_pts": 7.1,
         "swap_gain": 24.4
@@ -12045,6 +12107,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Matt Breida",
         "started": "Marquez Valdes-Scantling",
+        "benched_pid": 3049916,
+        "started_pid": 3051738,
         "benched_pts": 26.4,
         "started_pts": 2.3,
         "swap_gain": 24.1
@@ -12061,6 +12125,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Damien Williams",
         "started": "Dede Westbrook",
+        "benched_pid": 17359,
+        "started_pid": 3892889,
         "benched_pts": 19.8,
         "started_pts": 0.0,
         "swap_gain": 19.8
@@ -12077,6 +12143,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Diontae Johnson",
         "started": "Chase Claypool",
+        "benched_pid": 3932905,
+        "started_pid": 4046692,
         "benched_pts": 24.5,
         "started_pts": 0.3,
         "swap_gain": 24.2
@@ -12093,6 +12161,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Taysom Hill",
         "started": "Mike Williams",
+        "benched_pid": 2468609,
+        "started_pid": 3045138,
         "benched_pts": 36.8,
         "started_pts": 0.0,
         "swap_gain": 36.8
@@ -12109,6 +12179,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Justice Hill",
         "started": "Tony Pollard",
+        "benched_pid": 4038441,
+        "started_pid": 3916148,
         "benched_pts": 26.2,
         "started_pts": 9.1,
         "swap_gain": 17.1
@@ -12125,6 +12197,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Deebo Samuel",
         "started": "Courtland Sutton",
+        "benched_pid": 3126486,
+        "started_pid": 3128429,
         "benched_pts": 27.4,
         "started_pts": 1.9,
         "swap_gain": 25.5
@@ -12141,6 +12215,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Jerome Ford",
         "started": "Tyler Higbee",
+        "benched_pid": 4372019,
+        "started_pid": 2573401,
         "benched_pts": 22.6,
         "started_pts": 2.7,
         "swap_gain": 19.9
@@ -12157,6 +12233,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Rashod Bateman",
         "started": "Tank Dell",
+        "benched_pid": 4360939,
+        "started_pid": 4366031,
         "benched_pts": 20.1,
         "started_pts": 0.0,
         "swap_gain": 20.1
@@ -12173,6 +12251,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Nico Collins",
         "started": "Calvin Ridley",
+        "benched_pid": 4258173,
+        "started_pid": 3925357,
         "benched_pts": 24.1,
         "started_pts": 4.2,
         "swap_gain": 19.9
@@ -12189,6 +12269,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jamaal Williams",
         "started": "Jamison Crowder",
+        "benched_pid": 2980453,
+        "started_pid": 2576716,
         "benched_pts": 19.4,
         "started_pts": 0.0,
         "swap_gain": 19.4
@@ -12205,6 +12287,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Courtland Sutton",
         "started": "Marvin Jones Jr.",
+        "benched_pid": 3128429,
+        "started_pid": 15072,
         "benched_pts": 21.5,
         "started_pts": 3.0,
         "swap_gain": 18.5
@@ -12221,6 +12305,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Alexander Mattison",
         "started": "Rondale Moore",
+        "benched_pid": 4048244,
+        "started_pid": 4372485,
         "benched_pts": 20.1,
         "started_pts": 1.4,
         "swap_gain": 18.7
@@ -12237,6 +12323,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Randall Cobb",
         "started": "Tyreek Hill",
+        "benched_pid": 14053,
+        "started_pid": 3116406,
         "benched_pts": 19.5,
         "started_pts": 0.0,
         "swap_gain": 19.5
@@ -12253,6 +12341,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Damien Harris",
         "started": "Chase Claypool",
+        "benched_pid": 3925347,
+        "started_pid": 4046692,
         "benched_pts": 17.3,
         "started_pts": 2.7,
         "swap_gain": 14.6
@@ -12269,6 +12359,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "C.J. Stroud",
         "started": "Lamar Jackson",
+        "benched_pid": 4432577,
+        "started_pid": 3916387,
         "benched_pts": 41.0,
         "started_pts": 11.0,
         "swap_gain": 30.0
@@ -12285,6 +12377,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Diontae Johnson",
         "started": "Christian Kirk",
+        "benched_pid": 3932905,
+        "started_pid": 3895856,
         "benched_pts": 20.6,
         "started_pts": 4.7,
         "swap_gain": 15.9
@@ -12301,6 +12395,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Hunter Henry",
         "started": "Kyle Pitts Sr.",
+        "benched_pid": 3046439,
+        "started_pid": 4360248,
         "benched_pts": 25.0,
         "started_pts": 5.9,
         "swap_gain": 19.1
@@ -12317,6 +12413,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Adam Thielen",
         "started": "Jaylen Waddle",
+        "benched_pid": 16460,
+        "started_pid": 4372016,
         "benched_pts": 19.9,
         "started_pts": 9.3,
         "swap_gain": 10.6
@@ -12333,6 +12431,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Tom Brady",
         "started": "Cam Newton",
+        "benched_pid": 2330,
+        "started_pid": 13994,
         "benched_pts": 24.1,
         "started_pts": 11.0,
         "swap_gain": 13.1
@@ -12349,6 +12449,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Justin Herbert",
         "started": "Matt Ryan",
+        "benched_pid": 4038941,
+        "started_pid": 11237,
         "benched_pts": 37.6,
         "started_pts": 17.0,
         "swap_gain": 20.6
@@ -12365,6 +12467,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "James Conner",
         "started": "Justice Hill",
+        "benched_pid": 3045147,
+        "started_pid": 4038441,
         "benched_pts": 18.6,
         "started_pts": 0.0,
         "swap_gain": 18.6
@@ -12381,6 +12485,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Mack Hollins",
         "started": "Breshad Perriman",
+        "benched_pid": 2991662,
+        "started_pid": 2972460,
         "benched_pts": 25.8,
         "started_pts": 3.9,
         "swap_gain": 21.9
@@ -12397,6 +12503,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Tom Brady",
         "started": "Jimmy Garoppolo",
+        "benched_pid": 2330,
+        "started_pid": 16760,
         "benched_pts": 16.9,
         "started_pts": 2.0,
         "swap_gain": 14.9
@@ -12413,6 +12521,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Elijah Mitchell",
         "started": "Devonta Freeman",
+        "benched_pid": 4241555,
+        "started_pid": 16944,
         "benched_pts": 25.3,
         "started_pts": 6.5,
         "swap_gain": 18.8
@@ -12429,6 +12539,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jerick McKinnon",
         "started": "Benny Snell Jr.",
+        "benched_pid": 16782,
+        "started_pid": 4035072,
         "benched_pts": 13.7,
         "started_pts": -1.4,
         "swap_gain": 15.1
@@ -12445,6 +12557,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jaxson Dart",
         "started": "Jordan Love",
+        "benched_pid": 4689114,
+        "started_pid": 4036378,
         "benched_pts": 28.42,
         "started_pts": 13.36,
         "swap_gain": 15.06
@@ -12461,6 +12575,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "DK Metcalf",
         "started": "Justin Jefferson",
+        "benched_pid": 4047650,
+        "started_pid": 4262921,
         "benched_pts": 18.3,
         "started_pts": 2.1,
         "swap_gain": 16.2
@@ -12477,6 +12593,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Rashaad Penny",
         "started": "Ronald Jones II",
+        "benched_pid": 3139925,
+        "started_pid": 3912550,
         "benched_pts": 24.7,
         "started_pts": 0.8,
         "swap_gain": 23.9
@@ -12493,6 +12611,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Marquise Brown",
         "started": "Tevin Coleman",
+        "benched_pid": 4241372,
+        "started_pid": 2979477,
         "benched_pts": 28.7,
         "started_pts": 6.6,
         "swap_gain": 22.1
@@ -12509,6 +12629,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Dalton Schultz",
         "started": "Jake Ferguson",
+        "benched_pid": 3117256,
+        "started_pid": 4242355,
         "benched_pts": 14.1,
         "started_pts": 2.0,
         "swap_gain": 12.1
@@ -12525,6 +12647,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Latavius Murray",
         "started": "Ezekiel Elliott",
+        "benched_pid": 15920,
+        "started_pid": 3051392,
         "benched_pts": 25.1,
         "started_pts": 2.4,
         "swap_gain": 22.7
@@ -12541,6 +12665,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Gus Edwards",
         "started": "Jakobi Meyers",
+        "benched_pid": 3051926,
+        "started_pid": 3916433,
         "benched_pts": 28.4,
         "started_pts": 2.4,
         "swap_gain": 26.0
@@ -12557,6 +12683,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Bucky Irving",
         "started": "Rhamondre Stevenson",
+        "benched_pid": 4596448,
+        "started_pid": 4569173,
         "benched_pts": 24.2,
         "started_pts": 3.3,
         "swap_gain": 20.9
@@ -12573,6 +12701,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Nick Westbrook-Ikhine",
         "started": "Quentin Johnston",
+        "benched_pid": 3929785,
+        "started_pid": 4429025,
         "benched_pts": 19.6,
         "started_pts": 2.2,
         "swap_gain": 17.4
@@ -12589,6 +12719,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Christian Kirk",
         "started": "Darnell Mooney",
+        "benched_pid": 3895856,
+        "started_pid": 4040655,
         "benched_pts": 13.9,
         "started_pts": 1.4,
         "swap_gain": 12.5
@@ -12605,6 +12737,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Zach Ertz",
         "started": "Cade Otton",
+        "benched_pid": 15835,
+        "started_pid": 4243331,
         "benched_pts": 15.6,
         "started_pts": 1.9,
         "swap_gain": 13.7
@@ -12621,6 +12755,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Sterling Shepard",
         "started": "Kenny Golladay",
+        "benched_pid": 2976592,
+        "started_pid": 2974858,
         "benched_pts": 23.6,
         "started_pts": 2.7,
         "swap_gain": 20.9
@@ -12637,6 +12773,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Russell Wilson",
         "started": "Josh Allen",
+        "benched_pid": 14881,
+        "started_pid": 3918298,
         "benched_pts": 41.1,
         "started_pts": 17.6,
         "swap_gain": 23.5
@@ -12653,6 +12791,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Sterling Shepard",
         "started": "Mike Evans",
+        "benched_pid": 2976592,
+        "started_pid": 16737,
         "benched_pts": 20.8,
         "started_pts": 3.9,
         "swap_gain": 16.9
@@ -12669,6 +12809,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Malcolm Brown",
         "started": "Mecole Hardman",
+        "benched_pid": 2570986,
+        "started_pid": 4035004,
         "benched_pts": 24.5,
         "started_pts": 1.1,
         "swap_gain": 23.4
@@ -12685,6 +12827,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Tyler Lockett",
         "started": "Zack Moss",
+        "benched_pid": 2577327,
+        "started_pid": 4035676,
         "benched_pts": 14.5,
         "started_pts": 0.0,
         "swap_gain": 14.5
@@ -12701,6 +12845,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Hunter Henry",
         "started": "Jimmy Graham",
+        "benched_pid": 3046439,
+        "started_pid": 13232,
         "benched_pts": 26.0,
         "started_pts": 2.7,
         "swap_gain": 23.3
@@ -12717,6 +12863,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "JuJu Smith-Schuster",
         "started": "Jauan Jennings",
+        "benched_pid": 3120348,
+        "started_pid": 3886598,
         "benched_pts": 16.5,
         "started_pts": 1.8,
         "swap_gain": 14.7
@@ -12733,6 +12881,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jerry Jeudy",
         "started": "CeeDee Lamb",
+        "benched_pid": 4241463,
+        "started_pid": 4241389,
         "benched_pts": 36.0,
         "started_pts": 4.9,
         "swap_gain": 31.1
@@ -12749,6 +12899,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Elijah Moore",
         "started": "CeeDee Lamb",
+        "benched_pid": 4372414,
+        "started_pid": 4241389,
         "benched_pts": 23.9,
         "started_pts": 3.3,
         "swap_gain": 20.6
@@ -12765,6 +12917,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Stefon Diggs",
         "started": "Rashod Bateman",
+        "benched_pid": 2976212,
+        "started_pid": 4360939,
         "benched_pts": 13.1,
         "started_pts": 2.9,
         "swap_gain": 10.2
@@ -12781,6 +12935,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Justin Jefferson",
         "started": "Marquez Valdes-Scantling",
+        "benched_pid": 4262921,
+        "started_pid": 3051738,
         "benched_pts": 27.0,
         "started_pts": 1.0,
         "swap_gain": 26.0
@@ -12797,6 +12953,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Rashod Bateman",
         "started": "Calvin Ridley",
+        "benched_pid": 4360939,
+        "started_pid": 3925357,
         "benched_pts": 14.8,
         "started_pts": 3.2,
         "swap_gain": 11.6
@@ -12813,6 +12971,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jarvis Landry",
         "started": "Michael Thomas",
+        "benched_pid": 16790,
+        "started_pid": 2976316,
         "benched_pts": 24.3,
         "started_pts": 7.1,
         "swap_gain": 17.2
@@ -12829,6 +12989,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Wan'Dale Robinson",
         "started": "Jayden Reed",
+        "benched_pid": 4569587,
+        "started_pid": 4362249,
         "benched_pts": 24.2,
         "started_pts": 0.0,
         "swap_gain": 24.2
@@ -12845,6 +13007,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Josh Downs",
         "started": "Quentin Johnston",
+        "benched_pid": 4688813,
+        "started_pid": 4429025,
         "benched_pts": 18.2,
         "started_pts": 1.8,
         "swap_gain": 16.4
@@ -12861,6 +13025,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Diontae Johnson",
         "started": "Rashid Shaheed",
+        "benched_pid": 3932905,
+        "started_pid": 4032473,
         "benched_pts": 22.2,
         "started_pts": 0.0,
         "swap_gain": 22.2
@@ -12877,6 +13043,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jacory Croskey-Merritt",
         "started": "Isiah Pacheco",
+        "benched_pid": 4575131,
+        "started_pid": 4361529,
         "benched_pts": 26.0,
         "started_pts": 7.1,
         "swap_gain": 18.9
@@ -12893,6 +13061,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Sam Darnold",
         "started": "Brock Purdy",
+        "benched_pid": 3912547,
+        "started_pid": 4361741,
         "benched_pts": 19.2,
         "started_pts": 1.4,
         "swap_gain": 17.8
@@ -12909,6 +13079,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Calvin Austin III",
         "started": "Xavier Worthy",
+        "benched_pid": 4243389,
+        "started_pid": 4683062,
         "benched_pts": 15.0,
         "started_pts": 0.0,
         "swap_gain": 15.0
@@ -12925,6 +13097,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Romeo Doubs",
         "started": "Drake London",
+        "benched_pid": 4361432,
+        "started_pid": 4426502,
         "benched_pts": 16.6,
         "started_pts": 0.0,
         "swap_gain": 16.6
@@ -12941,6 +13115,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Courtland Sutton",
         "started": "Tee Higgins",
+        "benched_pid": 3128429,
+        "started_pid": 4239993,
         "benched_pts": 20.8,
         "started_pts": 2.0,
         "swap_gain": 18.8
@@ -12957,6 +13133,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Mark Andrews",
         "started": "Harold Fannin Jr.",
+        "benched_pid": 3116365,
+        "started_pid": 5083076,
         "benched_pts": 24.1,
         "started_pts": 4.0,
         "swap_gain": 20.1
@@ -12973,6 +13151,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Blake Corum",
         "started": "Amon-Ra St. Brown",
+        "benched_pid": 4429096,
+        "started_pid": 4374302,
         "benched_pts": 25.6,
         "started_pts": 12.2,
         "swap_gain": 13.4
@@ -12989,6 +13169,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Chase Edmonds",
         "started": "Alshon Jeffery",
+        "benched_pid": 3119195,
+        "started_pid": 14912,
         "benched_pts": 34.0,
         "started_pts": 4.8,
         "swap_gain": 29.2
@@ -13005,6 +13187,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Eagles D/ST",
         "started": "Lions D/ST",
+        "benched_pid": -16021,
+        "started_pid": -16008,
         "benched_pts": 11.0,
         "started_pts": -7.0,
         "swap_gain": 18.0
@@ -13021,6 +13205,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Chase Brown",
         "started": "Carson Steele",
+        "benched_pid": 4362238,
+        "started_pid": 4714365,
         "benched_pts": 22.2,
         "started_pts": -0.9,
         "swap_gain": 23.1
@@ -13037,6 +13223,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Kareem Hunt",
         "started": "James White",
+        "benched_pid": 3059915,
+        "started_pid": 16913,
         "benched_pts": 23.1,
         "started_pts": 0.0,
         "swap_gain": 23.1
@@ -13053,6 +13241,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Khalil Shakir",
         "started": "A.J. Brown",
+        "benched_pid": 4373678,
+        "started_pid": 4047646,
         "benched_pts": 19.1,
         "started_pts": 6.3,
         "swap_gain": 12.8
@@ -13069,6 +13259,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Christian Watson",
         "started": "DeVonta Smith",
+        "benched_pid": 4248528,
+        "started_pid": 4241478,
         "benched_pts": 18.6,
         "started_pts": 1.3,
         "swap_gain": 17.3
@@ -13085,6 +13277,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Patrick Mahomes",
         "started": "Josh Allen",
+        "benched_pid": 3139477,
+        "started_pid": 3918298,
         "benched_pts": 31.6,
         "started_pts": 19.1,
         "swap_gain": 12.5
@@ -13101,6 +13295,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "C.J. Stroud",
         "started": "Daniel Jones",
+        "benched_pid": 4432577,
+        "started_pid": 3917792,
         "benched_pts": 21.6,
         "started_pts": 8.6,
         "swap_gain": 13.0
@@ -13117,6 +13313,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Greg Olsen",
         "started": "O.J. Howard",
+        "benched_pid": 10475,
+        "started_pid": 3043080,
         "benched_pts": 14.0,
         "started_pts": 0.0,
         "swap_gain": 14.0
@@ -13133,6 +13331,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "DJ Chark Jr.",
         "started": "Antonio Brown",
+        "benched_pid": 3115394,
+        "started_pid": 13934,
         "benched_pts": 24.1,
         "started_pts": 4.6,
         "swap_gain": 19.5
@@ -13149,6 +13349,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Keon Coleman",
         "started": "Ja'Marr Chase",
+        "benched_pid": 4635008,
+        "started_pid": 4362628,
         "benched_pts": 21.2,
         "started_pts": 3.6,
         "swap_gain": 17.6
@@ -13165,6 +13367,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jamaal Williams",
         "started": "D'Andre Swift",
+        "benched_pid": 2980453,
+        "started_pid": 4259545,
         "benched_pts": 23.7,
         "started_pts": 6.1,
         "swap_gain": 17.6
@@ -13181,6 +13385,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Xavier Legette",
         "started": "Calvin Ridley",
+        "benched_pid": 4430034,
+        "started_pid": 3925357,
         "benched_pts": 16.6,
         "started_pts": 2.0,
         "swap_gain": 14.6
@@ -13197,6 +13403,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "DJ Chark",
         "started": "Allen Robinson II",
+        "benched_pid": 3115394,
+        "started_pid": 16799,
         "benched_pts": 13.2,
         "started_pts": 1.7,
         "swap_gain": 11.5
@@ -13213,6 +13421,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jahan Dotson",
         "started": "Nico Collins",
+        "benched_pid": 4361409,
+        "started_pid": 4258173,
         "benched_pts": 20.8,
         "started_pts": 5.0,
         "swap_gain": 15.8
@@ -13229,6 +13439,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Adam Thielen",
         "started": "George Pickens",
+        "benched_pid": 16460,
+        "started_pid": 4426354,
         "benched_pts": 26.0,
         "started_pts": 9.5,
         "swap_gain": 16.5
@@ -13245,6 +13457,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Dak Prescott",
         "started": "Aaron Rodgers",
+        "benched_pid": 2577417,
+        "started_pid": 8439,
         "benched_pts": 39.8,
         "started_pts": 18.1,
         "swap_gain": 21.7
@@ -13261,6 +13475,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Mike Gesicki",
         "started": "Jared Cook",
+        "benched_pid": 3116164,
+        "started_pid": 12537,
         "benched_pts": 23.0,
         "started_pts": 8.3,
         "swap_gain": 14.7
@@ -13277,6 +13493,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Nico Collins",
         "started": "Michael Pittman Jr.",
+        "benched_pid": 4258173,
+        "started_pid": 4035687,
         "benched_pts": 32.3,
         "started_pts": 4.0,
         "swap_gain": 28.3
@@ -13293,6 +13511,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "J.K. Dobbins",
         "started": "Jaxon Smith-Njigba",
+        "benched_pid": 4241985,
+        "started_pid": 4430878,
         "benched_pts": 21.4,
         "started_pts": 2.9,
         "swap_gain": 18.5
@@ -13309,6 +13529,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "T.Y. Hilton",
         "started": "Antonio Gibson",
+        "benched_pid": 14924,
+        "started_pid": 4360294,
         "benched_pts": 21.0,
         "started_pts": 1.4,
         "swap_gain": 19.6
@@ -13325,6 +13547,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "AJ Dillon",
         "started": "Kyren Williams",
+        "benched_pid": 4239934,
+        "started_pid": 4430737,
         "benched_pts": 19.4,
         "started_pts": 0.9,
         "swap_gain": 18.5
@@ -13341,6 +13565,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Vikings D/ST",
         "started": "Patriots D/ST",
+        "benched_pid": -16016,
+        "started_pid": -16017,
         "benched_pts": 14.0,
         "started_pts": -1.0,
         "swap_gain": 15.0
@@ -13357,6 +13583,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Dameon Pierce",
         "started": "Javonte Williams",
+        "benched_pid": 4360238,
+        "started_pid": 4361579,
         "benched_pts": 22.9,
         "started_pts": 3.2,
         "swap_gain": 19.7
@@ -13373,6 +13601,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Chuba Hubbard",
         "started": "Zamir White",
+        "benched_pid": 4241416,
+        "started_pid": 4361777,
         "benched_pts": 25.4,
         "started_pts": 3.4,
         "swap_gain": 22.0
@@ -13389,6 +13619,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Jalen Guyton",
         "started": "Marquez Valdes-Scantling",
+        "benched_pid": 3932430,
+        "started_pid": 3051738,
         "benched_pts": 16.2,
         "started_pts": 3.5,
         "swap_gain": 12.7
@@ -13405,6 +13637,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Tyrone Tracy Jr.",
         "started": "DeAndre Hopkins",
+        "benched_pid": 4360516,
+        "started_pid": 15795,
         "benched_pts": 22.0,
         "started_pts": 3.9,
         "swap_gain": 18.1
@@ -13421,6 +13655,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Jauan Jennings",
         "started": "Hollywood Brown",
+        "benched_pid": 3886598,
+        "started_pid": 4241372,
         "benched_pts": 17.4,
         "started_pts": 5.5,
         "swap_gain": 11.9
@@ -13437,6 +13673,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Tim Patrick",
         "started": "Kadarius Toney",
+        "benched_pid": 3134353,
+        "started_pid": 4240600,
         "benched_pts": 16.5,
         "started_pts": 1.2,
         "swap_gain": 15.3
@@ -13453,6 +13691,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Calvin Ridley",
         "started": "Elic Ayomanor",
+        "benched_pid": 3925357,
+        "started_pid": 4883647,
         "benched_pts": 15.6,
         "started_pts": 2.8,
         "swap_gain": 12.8
@@ -13469,6 +13709,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Rob Gronkowski",
         "started": "Michael Pittman Jr.",
+        "benched_pid": 13229,
+        "started_pid": 4035687,
         "benched_pts": 25.0,
         "started_pts": 4.4,
         "swap_gain": 20.6
@@ -13485,6 +13727,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Cedric Tillman",
         "started": "Alexander Mattison",
+        "benched_pid": 4369863,
+        "started_pid": 4048244,
         "benched_pts": 25.4,
         "started_pts": 6.9,
         "swap_gain": 18.5
@@ -13501,6 +13745,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Vikings D/ST",
         "started": "Broncos D/ST",
+        "benched_pid": -16016,
+        "started_pid": -16007,
         "benched_pts": 15.0,
         "started_pts": -1.0,
         "swap_gain": 16.0
@@ -13517,6 +13763,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Cedrick Wilson Jr.",
         "started": "Courtland Sutton",
+        "benched_pid": 4036335,
+        "started_pid": 3128429,
         "benched_pts": 14.7,
         "started_pts": 0.0,
         "swap_gain": 14.7
@@ -13533,6 +13781,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Logan Thomas",
         "started": "Todd Gurley II",
+        "benched_pid": 16813,
+        "started_pid": 2977644,
         "benched_pts": 20.3,
         "started_pts": 2.5,
         "swap_gain": 17.8
@@ -13549,6 +13799,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "D'Andre Swift",
         "started": "Kenneth Walker III",
+        "benched_pid": 4259545,
+        "started_pid": 4567048,
         "benched_pts": 19.1,
         "started_pts": 3.6,
         "swap_gain": 15.5
@@ -13565,6 +13817,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Marquez Valdes-Scantling",
         "started": "Ladd McConkey",
+        "benched_pid": 3051738,
+        "started_pid": 4612826,
         "benched_pts": 24.4,
         "started_pts": 6.2,
         "swap_gain": 18.2
@@ -13581,6 +13835,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Austin Ekeler",
         "started": "Brian Robinson Jr.",
+        "benched_pid": 3068267,
+        "started_pid": 4241474,
         "benched_pts": 17.6,
         "started_pts": 0.0,
         "swap_gain": 17.6
@@ -13597,6 +13853,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Nyheim Hines",
         "started": "Mark Ingram II",
+        "benched_pid": 3916430,
+        "started_pid": 13981,
         "benched_pts": 23.3,
         "started_pts": 2.9,
         "swap_gain": 20.4
@@ -13613,6 +13871,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Khalil Herbert",
         "started": "Cam Akers",
+        "benched_pid": 4035886,
+        "started_pid": 4240021,
         "benched_pts": 10.8,
         "started_pts": 0.0,
         "swap_gain": 10.8
@@ -13629,6 +13889,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Brock Purdy",
         "started": "Joshua Dobbs",
+        "benched_pid": 4361741,
+        "started_pid": 3044720,
         "benched_pts": 26.0,
         "started_pts": 8.1,
         "swap_gain": 17.9
@@ -13645,6 +13907,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Zach Charbonnet",
         "started": "Jacory Croskey-Merritt",
+        "benched_pid": 4426385,
+        "started_pid": 4575131,
         "benched_pts": 18.5,
         "started_pts": 3.7,
         "swap_gain": 14.8
@@ -13661,6 +13925,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Sean Tucker",
         "started": "Rachaad White",
+        "benched_pid": 4430871,
+        "started_pid": 4697815,
         "benched_pts": 33.0,
         "started_pts": 7.2,
         "swap_gain": 25.8
@@ -13677,6 +13943,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Raheem Mostert",
         "started": "Rex Burkhead",
+        "benched_pid": 2576414,
+        "started_pid": 15971,
         "benched_pts": 22.6,
         "started_pts": 7.8,
         "swap_gain": 14.8
@@ -13693,6 +13961,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jets D/ST",
         "started": "Jaguars D/ST",
+        "benched_pid": -16020,
+        "started_pid": -16030,
         "benched_pts": 17.0,
         "started_pts": -3.0,
         "swap_gain": 20.0
@@ -13709,6 +13979,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Rashaad Penny",
         "started": "Allen Robinson II",
+        "benched_pid": 3139925,
+        "started_pid": 16799,
         "benched_pts": 26.3,
         "started_pts": 2.4,
         "swap_gain": 23.9
@@ -13725,6 +13997,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "DJ Chark",
         "started": "Jeff Wilson Jr.",
+        "benched_pid": 3115394,
+        "started_pid": 3122976,
         "benched_pts": 18.4,
         "started_pts": 2.6,
         "swap_gain": 15.8
@@ -13741,6 +14015,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Rome Odunze",
         "started": "Jayden Reed",
+        "benched_pid": 4431299,
+        "started_pid": 4362249,
         "benched_pts": 18.2,
         "started_pts": 0.0,
         "swap_gain": 18.2
@@ -13757,6 +14033,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Cole Kmet",
         "started": "Chuba Hubbard",
+        "benched_pid": 4258595,
+        "started_pid": 4241416,
         "benched_pts": 21.4,
         "started_pts": 1.4,
         "swap_gain": 20.0
@@ -13773,6 +14051,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Mike Williams",
         "started": "Jaylen Waddle",
+        "benched_pid": 3045138,
+        "started_pid": 4372016,
         "benched_pts": 20.6,
         "started_pts": 4.1,
         "swap_gain": 16.5
@@ -13789,6 +14069,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Kyle Monangai",
         "started": "Jaylen Waddle",
+        "benched_pid": 4608686,
+        "started_pid": 4372016,
         "benched_pts": 19.0,
         "started_pts": 5.5,
         "swap_gain": 13.5
@@ -13805,6 +14087,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Jameson Williams",
         "started": "Kenneth Walker III",
+        "benched_pid": 4426388,
+        "started_pid": 4567048,
         "benched_pts": 23.4,
         "started_pts": 8.9,
         "swap_gain": 14.5
@@ -13821,6 +14105,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jakobi Meyers",
         "started": "Amari Cooper",
+        "benched_pid": 3916433,
+        "started_pid": 2976499,
         "benched_pts": 14.2,
         "started_pts": 0.8,
         "swap_gain": 13.4
@@ -13837,6 +14123,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jordan Howard",
         "started": "David Montgomery",
+        "benched_pid": 3060022,
+        "started_pid": 4035538,
         "benched_pts": 31.0,
         "started_pts": 8.2,
         "swap_gain": 22.8
@@ -13853,6 +14141,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Bryan Edwards",
         "started": "A.J. Green",
+        "benched_pid": 4038818,
+        "started_pid": 13983,
         "benched_pts": 16.3,
         "started_pts": 0.9,
         "swap_gain": 15.4
@@ -13869,6 +14159,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jake Ferguson",
         "started": "David Njoku",
+        "benched_pid": 4242355,
+        "started_pid": 3123076,
         "benched_pts": 13.5,
         "started_pts": 2.1,
         "swap_gain": 11.4
@@ -13885,6 +14177,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Russell Gage",
         "started": "Odell Beckham Jr.",
+        "benched_pid": 3115378,
+        "started_pid": 16733,
         "benched_pts": 15.9,
         "started_pts": 3.7,
         "swap_gain": 12.2
@@ -13901,6 +14195,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Dawson Knox",
         "started": "Robert Tonyan",
+        "benched_pid": 3930086,
+        "started_pid": 2975674,
         "benched_pts": 18.2,
         "started_pts": 1.8,
         "swap_gain": 16.4
@@ -13917,6 +14213,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "A.J. Brown",
         "started": "T.Y. Hilton",
+        "benched_pid": 4047646,
+        "started_pid": 14924,
         "benched_pts": 21.5,
         "started_pts": 3.3,
         "swap_gain": 18.2
@@ -13933,6 +14231,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Ronald Jones II",
         "started": "Leonard Fournette",
+        "benched_pid": 3912550,
+        "started_pid": 3115364,
         "benched_pts": 24.3,
         "started_pts": 4.0,
         "swap_gain": 20.3
@@ -13949,6 +14249,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Demarcus Robinson",
         "started": "Jordan Addison",
+        "benched_pid": 3043116,
+        "started_pid": 4429205,
         "benched_pts": 16.5,
         "started_pts": 3.2,
         "swap_gain": 13.3
@@ -13965,6 +14267,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Evan Engram",
         "started": "Pat Freiermuth",
+        "benched_pid": 3051876,
+        "started_pid": 4361411,
         "benched_pts": 33.7,
         "started_pts": 10.8,
         "swap_gain": 22.9
@@ -13981,6 +14285,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Caleb Williams",
         "started": "C.J. Stroud",
+        "benched_pid": 4431611,
+        "started_pid": 4432577,
         "benched_pts": 25.9,
         "started_pts": 13.7,
         "swap_gain": 12.2
@@ -13997,6 +14303,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Tyler Allgeier",
         "started": "Rachaad White",
+        "benched_pid": 4373626,
+        "started_pid": 4697815,
         "benched_pts": 22.9,
         "started_pts": 5.9,
         "swap_gain": 17.0
@@ -14013,6 +14321,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Rhamondre Stevenson",
         "started": "Aaron Jones Sr.",
+        "benched_pid": 4569173,
+        "started_pid": 3042519,
         "benched_pts": 18.7,
         "started_pts": 2.3,
         "swap_gain": 16.4
@@ -14029,6 +14339,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Duke Johnson",
         "started": "Tyrell Williams",
+        "benched_pid": 2969962,
+        "started_pid": 2587819,
         "benched_pts": 17.5,
         "started_pts": 1.4,
         "swap_gain": 16.1
@@ -14045,6 +14357,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Brandin Cooks",
         "started": "T.Y. Hilton",
+        "benched_pid": 16731,
+        "started_pid": 14924,
         "benched_pts": 26.1,
         "started_pts": 9.9,
         "swap_gain": 16.2
@@ -14061,6 +14375,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Gus Edwards",
         "started": "Jeff Wilson Jr.",
+        "benched_pid": 3051926,
+        "started_pid": 3122976,
         "benched_pts": 18.6,
         "started_pts": 5.4,
         "swap_gain": 13.2
@@ -14077,6 +14393,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "David Njoku",
         "started": "Davante Adams",
+        "benched_pid": 3123076,
+        "started_pid": 16800,
         "benched_pts": 24.1,
         "started_pts": 8.8,
         "swap_gain": 15.3
@@ -14093,6 +14411,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Marquez Valdes-Scantling",
         "started": "Matt Breida",
+        "benched_pid": 3051738,
+        "started_pid": 3049916,
         "benched_pts": 20.3,
         "started_pts": 4.1,
         "swap_gain": 16.2
@@ -14109,6 +14429,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Tee Higgins",
         "started": "Marquise Brown",
+        "benched_pid": 4239993,
+        "started_pid": 4241372,
         "benched_pts": 18.5,
         "started_pts": 2.3,
         "swap_gain": 16.2
@@ -14125,6 +14447,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Nyheim Hines",
         "started": "J.K. Dobbins",
+        "benched_pid": 3916430,
+        "started_pid": 4241985,
         "benched_pts": 26.0,
         "started_pts": 1.9,
         "swap_gain": 24.1
@@ -14141,6 +14465,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Darius Slayton",
         "started": "Cordarrelle Patterson",
+        "benched_pid": 3916945,
+        "started_pid": 15807,
         "benched_pts": 17.0,
         "started_pts": 2.5,
         "swap_gain": 14.5
@@ -14157,6 +14483,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Greg Dortch",
         "started": "Calvin Austin III",
+        "benched_pid": 4037235,
+        "started_pid": 4243389,
         "benched_pts": 15.6,
         "started_pts": 1.0,
         "swap_gain": 14.6
@@ -14173,6 +14501,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "D'Onta Foreman",
         "started": "Keenan Allen",
+        "benched_pid": 3125116,
+        "started_pid": 15818,
         "benched_pts": 31.5,
         "started_pts": 7.5,
         "swap_gain": 24.0
@@ -14189,6 +14519,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Xavier Worthy",
         "started": "Amari Cooper",
+        "benched_pid": 4683062,
+        "started_pid": 2976499,
         "benched_pts": 19.8,
         "started_pts": 2.6,
         "swap_gain": 17.2
@@ -14205,6 +14537,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Jacoby Brissett",
         "started": "Justin Herbert",
+        "benched_pid": 2578570,
+        "started_pid": 4038941,
         "benched_pts": 19.64,
         "started_pts": 12.84,
         "swap_gain": 6.8
@@ -14221,6 +14555,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Josh Allen",
         "started": "Patrick Mahomes",
+        "benched_pid": 3918298,
+        "started_pid": 3139477,
         "benched_pts": 36.9,
         "started_pts": 22.5,
         "swap_gain": 14.4
@@ -14237,6 +14573,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Roschon Johnson",
         "started": "Raheem Mostert",
+        "benched_pid": 4426386,
+        "started_pid": 2576414,
         "benched_pts": 10.6,
         "started_pts": -0.2,
         "swap_gain": 10.8
@@ -14253,6 +14591,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Brandon Aiyuk",
         "started": "Nelson Agholor",
+        "benched_pid": 4360438,
+        "started_pid": 2971618,
         "benched_pts": 15.7,
         "started_pts": 0.0,
         "swap_gain": 15.7
@@ -14269,6 +14609,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Brian Robinson Jr.",
         "started": "Damien Harris",
+        "benched_pid": 4241474,
+        "started_pid": 3925347,
         "benched_pts": 19.5,
         "started_pts": 1.6,
         "swap_gain": 17.9
@@ -14285,6 +14627,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Kenneth Gainwell",
         "started": "Rhamondre Stevenson",
+        "benched_pid": 4371733,
+        "started_pid": 4569173,
         "benched_pts": 28.4,
         "started_pts": 4.6,
         "swap_gain": 23.8
@@ -14301,6 +14645,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jacoby Brissett",
         "started": "Tom Brady",
+        "benched_pid": 2578570,
+        "started_pid": 2330,
         "benched_pts": 27.6,
         "started_pts": 11.0,
         "swap_gain": 16.6
@@ -14317,6 +14663,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "T.J. Hockenson",
         "started": "Ja'Tavion Sanders",
+        "benched_pid": 4036133,
+        "started_pid": 4431588,
         "benched_pts": 13.4,
         "started_pts": 2.1,
         "swap_gain": 11.3
@@ -14333,6 +14681,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Damien Harris",
         "started": "Devin Singletary",
+        "benched_pid": 3925347,
+        "started_pid": 4040761,
         "benched_pts": 17.1,
         "started_pts": 3.6,
         "swap_gain": 13.5
@@ -14349,6 +14699,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jauan Jennings",
         "started": "Keon Coleman",
+        "benched_pid": 3886598,
+        "started_pid": 4635008,
         "benched_pts": 12.8,
         "started_pts": 0.0,
         "swap_gain": 12.8
@@ -14365,6 +14717,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "George Pickens",
         "started": "DJ Moore",
+        "benched_pid": 4426354,
+        "started_pid": 3915416,
         "benched_pts": 16.3,
         "started_pts": 3.9,
         "swap_gain": 12.4
@@ -14381,6 +14735,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Sammy Watkins",
         "started": "Tyler Higbee",
+        "benched_pid": 16725,
+        "started_pid": 2573401,
         "benched_pts": 18.0,
         "started_pts": 5.5,
         "swap_gain": 12.5
@@ -14397,6 +14753,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Chase Claypool",
         "started": "A.J. Green",
+        "benched_pid": 4046692,
+        "started_pid": 13983,
         "benched_pts": 16.3,
         "started_pts": 4.4,
         "swap_gain": 11.9
@@ -14413,6 +14771,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Russell Wilson",
         "started": "Carson Wentz",
+        "benched_pid": 14881,
+        "started_pid": 2573079,
         "benched_pts": 13.3,
         "started_pts": 3.2,
         "swap_gain": 10.1
@@ -14429,6 +14789,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Devin Singletary",
         "started": "Joe Mixon",
+        "benched_pid": 4040761,
+        "started_pid": 3116385,
         "benched_pts": 12.3,
         "started_pts": 2.7,
         "swap_gain": 9.6
@@ -14445,6 +14807,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Mark Andrews",
         "started": "Vance McDonald",
+        "benched_pid": 3116365,
+        "started_pid": 15853,
         "benched_pts": 20.8,
         "started_pts": 5.0,
         "swap_gain": 15.8
@@ -14461,6 +14825,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Rex Burkhead",
         "started": "Zack Moss",
+        "benched_pid": 15971,
+        "started_pid": 4035676,
         "benched_pts": 20.6,
         "started_pts": 2.2,
         "swap_gain": 18.4
@@ -14477,6 +14843,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Quentin Johnston",
         "started": "Tank Dell",
+        "benched_pid": 4429025,
+        "started_pid": 4366031,
         "benched_pts": 19.6,
         "started_pts": 1.8,
         "swap_gain": 17.8
@@ -14493,6 +14861,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Hayden Hurst",
         "started": "Jonnu Smith",
+        "benched_pid": 3924365,
+        "started_pid": 3054212,
         "benched_pts": 13.7,
         "started_pts": 1.8,
         "swap_gain": 11.9
@@ -14509,6 +14879,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Devin Singletary",
         "started": "Dontayvion Wicks",
+        "benched_pid": 4040761,
+        "started_pid": 4428850,
         "benched_pts": 12.5,
         "started_pts": 3.0,
         "swap_gain": 9.5
@@ -14525,6 +14897,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Zach Ertz",
         "started": "Sam LaPorta",
+        "benched_pid": 15835,
+        "started_pid": 4430027,
         "benched_pts": 15.4,
         "started_pts": 4.1,
         "swap_gain": 11.3
@@ -14541,6 +14915,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Diontae Johnson",
         "started": "Marvin Jones Jr.",
+        "benched_pid": 3932905,
+        "started_pid": 15072,
         "benched_pts": 16.9,
         "started_pts": 4.2,
         "swap_gain": 12.7
@@ -14557,6 +14933,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Isaac Guerendo",
         "started": "Nick Chubb",
+        "benched_pid": 4372561,
+        "started_pid": 3128720,
         "benched_pts": 17.7,
         "started_pts": 5.2,
         "swap_gain": 12.5
@@ -14573,6 +14951,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Justin Fields",
         "started": "Josh Allen",
+        "benched_pid": 4362887,
+        "started_pid": 3918298,
         "benched_pts": 25.92,
         "started_pts": 19.42,
         "swap_gain": 6.5
@@ -14589,6 +14969,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Mike Williams",
         "started": "Allen Robinson II",
+        "benched_pid": 3045138,
+        "started_pid": 16799,
         "benched_pts": 12.8,
         "started_pts": 1.1,
         "swap_gain": 11.7
@@ -14605,6 +14987,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Preston Williams",
         "started": "Keenan Allen",
+        "benched_pid": 3915399,
+        "started_pid": 15818,
         "benched_pts": 21.7,
         "started_pts": 5.5,
         "swap_gain": 16.2
@@ -14621,6 +15005,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Matthew Stafford",
         "started": "Jared Goff",
+        "benched_pid": 12483,
+        "started_pid": 3046779,
         "benched_pts": 23.0,
         "started_pts": 10.4,
         "swap_gain": 12.6
@@ -14637,6 +15023,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Josh Downs",
         "started": "Cooper Kupp",
+        "benched_pid": 4688813,
+        "started_pid": 2977187,
         "benched_pts": 21.0,
         "started_pts": 5.9,
         "swap_gain": 15.1
@@ -14653,6 +15041,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Darrell Henderson Jr.",
         "started": "Kenneth Walker III",
+        "benched_pid": 4039359,
+        "started_pid": 4567048,
         "benched_pts": 10.9,
         "started_pts": 2.1,
         "swap_gain": 8.8
@@ -14669,6 +15059,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Javonte Williams",
         "started": "Austin Ekeler",
+        "benched_pid": 4361579,
+        "started_pid": 3068267,
         "benched_pts": 19.4,
         "started_pts": 7.2,
         "swap_gain": 12.2
@@ -14685,6 +15077,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Kenneth Gainwell",
         "started": "Breece Hall",
+        "benched_pid": 4371733,
+        "started_pid": 4427366,
         "benched_pts": 26.0,
         "started_pts": 7.4,
         "swap_gain": 18.6
@@ -14701,6 +15095,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jacoby Brissett",
         "started": "Tom Brady",
+        "benched_pid": 2578570,
+        "started_pid": 2330,
         "benched_pts": 21.9,
         "started_pts": 3.7,
         "swap_gain": 18.2
@@ -14717,6 +15113,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Darrell Henderson Jr.",
         "started": "DeVante Parker",
+        "benched_pid": 4039359,
+        "started_pid": 2576623,
         "benched_pts": 20.3,
         "started_pts": 12.0,
         "swap_gain": 8.3
@@ -14733,6 +15131,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Rashid Shaheed",
         "started": "Chris Godwin Jr.",
+        "benched_pid": 4032473,
+        "started_pid": 3116165,
         "benched_pts": 19.4,
         "started_pts": 4.1,
         "swap_gain": 15.3
@@ -14749,6 +15149,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Matthew Stafford",
         "started": "Mason Rudolph",
+        "benched_pid": 12483,
+        "started_pid": 3116407,
         "benched_pts": 24.6,
         "started_pts": 9.5,
         "swap_gain": 15.1
@@ -14765,6 +15167,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Javonte Williams",
         "started": "De'Von Achane",
+        "benched_pid": 4361579,
+        "started_pid": 4429160,
         "benched_pts": 24.6,
         "started_pts": 9.5,
         "swap_gain": 15.1
@@ -14781,6 +15185,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jonnu Smith",
         "started": "Hayden Hurst",
+        "benched_pid": 3054212,
+        "started_pid": 3924365,
         "benched_pts": 10.0,
         "started_pts": 0.0,
         "swap_gain": 10.0
@@ -14797,6 +15203,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Josh Downs",
         "started": "Rico Dowdle",
+        "benched_pid": 4688813,
+        "started_pid": 4038815,
         "benched_pts": 20.2,
         "started_pts": 0.0,
         "swap_gain": 20.2
@@ -14813,6 +15221,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Latavius Murray",
         "started": "James White",
+        "benched_pid": 15920,
+        "started_pid": 16913,
         "benched_pts": 12.4,
         "started_pts": 0.4,
         "swap_gain": 12.0
@@ -14829,6 +15239,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Hunter Henry",
         "started": "Tyler Johnson",
+        "benched_pid": 3046439,
+        "started_pid": 2310331,
         "benched_pts": 17.7,
         "started_pts": 3.2,
         "swap_gain": 14.5
@@ -14845,6 +15257,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "DeVante Parker",
         "started": "Robby Anderson",
+        "benched_pid": 2576623,
+        "started_pid": 2574808,
         "benched_pts": 12.5,
         "started_pts": 0.0,
         "swap_gain": 12.5
@@ -14861,6 +15275,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Chris Olave",
         "started": "Justin Jefferson",
+        "benched_pid": 4361370,
+        "started_pid": 4262921,
         "benched_pts": 19.2,
         "started_pts": 2.9,
         "swap_gain": 16.3
@@ -14877,6 +15293,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Wan'Dale Robinson",
         "started": "Jonathan Mingo",
+        "benched_pid": 4569587,
+        "started_pid": 4426485,
         "benched_pts": 11.5,
         "started_pts": 1.0,
         "swap_gain": 10.5
@@ -14893,6 +15311,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Nick Westbrook-Ikhine",
         "started": "Quentin Johnston",
+        "benched_pid": 3929785,
+        "started_pid": 4429025,
         "benched_pts": 11.8,
         "started_pts": 0.0,
         "swap_gain": 11.8
@@ -14909,6 +15329,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jameis Winston",
         "started": "Patrick Mahomes",
+        "benched_pid": 2969939,
+        "started_pid": 3139477,
         "benched_pts": 28.9,
         "started_pts": 17.4,
         "swap_gain": 11.5
@@ -14925,6 +15347,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Tyler Allgeier",
         "started": "Wan'Dale Robinson",
+        "benched_pid": 4373626,
+        "started_pid": 4569587,
         "benched_pts": 16.0,
         "started_pts": 2.5,
         "swap_gain": 13.5
@@ -14941,6 +15365,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "DeAndre Carter",
         "started": "Cooper Kupp",
+        "benched_pid": 2580216,
+        "started_pid": 2977187,
         "benched_pts": 14.4,
         "started_pts": 1.4,
         "swap_gain": 13.0
@@ -14957,6 +15383,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Cam Akers",
         "started": "Alvin Kamara",
+        "benched_pid": 4240021,
+        "started_pid": 3054850,
         "benched_pts": 18.5,
         "started_pts": 4.7,
         "swap_gain": 13.8
@@ -14973,6 +15401,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jaylen Waddle",
         "started": "Jayden Reed",
+        "benched_pid": 4372016,
+        "started_pid": 4362249,
         "benched_pts": 24.4,
         "started_pts": 4.1,
         "swap_gain": 20.3
@@ -14989,6 +15419,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Christian Kirk",
         "started": "Brandon Aiyuk",
+        "benched_pid": 3895856,
+        "started_pid": 4360438,
         "benched_pts": 21.5,
         "started_pts": 0.0,
         "swap_gain": 21.5
@@ -15005,6 +15437,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Tyler Boyd",
         "started": "Chris Godwin",
+        "benched_pid": 3045144,
+        "started_pid": 3116165,
         "benched_pts": 25.5,
         "started_pts": 8.0,
         "swap_gain": 17.5
@@ -15021,6 +15455,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Braelon Allen",
         "started": "Keon Coleman",
+        "benched_pid": 4685247,
+        "started_pid": 4635008,
         "benched_pts": 18.6,
         "started_pts": 0.0,
         "swap_gain": 18.6
@@ -15037,6 +15473,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Cam Newton",
         "started": "Derek Carr",
+        "benched_pid": 13994,
+        "started_pid": 16757,
         "benched_pts": 25.6,
         "started_pts": 8.0,
         "swap_gain": 17.6
@@ -15053,6 +15491,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Ronald Jones II",
         "started": "David Johnson",
+        "benched_pid": 3912550,
+        "started_pid": 2508176,
         "benched_pts": 18.6,
         "started_pts": -0.5,
         "swap_gain": 19.1
@@ -15069,6 +15509,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Eagles D/ST",
         "started": "Broncos D/ST",
+        "benched_pid": -16021,
+        "started_pid": -16007,
         "benched_pts": 17.0,
         "started_pts": 1.0,
         "swap_gain": 16.0
@@ -15085,6 +15527,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Amari Cooper",
         "started": "JuJu Smith-Schuster",
+        "benched_pid": 2976499,
+        "started_pid": 3120348,
         "benched_pts": 20.6,
         "started_pts": 2.5,
         "swap_gain": 18.1
@@ -15101,6 +15545,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Rhamondre Stevenson",
         "started": "Aaron Jones",
+        "benched_pid": 4569173,
+        "started_pid": 3042519,
         "benched_pts": 18.1,
         "started_pts": 4.2,
         "swap_gain": 13.9
@@ -15117,6 +15563,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "D'Onta Foreman",
         "started": "AJ Dillon",
+        "benched_pid": 3125116,
+        "started_pid": 4239934,
         "benched_pts": 15.5,
         "started_pts": 1.5,
         "swap_gain": 14.0
@@ -15133,6 +15581,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jerry Jeudy",
         "started": "Drake London",
+        "benched_pid": 4241463,
+        "started_pid": 4426502,
         "benched_pts": 23.2,
         "started_pts": 7.6,
         "swap_gain": 15.6
@@ -15149,6 +15599,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Tyjae Spears",
         "started": "Quinshon Judkins",
+        "benched_pid": 4428557,
+        "started_pid": 4685702,
         "benched_pts": 15.7,
         "started_pts": 3.2,
         "swap_gain": 12.5
@@ -15165,6 +15617,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Alec Pierce",
         "started": "Jordan Addison",
+        "benched_pid": 4360078,
+        "started_pid": 4429205,
         "benched_pts": 16.4,
         "started_pts": 5.0,
         "swap_gain": 11.4
@@ -15181,6 +15635,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Carson Wentz",
         "started": "Dak Prescott",
+        "benched_pid": 2573079,
+        "started_pid": 2577417,
         "benched_pts": 19.3,
         "started_pts": 6.7,
         "swap_gain": 12.6
@@ -15197,6 +15653,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Hunter Henry",
         "started": "DeAndre Hopkins",
+        "benched_pid": 3046439,
+        "started_pid": 15795,
         "benched_pts": 13.2,
         "started_pts": 0.3,
         "swap_gain": 12.9
@@ -15213,6 +15671,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Marquise Brown",
         "started": "Jakobi Meyers",
+        "benched_pid": 4241372,
+        "started_pid": 3916433,
         "benched_pts": 20.3,
         "started_pts": 5.8,
         "swap_gain": 14.5
@@ -15229,6 +15689,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Nyheim Hines",
         "started": "Chase Edmonds",
+        "benched_pid": 3916430,
+        "started_pid": 3119195,
         "benched_pts": 18.8,
         "started_pts": 0.3,
         "swap_gain": 18.5
@@ -15245,6 +15707,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Dontrell Hilliard",
         "started": "David Johnson",
+        "benched_pid": 3126246,
+        "started_pid": 2508176,
         "benched_pts": 17.8,
         "started_pts": 6.5,
         "swap_gain": 11.3
@@ -15261,6 +15725,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Buccaneers D/ST",
         "started": "Eagles D/ST",
+        "benched_pid": -16027,
+        "started_pid": -16021,
         "benched_pts": 11.0,
         "started_pts": 6.0,
         "swap_gain": 5.0
@@ -15277,6 +15743,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Devin Duvernay",
         "started": "Josh Reynolds",
+        "benched_pid": 4039050,
+        "started_pid": 3115306,
         "benched_pts": 14.4,
         "started_pts": 2.4,
         "swap_gain": 12.0
@@ -15293,6 +15761,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Matthew Stafford",
         "started": "Gardner Minshew II",
+        "benched_pid": 12483,
+        "started_pid": 4038524,
         "benched_pts": 17.7,
         "started_pts": 9.2,
         "swap_gain": 8.5
@@ -15309,6 +15779,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jameis Winston",
         "started": "Ryan Tannehill",
+        "benched_pid": 2969939,
+        "started_pid": 14876,
         "benched_pts": 28.7,
         "started_pts": 13.7,
         "swap_gain": 15.0
@@ -15325,6 +15797,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Marquise Brown",
         "started": "CeeDee Lamb",
+        "benched_pid": 4241372,
+        "started_pid": 4241389,
         "benched_pts": 17.1,
         "started_pts": 2.3,
         "swap_gain": 14.8
@@ -15341,6 +15815,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Zay Jones",
         "started": "Mike Evans",
+        "benched_pid": 3059722,
+        "started_pid": 16737,
         "benched_pts": 22.0,
         "started_pts": 4.1,
         "swap_gain": 17.9
@@ -15357,6 +15833,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Sam Darnold",
         "started": "Jalen Hurts",
+        "benched_pid": 3912547,
+        "started_pid": 4040715,
         "benched_pts": 23.0,
         "started_pts": 10.5,
         "swap_gain": 12.5
@@ -15373,6 +15851,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Auden Tate",
         "started": "Josh Gordon",
+        "benched_pid": 3921564,
+        "started_pid": 15705,
         "benched_pts": 11.6,
         "started_pts": 1.2,
         "swap_gain": 10.4
@@ -15389,6 +15869,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Cowboys D/ST",
         "started": "Dolphins D/ST",
+        "benched_pid": -16006,
+        "started_pid": -16015,
         "benched_pts": 16.0,
         "started_pts": 8.0,
         "swap_gain": 8.0
@@ -15405,6 +15887,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Devontae Booker",
         "started": "James Robinson",
+        "benched_pid": 3122866,
+        "started_pid": 4052042,
         "benched_pts": 20.8,
         "started_pts": 12.2,
         "swap_gain": 8.6
@@ -15421,6 +15905,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Taysom Hill",
         "started": "Zach Ertz",
+        "benched_pid": 2468609,
+        "started_pid": 15835,
         "benched_pts": 14.0,
         "started_pts": 1.0,
         "swap_gain": 13.0
@@ -15437,6 +15923,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "RJ Harvey",
         "started": "Darnell Mooney",
+        "benched_pid": 4568490,
+        "started_pid": 4040655,
         "benched_pts": 14.1,
         "started_pts": 2.0,
         "swap_gain": 12.1
@@ -15453,6 +15941,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "David Montgomery",
         "started": "Robert Woods",
+        "benched_pid": 4035538,
+        "started_pid": 15880,
         "benched_pts": 22.7,
         "started_pts": 5.2,
         "swap_gain": 17.5
@@ -15469,6 +15959,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Andrei Iosivas",
         "started": "Christian Kirk",
+        "benched_pid": 4368003,
+        "started_pid": 3895856,
         "benched_pts": 13.7,
         "started_pts": 0.4,
         "swap_gain": 13.3
@@ -15485,6 +15977,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Nelson Agholor",
         "started": "DJ Moore",
+        "benched_pid": 2971618,
+        "started_pid": 3915416,
         "benched_pts": 12.5,
         "started_pts": 2.8,
         "swap_gain": 9.7
@@ -15501,6 +15995,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Allen Robinson II",
         "started": "DJ Moore",
+        "benched_pid": 16799,
+        "started_pid": 3915416,
         "benched_pts": 14.8,
         "started_pts": 2.2,
         "swap_gain": 12.6
@@ -15517,6 +16013,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Rondale Moore",
         "started": "Josh Reynolds",
+        "benched_pid": 4372485,
+        "started_pid": 3115306,
         "benched_pts": 14.2,
         "started_pts": 0.0,
         "swap_gain": 14.2
@@ -15533,6 +16031,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Peyton Barber",
         "started": "Duke Johnson",
+        "benched_pid": 3051902,
+        "started_pid": 2969962,
         "benched_pts": 15.4,
         "started_pts": 3.1,
         "swap_gain": 12.3
@@ -15549,6 +16049,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Mecole Hardman",
         "started": "Russell Gage",
+        "benched_pid": 4035004,
+        "started_pid": 3115378,
         "benched_pts": 26.0,
         "started_pts": 5.9,
         "swap_gain": 20.1
@@ -15565,6 +16067,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Tom Brady",
         "started": "Josh Allen",
+        "benched_pid": 2330,
+        "started_pid": 3918298,
         "benched_pts": 36.1,
         "started_pts": 16.1,
         "swap_gain": 20.0
@@ -15581,6 +16085,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Cardinals D/ST",
         "started": "Steelers D/ST",
+        "benched_pid": -16022,
+        "started_pid": -16023,
         "benched_pts": 9.0,
         "started_pts": -3.0,
         "swap_gain": 12.0
@@ -15597,6 +16103,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Brandin Cooks",
         "started": "Zay Flowers",
+        "benched_pid": 16731,
+        "started_pid": 4429615,
         "benched_pts": 27.8,
         "started_pts": 9.8,
         "swap_gain": 18.0
@@ -15613,6 +16121,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Scotty Miller",
         "started": "A.J. Green",
+        "benched_pid": 3914397,
+        "started_pid": 13983,
         "benched_pts": 16.8,
         "started_pts": 0.8,
         "swap_gain": 16.0
@@ -15629,6 +16139,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Rashee Rice",
         "started": "DeAndre Hopkins",
+        "benched_pid": 4428331,
+        "started_pid": 15795,
         "benched_pts": 9.2,
         "started_pts": 2.5,
         "swap_gain": 6.7
@@ -15645,6 +16157,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Chuba Hubbard",
         "started": "Saquon Barkley",
+        "benched_pid": 4241416,
+        "started_pid": 3929630,
         "benched_pts": 19.4,
         "started_pts": 5.6,
         "swap_gain": 13.8
@@ -15661,6 +16175,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Marquez Valdes-Scantling",
         "started": "Kenny Golladay",
+        "benched_pid": 3051738,
+        "started_pid": 2974858,
         "benched_pts": 20.3,
         "started_pts": 1.7,
         "swap_gain": 18.6
@@ -15677,6 +16193,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jamison Crowder",
         "started": "Kerryon Johnson",
+        "benched_pid": 2576716,
+        "started_pid": 3916925,
         "benched_pts": 21.0,
         "started_pts": 1.4,
         "swap_gain": 19.6
@@ -15693,6 +16211,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "C.J. Stroud",
         "started": "Lamar Jackson",
+        "benched_pid": 4432577,
+        "started_pid": 3916387,
         "benched_pts": 30.7,
         "started_pts": 14.9,
         "swap_gain": 15.8
@@ -15709,6 +16229,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jared Goff",
         "started": "Derek Carr",
+        "benched_pid": 3046779,
+        "started_pid": 16757,
         "benched_pts": 18.8,
         "started_pts": 8.8,
         "swap_gain": 10.0
@@ -15725,6 +16247,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Leonard Fournette",
         "started": "AJ Dillon",
+        "benched_pid": 3115364,
+        "started_pid": 4239934,
         "benched_pts": 12.7,
         "started_pts": 1.1,
         "swap_gain": 11.6
@@ -15741,6 +16265,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Rhamondre Stevenson",
         "started": "Javonte Williams",
+        "benched_pid": 4569173,
+        "started_pid": 4361579,
         "benched_pts": 25.4,
         "started_pts": 5.9,
         "swap_gain": 19.5
@@ -15757,6 +16283,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jaleel McLaughlin",
         "started": "Rhamondre Stevenson",
+        "benched_pid": 4722893,
+        "started_pid": 4569173,
         "benched_pts": 16.4,
         "started_pts": 2.4,
         "swap_gain": 14.0
@@ -15773,6 +16301,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Tyler Higbee",
         "started": "T.J. Hockenson",
+        "benched_pid": 2573401,
+        "started_pid": 4036133,
         "benched_pts": 12.5,
         "started_pts": 2.0,
         "swap_gain": 10.5
@@ -15789,6 +16319,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Rico Dowdle",
         "started": "Josh Downs",
+        "benched_pid": 4038815,
+        "started_pid": 4688813,
         "benched_pts": 19.2,
         "started_pts": 9.0,
         "swap_gain": 10.2
@@ -15805,6 +16337,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Latavius Murray",
         "started": "Jonathan Taylor",
+        "benched_pid": 15920,
+        "started_pid": 4242335,
         "benched_pts": 20.8,
         "started_pts": 8.4,
         "swap_gain": 12.4
@@ -15821,6 +16355,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Nyheim Hines",
         "started": "Kenneth Gainwell",
+        "benched_pid": 3916430,
+        "started_pid": 4371733,
         "benched_pts": 16.4,
         "started_pts": 4.9,
         "swap_gain": 11.5
@@ -15837,6 +16373,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Kendrick Bourne",
         "started": "TreVeyon Henderson",
+        "benched_pid": 3045523,
+        "started_pid": 4432710,
         "benched_pts": 19.2,
         "started_pts": 3.7,
         "swap_gain": 15.5
@@ -15853,6 +16391,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Wan'Dale Robinson",
         "started": "Chris Olave",
+        "benched_pid": 4569587,
+        "started_pid": 4361370,
         "benched_pts": 26.1,
         "started_pts": 11.5,
         "swap_gain": 14.6
@@ -15869,6 +16409,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Tua Tagovailoa",
         "started": "Lamar Jackson",
+        "benched_pid": 4241479,
+        "started_pid": 3916387,
         "benched_pts": 13.0,
         "started_pts": 0.9,
         "swap_gain": 12.1
@@ -15885,6 +16427,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Michael Pittman Jr.",
         "started": "Kenneth Gainwell",
+        "benched_pid": 4035687,
+        "started_pid": 4371733,
         "benched_pts": 17.3,
         "started_pts": 2.5,
         "swap_gain": 14.8
@@ -15901,6 +16445,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Drew Brees",
         "started": "Carson Wentz",
+        "benched_pid": 2580,
+        "started_pid": 2573079,
         "benched_pts": 19.4,
         "started_pts": 7.7,
         "swap_gain": 11.7
@@ -15917,6 +16463,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Travis Etienne Jr.",
         "started": "RJ Harvey",
+        "benched_pid": 4239996,
+        "started_pid": 4568490,
         "benched_pts": 17.1,
         "started_pts": 7.4,
         "swap_gain": 9.7
@@ -15933,6 +16481,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Kenneth Gainwell",
         "started": "D'Andre Swift",
+        "benched_pid": 4371733,
+        "started_pid": 4259545,
         "benched_pts": 15.2,
         "started_pts": 1.4,
         "swap_gain": 13.8
@@ -15949,6 +16499,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Tom Brady",
         "started": "Ben Roethlisberger",
+        "benched_pid": 2330,
+        "started_pid": 5536,
         "benched_pts": 25.0,
         "started_pts": 9.7,
         "swap_gain": 15.3
@@ -15965,6 +16517,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Robby Anderson",
         "started": "Diontae Johnson",
+        "benched_pid": 2574808,
+        "started_pid": 3932905,
         "benched_pts": 22.4,
         "started_pts": 6.7,
         "swap_gain": 15.7
@@ -15981,6 +16535,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Devin Singletary",
         "started": "Aaron Jones",
+        "benched_pid": 4040761,
+        "started_pid": 3042519,
         "benched_pts": 18.8,
         "started_pts": 2.2,
         "swap_gain": 16.6
@@ -15997,6 +16553,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Tank Bigsby",
         "started": "Jordan Mason",
+        "benched_pid": 4429013,
+        "started_pid": 4360569,
         "benched_pts": 25.4,
         "started_pts": 8.3,
         "swap_gain": 17.1
@@ -16013,6 +16571,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Marquez Valdes-Scantling",
         "started": "Romeo Doubs",
+        "benched_pid": 3051738,
+        "started_pid": 4361432,
         "benched_pts": 15.7,
         "started_pts": 2.2,
         "swap_gain": 13.5
@@ -16029,6 +16589,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Dolphins D/ST",
         "started": "Bills D/ST",
+        "benched_pid": -16015,
+        "started_pid": -16002,
         "benched_pts": 25.0,
         "started_pts": 11.0,
         "swap_gain": 14.0
@@ -16045,6 +16607,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Terrell Jennings",
         "started": "Nick Chubb",
+        "benched_pid": 4427600,
+        "started_pid": 3128720,
         "benched_pts": 10.9,
         "started_pts": 3.4,
         "swap_gain": 7.5
@@ -16061,6 +16625,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Will Dissly",
         "started": "DK Metcalf",
+        "benched_pid": 3127292,
+        "started_pid": 4047650,
         "benched_pts": 15.2,
         "started_pts": 1.1,
         "swap_gain": 14.1
@@ -16077,6 +16643,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Julio Jones",
         "started": "DeVonta Smith",
+        "benched_pid": 13982,
+        "started_pid": 4241478,
         "benched_pts": 10.1,
         "started_pts": 0.0,
         "swap_gain": 10.1
@@ -16093,6 +16661,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Zay Jones",
         "started": "Terry McLaurin",
+        "benched_pid": 3059722,
+        "started_pid": 3121422,
         "benched_pts": 10.3,
         "started_pts": 0.0,
         "swap_gain": 10.3
@@ -16109,6 +16679,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Xavier Worthy",
         "started": "Rashee Rice",
+        "benched_pid": 4683062,
+        "started_pid": 4428331,
         "benched_pts": 14.8,
         "started_pts": 0.0,
         "swap_gain": 14.8
@@ -16125,6 +16697,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "DeMario Douglas",
         "started": "Brian Thomas Jr.",
+        "benched_pid": 4427095,
+        "started_pid": 4432773,
         "benched_pts": 18.2,
         "started_pts": 4.2,
         "swap_gain": 14.0
@@ -16141,6 +16715,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Kareem Hunt",
         "started": "Hollywood Brown",
+        "benched_pid": 3059915,
+        "started_pid": 4241372,
         "benched_pts": 16.7,
         "started_pts": 0.0,
         "swap_gain": 16.7
@@ -16157,6 +16733,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Tory Horton",
         "started": "Quentin Johnston",
+        "benched_pid": 4597703,
+        "started_pid": 4429025,
         "benched_pts": 11.4,
         "started_pts": 4.9,
         "swap_gain": 6.5
@@ -16173,6 +16751,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Wayne Gallman",
         "started": "Devin Singletary",
+        "benched_pid": 3045127,
+        "started_pid": 4040761,
         "benched_pts": 18.5,
         "started_pts": 1.5,
         "swap_gain": 17.0
@@ -16189,6 +16769,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Chase Claypool",
         "started": "Damien Harris",
+        "benched_pid": 4046692,
+        "started_pid": 3925347,
         "benched_pts": 21.5,
         "started_pts": 9.8,
         "swap_gain": 11.7
@@ -16205,6 +16787,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Adrian Peterson",
         "started": "J.D. McKissic",
+        "benched_pid": 10452,
+        "started_pid": 2572861,
         "benched_pts": 11.3,
         "started_pts": 1.6,
         "swap_gain": 9.7
@@ -16221,6 +16805,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "D'Andre Swift",
         "started": "Austin Ekeler",
+        "benched_pid": 4259545,
+        "started_pid": 3068267,
         "benched_pts": 13.2,
         "started_pts": 1.9,
         "swap_gain": 11.3
@@ -16237,6 +16823,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Mike Williams",
         "started": "Jamison Crowder",
+        "benched_pid": 3045138,
+        "started_pid": 2576716,
         "benched_pts": 18.5,
         "started_pts": 0.0,
         "swap_gain": 18.5
@@ -16253,6 +16841,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Ameer Abdullah",
         "started": "Brian Robinson Jr.",
+        "benched_pid": 2576336,
+        "started_pid": 4241474,
         "benched_pts": 15.0,
         "started_pts": 2.9,
         "swap_gain": 12.1
@@ -16269,6 +16859,8 @@ const LEAGUE_DATA = {
         "would_win": true,
         "benched": "Damien Harris",
         "started": "Ezekiel Elliott",
+        "benched_pid": 3925347,
+        "started_pid": 3051392,
         "benched_pts": 15.7,
         "started_pts": 5.4,
         "swap_gain": 10.3
@@ -16285,6 +16877,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Joshua Palmer",
         "started": "Allen Lazard",
+        "benched_pid": 4242433,
+        "started_pid": 3128390,
         "benched_pts": 26.6,
         "started_pts": 8.2,
         "swap_gain": 18.4
@@ -16301,6 +16895,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Jordan Mason",
         "started": "Christian Kirk",
+        "benched_pid": 4360569,
+        "started_pid": 3895856,
         "benched_pts": 21.7,
         "started_pts": 3.5,
         "swap_gain": 18.2
@@ -16317,6 +16913,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "Larry Fitzgerald",
         "started": "DeSean Jackson",
+        "benched_pid": 5528,
+        "started_pid": 11283,
         "benched_pts": 12.9,
         "started_pts": 0.0,
         "swap_gain": 12.9
@@ -16333,6 +16931,8 @@ const LEAGUE_DATA = {
         "would_win": false,
         "benched": "John Brown",
         "started": "Cam Akers",
+        "benched_pid": 16804,
+        "started_pid": 4240021,
         "benched_pts": 16.0,
         "started_pts": 4.8,
         "swap_gain": 11.2
@@ -16343,924 +16943,1104 @@ const LEAGUE_DATA = {
         {
           "name": "Tom Brady",
           "weeks": 49,
-          "seasons": 4
+          "seasons": 4,
+          "pid": 2330
         },
         {
           "name": "Nick Chubb",
           "weeks": 32,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 3128720
         },
         {
           "name": "Patriots D/ST",
           "weeks": 32,
-          "seasons": 5
+          "seasons": 5,
+          "pid": 0
         },
         {
           "name": "Hunter Henry",
           "weeks": 28,
-          "seasons": 4
+          "seasons": 4,
+          "pid": 3046439
         },
         {
           "name": "Derrick Henry",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3043078
         },
         {
           "name": "Austin Ekeler",
           "weeks": 27,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3068267
         },
         {
           "name": "Tyler Boyd",
           "weeks": 27,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3045144
         },
         {
           "name": "Evan Engram",
           "weeks": 26,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3051876
         },
         {
           "name": "Marquise Brown",
           "weeks": 24,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4241372
         },
         {
           "name": "Keenan Allen",
           "weeks": 24,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 15818
         },
         {
           "name": "Buccaneers D/ST",
           "weeks": 21,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 0
         },
         {
           "name": "Joe Mixon",
           "weeks": 19,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3116385
         },
         {
           "name": "Chuba Hubbard",
           "weeks": 18,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4241416
         },
         {
           "name": "Ravens D/ST",
           "weeks": 17,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 0
         },
         {
           "name": "Julio Jones",
           "weeks": 17,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 13982
         }
       ],
       "Logan Zayas": [
         {
           "name": "Kyler Murray",
           "weeks": 32,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 3917315
         },
         {
           "name": "D'Andre Swift",
           "weeks": 28,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 4259545
         },
         {
           "name": "Amari Cooper",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 2976499
         },
         {
           "name": "Jalen Hurts",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4040715
         },
         {
           "name": "DJ Moore",
           "weeks": 26,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 3915416
         },
         {
           "name": "Dallas Goedert",
           "weeks": 25,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3121023
         },
         {
           "name": "George Kittle",
           "weeks": 22,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3040151
         },
         {
           "name": "Christian Watson",
           "weeks": 20,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4248528
         },
         {
           "name": "Browns D/ST",
           "weeks": 19,
-          "seasons": 6
+          "seasons": 6,
+          "pid": 0
         },
         {
           "name": "Jamaal Williams",
           "weeks": 19,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 2980453
         },
         {
           "name": "Christian McCaffrey",
           "weeks": 18,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3117251
         },
         {
           "name": "Josh Allen",
           "weeks": 18,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3918298
         },
         {
           "name": "Kenneth Walker III",
           "weeks": 18,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4567048
         },
         {
           "name": "Rashee Rice",
           "weeks": 17,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4428331
         },
         {
           "name": "T.J. Hockenson",
           "weeks": 16,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4036133
         }
       ],
       "Eric B": [
         {
           "name": "DeAndre Hopkins",
           "weeks": 27,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 15795
         },
         {
           "name": "Seahawks D/ST",
           "weeks": 24,
-          "seasons": 4
+          "seasons": 4,
+          "pid": 0
         },
         {
           "name": "Keenan Allen",
           "weeks": 23,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 15818
         },
         {
           "name": "T.J. Hockenson",
           "weeks": 22,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 4036133
         },
         {
           "name": "Tee Higgins",
           "weeks": 22,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 4239993
         },
         {
           "name": "Brian Robinson Jr.",
           "weeks": 21,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4241474
         },
         {
           "name": "Kenyan Drake",
           "weeks": 19,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 2979843
         },
         {
           "name": "Justin Herbert",
           "weeks": 18,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4038941
         },
         {
           "name": "Quentin Johnston",
           "weeks": 18,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4429025
         },
         {
           "name": "Christian McCaffrey",
           "weeks": 17,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3117251
         },
         {
           "name": "Matthew Stafford",
           "weeks": 16,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 12483
         },
         {
           "name": "Carson Wentz",
           "weeks": 15,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 2573079
         },
         {
           "name": "Baker Mayfield",
           "weeks": 15,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3052587
         },
         {
           "name": "Joe Burrow",
           "weeks": 15,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 3915511
         },
         {
           "name": "James Cook",
           "weeks": 15,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4379399
         }
       ],
       "Charlie Cheney": [
         {
           "name": "Alexander Mattison",
           "weeks": 41,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 4048244
         },
         {
           "name": "Travis Kelce",
           "weeks": 40,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 15847
         },
         {
           "name": "Travis Etienne Jr.",
           "weeks": 29,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 4239996
         },
         {
           "name": "Adam Thielen",
           "weeks": 25,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 16460
         },
         {
           "name": "Sammy Watkins",
           "weeks": 25,
-          "seasons": 4
+          "seasons": 4,
+          "pid": 16725
         },
         {
           "name": "Rondale Moore",
           "weeks": 25,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 4372485
         },
         {
           "name": "Alvin Kamara",
           "weeks": 24,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 3054850
         },
         {
           "name": "Nico Collins",
           "weeks": 23,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4258173
         },
         {
           "name": "DK Metcalf",
           "weeks": 21,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4047650
         },
         {
           "name": "Christian Kirk",
           "weeks": 21,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3895856
         },
         {
           "name": "Tyler Lockett",
           "weeks": 19,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 2577327
         },
         {
           "name": "A.J. Brown",
           "weeks": 18,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 4047646
         },
         {
           "name": "Derek Carr",
           "weeks": 17,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 16757
         },
         {
           "name": "Marquez Valdes-Scantling",
           "weeks": 15,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 3051738
         },
         {
           "name": "Rams D/ST",
           "weeks": 15,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 0
         }
       ],
       "Tyler Ehrman": [
         {
           "name": "Tyler Lockett",
           "weeks": 29,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 2577327
         },
         {
           "name": "Courtland Sutton",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3128429
         },
         {
           "name": "Isiah Pacheco",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4361529
         },
         {
           "name": "CeeDee Lamb",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4241389
         },
         {
           "name": "Aaron Jones",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3042519
         },
         {
           "name": "Tyler Allgeier",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4373626
         },
         {
           "name": "Mike Evans",
           "weeks": 27,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 16737
         },
         {
           "name": "Jets D/ST",
           "weeks": 27,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 0
         },
         {
           "name": "Joe Mixon",
           "weeks": 26,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3116385
         },
         {
           "name": "Sam LaPorta",
           "weeks": 26,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4430027
         },
         {
           "name": "Drew Brees",
           "weeks": 24,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 2580
         },
         {
           "name": "Rachaad White",
           "weeks": 20,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4697815
         },
         {
           "name": "Darrell Henderson Jr.",
           "weeks": 16,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4039359
         },
         {
           "name": "Elijah Moore",
           "weeks": 16,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4372414
         },
         {
           "name": "Jordan Love",
           "weeks": 16,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 4036378
         }
       ],
       "Billy Chapler": [
         {
           "name": "Aaron Jones",
           "weeks": 34,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 3042519
         },
         {
           "name": "Kareem Hunt",
           "weeks": 32,
-          "seasons": 4
+          "seasons": 4,
+          "pid": 3059915
         },
         {
           "name": "Mark Andrews",
           "weeks": 27,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3116365
         },
         {
           "name": "Calvin Ridley",
           "weeks": 25,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3925357
         },
         {
           "name": "Latavius Murray",
           "weeks": 24,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 15920
         },
         {
           "name": "Colts D/ST",
           "weeks": 24,
-          "seasons": 4
+          "seasons": 4,
+          "pid": 0
         },
         {
           "name": "Justin Jefferson",
           "weeks": 24,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4262921
         },
         {
           "name": "Chris Godwin",
           "weeks": 23,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3116165
         },
         {
           "name": "James White",
           "weeks": 22,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 16913
         },
         {
           "name": "Joe Burrow",
           "weeks": 22,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3915511
         },
         {
           "name": "Justin Herbert",
           "weeks": 21,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4038941
         },
         {
           "name": "Puka Nacua",
           "weeks": 21,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4426515
         },
         {
           "name": "Tony Pollard",
           "weeks": 19,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3916148
         },
         {
           "name": "Michael Carter",
           "weeks": 19,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4240657
         },
         {
           "name": "Amon-Ra St. Brown",
           "weeks": 19,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 4374302
         }
       ],
       "Preston Jicka": [
         {
           "name": "Patrick Mahomes",
           "weeks": 41,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 3139477
         },
         {
           "name": "Tyreek Hill",
           "weeks": 38,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 3116406
         },
         {
           "name": "Tyler Boyd",
           "weeks": 33,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 3045144
         },
         {
           "name": "Jaxon Smith-Njigba",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4430878
         },
         {
           "name": "Josh Jacobs",
           "weeks": 27,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4047365
         },
         {
           "name": "J.D. McKissic",
           "weeks": 26,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 2572861
         },
         {
           "name": "Jamison Crowder",
           "weeks": 24,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 2576716
         },
         {
           "name": "Buccaneers D/ST",
           "weeks": 24,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 0
         },
         {
           "name": "Darren Waller",
           "weeks": 22,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 2576925
         },
         {
           "name": "Alvin Kamara",
           "weeks": 22,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3054850
         },
         {
           "name": "Justice Hill",
           "weeks": 22,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4038441
         },
         {
           "name": "Deshaun Watson",
           "weeks": 21,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3122840
         },
         {
           "name": "Chris Godwin",
           "weeks": 21,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3116165
         },
         {
           "name": "49ers D/ST",
           "weeks": 19,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 0
         },
         {
           "name": "Deebo Samuel",
           "weeks": 17,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3126486
         }
       ],
       "Harrison Squadron": [
         {
           "name": "Romeo Doubs",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4361432
         },
         {
           "name": "Kyle Pitts",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4360248
         },
         {
           "name": "Patrick Mahomes",
           "weeks": 27,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3139477
         },
         {
           "name": "Tee Higgins",
           "weeks": 27,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4239993
         },
         {
           "name": "Darnell Mooney",
           "weeks": 25,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4040655
         },
         {
           "name": "Kareem Hunt",
           "weeks": 23,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 3059915
         },
         {
           "name": "Hunter Henry",
           "weeks": 22,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3046439
         },
         {
           "name": "Curtis Samuel",
           "weeks": 17,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3121427
         },
         {
           "name": "Marquise Brown",
           "weeks": 16,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4241372
         },
         {
           "name": "Michael Thomas",
           "weeks": 16,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 2976316
         },
         {
           "name": "Jerry Jeudy",
           "weeks": 16,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4241463
         },
         {
           "name": "49ers D/ST",
           "weeks": 15,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 0
         },
         {
           "name": "Ezekiel Elliott",
           "weeks": 14,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3051392
         },
         {
           "name": "DJ Moore",
           "weeks": 14,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3915416
         },
         {
           "name": "Najee Harris",
           "weeks": 14,
-          "seasons": 1
+          "seasons": 1,
+          "pid": 4241457
         }
       ],
       "Anthony Belardinelli": [
         {
           "name": "Breece Hall",
           "weeks": 35,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 4427366
         },
         {
           "name": "Terry McLaurin",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3121422
         },
         {
           "name": "Rams D/ST",
           "weeks": 24,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 0
         },
         {
           "name": "Justin Jefferson",
           "weeks": 23,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4262921
         },
         {
           "name": "Clyde Edwards-Helaire",
           "weeks": 21,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4242214
         },
         {
           "name": "Jerick McKinnon",
           "weeks": 21,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 16782
         },
         {
           "name": "CeeDee Lamb",
           "weeks": 21,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4241389
         },
         {
           "name": "Raheem Mostert",
           "weeks": 20,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 2576414
         },
         {
           "name": "Jakobi Meyers",
           "weeks": 19,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3916433
         },
         {
           "name": "Elijah Moore",
           "weeks": 19,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 4372414
         },
         {
           "name": "Lamar Jackson",
           "weeks": 19,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3916387
         },
         {
           "name": "Miles Sanders",
           "weeks": 18,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4045163
         },
         {
           "name": "Zach Ertz",
           "weeks": 18,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 15835
         },
         {
           "name": "Tua Tagovailoa",
           "weeks": 17,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4241479
         },
         {
           "name": "Courtland Sutton",
           "weeks": 15,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3128429
         }
       ],
       "Matthew Ruffolo": [
         {
           "name": "Steelers D/ST",
           "weeks": 67,
-          "seasons": 5
+          "seasons": 5,
+          "pid": 0
         },
         {
           "name": "Diontae Johnson",
           "weeks": 47,
-          "seasons": 4
+          "seasons": 4,
+          "pid": 3932905
         },
         {
           "name": "Chase Claypool",
           "weeks": 41,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 4046692
         },
         {
           "name": "James Conner",
           "weeks": 40,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 3045147
         },
         {
           "name": "JuJu Smith-Schuster",
           "weeks": 32,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 3120348
         },
         {
           "name": "Devin Singletary",
           "weeks": 32,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 4040761
         },
         {
           "name": "Ben Roethlisberger",
           "weeks": 29,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 5536
         },
         {
           "name": "DeVonta Smith",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4241478
         },
         {
           "name": "Najee Harris",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4241457
         },
         {
           "name": "Jaylen Warren",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4569987
         },
         {
           "name": "Brock Purdy",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4361741
         },
         {
           "name": "Zach Ertz",
           "weeks": 24,
-          "seasons": 4
+          "seasons": 4,
+          "pid": 15835
         },
         {
           "name": "Derrick Henry",
           "weeks": 22,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3043078
         },
         {
           "name": "Calvin Austin III",
           "weeks": 22,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4243389
         },
         {
           "name": "Leonard Fournette",
           "weeks": 20,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3115364
         }
       ],
       "Ethan Harris": [
         {
           "name": "David Montgomery",
           "weeks": 27,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4035538
         },
         {
           "name": "Brandin Cooks",
           "weeks": 27,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 16731
         },
         {
           "name": "Chase Edmonds",
           "weeks": 22,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3119195
         },
         {
           "name": "Brian Thomas Jr.",
           "weeks": 21,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4432773
         },
         {
           "name": "Justin Jefferson",
           "weeks": 20,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4262921
         },
         {
           "name": "D'Andre Swift",
           "weeks": 19,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4259545
         },
         {
           "name": "Javonte Williams",
           "weeks": 18,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4361579
         },
         {
           "name": "Leonard Fournette",
           "weeks": 18,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3115364
         },
         {
           "name": "DeMario Douglas",
           "weeks": 18,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4427095
         },
         {
           "name": "Austin Hooper",
           "weeks": 16,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3043275
         },
         {
           "name": "Bills D/ST",
           "weeks": 16,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 0
         },
         {
           "name": "Saquon Barkley",
           "weeks": 16,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3929630
         },
         {
           "name": "Jaylen Warren",
           "weeks": 16,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4569987
         },
         {
           "name": "Rhamondre Stevenson",
           "weeks": 15,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4569173
         },
         {
           "name": "Patrick Mahomes",
           "weeks": 15,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3139477
         }
       ],
       "Matthew Durante": [
         {
           "name": "Kirk Cousins",
           "weeks": 33,
-          "seasons": 4
+          "seasons": 4,
+          "pid": 14880
         },
         {
           "name": "Travis Kelce",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 15847
         },
         {
           "name": "Christian Kirk",
           "weeks": 28,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3895856
         },
         {
           "name": "Dalvin Cook",
           "weeks": 27,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3116593
         },
         {
           "name": "David Montgomery",
           "weeks": 27,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4035538
         },
         {
           "name": "Antonio Gibson",
           "weeks": 27,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4360294
         },
         {
           "name": "Brandon Aiyuk",
           "weeks": 27,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 4360438
         },
         {
           "name": "Robert Woods",
           "weeks": 24,
-          "seasons": 4
+          "seasons": 4,
+          "pid": 15880
         },
         {
           "name": "Jared Goff",
           "weeks": 19,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 3046779
         },
         {
           "name": "Josh Jacobs",
           "weeks": 18,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 4047365
         },
         {
           "name": "Calvin Ridley",
           "weeks": 18,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3925357
         },
         {
           "name": "Courtland Sutton",
           "weeks": 18,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 3128429
         },
         {
           "name": "Geno Smith",
           "weeks": 17,
-          "seasons": 3
+          "seasons": 3,
+          "pid": 15864
         },
         {
           "name": "Darren Waller",
           "weeks": 15,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 2576925
         },
         {
           "name": "Matthew Stafford",
           "weeks": 15,
-          "seasons": 2
+          "seasons": 2,
+          "pid": 12483
         }
       ]
     },
