@@ -21,7 +21,7 @@ END_YEAR   = int(os.getenv("END_YEAR",   "2025"))
 
 # Same-person accounts with different last names (old -> canonical)
 MANUAL_ALIASES = {
-    "Anthony Belardinelli": "Colin Arber",
+    "Colin Arber": "Anthony Belardinelli",
 }
 
 
