@@ -464,7 +464,7 @@ function renderScoring() {
 
   document.getElementById('scoring-head').innerHTML=
     `<th class="text-left py-2 px-2 sm:px-3 sticky-col">Owner</th>`+
-    years.map(y=>`<th class="text-right py-2 px-2 sm:px-3">${y}</th>`).join('')+
+    years.map(y=>`<th class="text-right py-2 px-2 sm:px-3"><span class="inline-flex items-center justify-end gap-0.5">${y}<span class="w-4 inline-block"></span></span></th>`).join('')+
     `<th class="text-right py-2 px-2 sm:px-3 pl-4">Total</th><th class="text-right py-2 px-2 sm:px-3">Avg</th>`;
 
   const champMap=d.meta.champions||{};
