@@ -531,14 +531,14 @@ function jumpToTeam(owner) {
 }
 
 // ── Superlatives ──────────────────────────────────────────────────────────────
-const RANK_BADGE=['<span class="text-yellow-400 font-bold text-xs">1st</span>','<span class="text-slate-300 font-semibold text-xs">2nd</span>','<span class="text-amber-600 font-semibold text-xs">3rd</span>'];
-function supCard(title, rows, border='border-slate-700') {
+const RANK_BADGE=['<span class="text-yellow-400 font-bold text-xs leading-none">1st</span>','<span class="text-slate-300 font-semibold text-xs leading-none">2nd</span>','<span class="text-amber-600 font-semibold text-xs leading-none">3rd</span>'];
+function supCard(title, rows) {
   const items=rows.map((r,i)=>`
-    <div class="flex gap-2 items-start py-2 ${i<rows.length-1?'border-b border-slate-800':''}">
-      <span class="w-6 text-right shrink-0 mt-0.5">${RANK_BADGE[i]||`<span class="text-slate-600 text-xs">${i+1}.</span>`}</span>
+    <div class="flex gap-2 items-baseline py-2 ${i<rows.length-1?'border-b border-slate-800':''}">
+      <span class="w-6 text-right shrink-0">${RANK_BADGE[i]||`<span class="text-slate-600 text-xs">${i+1}.</span>`}</span>
       <div class="text-xs sm:text-sm text-slate-200 leading-snug">${r}</div>
     </div>`).join('');
-  return `<div class="bg-slate-900 rounded-xl p-4 sm:p-6 border-l-4 ${border}">
+  return `<div class="bg-slate-900 rounded-xl p-4 sm:p-6">
     <h3 class="text-sm font-semibold text-white mb-3">${title}</h3>${items}</div>`;
 }
 function supChamps(title, champions) {
@@ -553,7 +553,7 @@ function supChamps(title, champions) {
       </div>
       <span class="text-amber-400 font-semibold text-xs">${c.year}</span>
     </div>`).join('');
-  return `<div class="bg-slate-900 rounded-xl p-4 sm:p-6 border-l-4 border-yellow-500">
+  return `<div class="bg-slate-900 rounded-xl p-4 sm:p-6">
     <h3 class="text-sm font-semibold text-white mb-3">${title}</h3>${items}</div>`;
 }
 
@@ -600,12 +600,10 @@ function renderSuperlatives() {
   const grid=document.getElementById('superlatives-grid');
   grid.innerHTML=[
     supCard('Highest Scoring Teams (Avg/Game)',
-      byPF.slice(0,3).map(o=>`${o} <span class="text-amber-400 font-semibold">${ownerGPG[o].toFixed(1)}</span><span class="text-slate-500 text-xs"> pts/gm</span>`),
-      'border-amber-500'),
+      byPF.slice(0,3).map(o=>`${o} <span class="text-amber-400 font-semibold">${ownerGPG[o].toFixed(1)}</span><span class="text-slate-500 text-xs"> pts/gm</span>`)),
 
     supCard('Lowest Scoring Teams (Avg/Game)',
-      [...byPF].reverse().slice(0,3).map(o=>`${o} <span class="text-red-400 font-semibold">${ownerGPG[o].toFixed(1)}</span><span class="text-slate-500 text-xs"> pts/gm</span>`),
-      'border-red-700'),
+      [...byPF].reverse().slice(0,3).map(o=>`${o} <span class="text-red-400 font-semibold">${ownerGPG[o].toFixed(1)}</span><span class="text-slate-500 text-xs"> pts/gm</span>`)),
 
     supChamps('League Champions', champions),
 
@@ -613,39 +611,34 @@ function renderSuperlatives() {
       [...d.owners].sort((a,b)=>luck[a]-luck[b]).slice(0,3).map(o=>{
         const sign=luck[o]>=0?'+':'';
         return `${o} <span class="text-purple-400 font-semibold">${sign}${luck[o].toFixed(1)}</span><span class="text-slate-500 text-xs"> wins vs expected</span>`;
-      }), 'border-purple-600'),
+      })),
 
     supCard('Highest Scoring Seasons (Avg/Game)',
-      [...seasonStats].sort((a,b)=>b.pfpg-a.pfpg).slice(0,3).map(s=>`<span class="text-white font-medium">${s.owner}</span> <span class="text-slate-500 text-xs">${s.year}</span> <span class="text-emerald-400 font-semibold">${s.pfpg.toFixed(1)}</span><span class="text-slate-500 text-xs"> pts/gm</span>`),
-      'border-emerald-500'),
+      [...seasonStats].sort((a,b)=>b.pfpg-a.pfpg).slice(0,3).map(s=>`<span class="text-white font-medium">${s.owner}</span> <span class="text-slate-500 text-xs">${s.year}</span> <span class="text-emerald-400 font-semibold">${s.pfpg.toFixed(1)}</span><span class="text-slate-500 text-xs"> pts/gm</span>`)),
 
     supCard('Lowest Scoring Seasons (Avg/Game)',
-      [...seasonStats].sort((a,b)=>a.pfpg-b.pfpg).slice(0,3).map(s=>`<span class="text-white font-medium">${s.owner}</span> <span class="text-slate-500 text-xs">${s.year}</span> <span class="text-red-400 font-semibold">${s.pfpg.toFixed(1)}</span><span class="text-slate-500 text-xs"> pts/gm</span>`),
-      'border-red-600'),
+      [...seasonStats].sort((a,b)=>a.pfpg-b.pfpg).slice(0,3).map(s=>`<span class="text-white font-medium">${s.owner}</span> <span class="text-slate-500 text-xs">${s.year}</span> <span class="text-red-400 font-semibold">${s.pfpg.toFixed(1)}</span><span class="text-slate-500 text-xs"> pts/gm</span>`)),
 
     supCard('Best Point Differential Season (Avg/Game)',
       [...seasonStats].sort((a,b)=>b.diffpg-a.diffpg).slice(0,3).map(s=>{
         const sign=s.diffpg>=0?'+':'';
         return `<span class="text-white font-medium">${s.owner}</span> <span class="text-slate-500 text-xs">${s.year}</span> <span class="text-green-400 font-semibold">${sign}${s.diffpg.toFixed(1)}/gm</span> <span class="text-slate-500 text-xs">(${s.pf.toFixed(0)} PF / ${s.pa.toFixed(0)} PA)</span>`;
-      }), 'border-green-500'),
+      })),
 
     supCard('Worst Point Differential Season (Avg/Game)',
       [...seasonStats].sort((a,b)=>a.diffpg-b.diffpg).slice(0,3).map(s=>{
         const sign=s.diffpg>=0?'+':'';
         return `<span class="text-white font-medium">${s.owner}</span> <span class="text-slate-500 text-xs">${s.year}</span> <span class="text-red-400 font-semibold">${sign}${s.diffpg.toFixed(1)}/gm</span> <span class="text-slate-500 text-xs">(${s.pf.toFixed(0)} PF / ${s.pa.toFixed(0)} PA)</span>`;
-      }), 'border-red-500'),
+      })),
 
     supCard('Biggest Blowouts',
-      [...reg].sort((a,b)=>b.margin-a.margin).slice(0,3).map(m=>`${gameLabel(m)} <span class="text-orange-400 font-semibold">${m.margin.toFixed(2)} margin</span>`),
-      'border-orange-500'),
+      [...reg].sort((a,b)=>b.margin-a.margin).slice(0,3).map(m=>`${gameLabel(m)} <span class="text-orange-400 font-semibold">${m.margin.toFixed(2)} margin</span>`)),
 
     supCard('Highest Scoring Games',
-      [...withCombined].sort((a,b)=>b.combined-a.combined).slice(0,3).map(m=>`${gameLabel(m)} <span class="text-cyan-400 font-semibold">${m.combined.toFixed(2)} combined</span>`),
-      'border-cyan-500'),
+      [...withCombined].sort((a,b)=>b.combined-a.combined).slice(0,3).map(m=>`${gameLabel(m)} <span class="text-cyan-400 font-semibold">${m.combined.toFixed(2)} combined</span>`)),
 
     supCard('Lowest Scoring Games',
-      [...withCombined].sort((a,b)=>a.combined-b.combined).slice(0,3).map(m=>`${gameLabel(m)} <span class="text-slate-400 font-semibold">${m.combined.toFixed(2)} combined</span>`),
-      'border-slate-500'),
+      [...withCombined].sort((a,b)=>a.combined-b.combined).slice(0,3).map(m=>`${gameLabel(m)} <span class="text-slate-400 font-semibold">${m.combined.toFixed(2)} combined</span>`)),
   ].join('');
 }
 
