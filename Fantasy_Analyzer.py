@@ -19,6 +19,11 @@ LEAGUE_ID  = int(os.getenv("LEAGUE_ID",  "182413"))
 START_YEAR = int(os.getenv("START_YEAR", "2018"))
 END_YEAR   = int(os.getenv("END_YEAR",   "2025"))
 
+# Same-person accounts with different last names (old -> canonical)
+MANUAL_ALIASES = {
+    "Anthony Belardinelli": "Colin Arber",
+}
+
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -71,12 +76,23 @@ def detect_aliases(seasons):
             for j in range(i + 1, len(owners)):
                 a, b = owners[i], owners[j]
                 if not (owner_years[a] & owner_years[b]):
-                    # Non-overlapping years → continuous player under two accounts
                     canonical = max([a, b], key=lambda o: (max(owner_years[o]), len(owner_years[o])))
                     old = b if canonical == a else a
                     aliases[old] = canonical
                     print(f"  Alias: '{old}' -> '{canonical}' "
                           f"(years {sorted(owner_years[old])} merged into {sorted(owner_years[canonical])})")
+
+    for old, canonical in MANUAL_ALIASES.items():
+        if old not in owner_years or canonical not in owner_years:
+            print(f"  Manual alias skipped (name not found): '{old}' -> '{canonical}'")
+            continue
+        if owner_years[old] & owner_years[canonical]:
+            print(f"  Manual alias skipped (overlapping years): '{old}' -> '{canonical}'")
+            continue
+        aliases[old] = canonical
+        print(f"  Manual alias: '{old}' -> '{canonical}' "
+              f"(years {sorted(owner_years[old])} merged into {sorted(owner_years[canonical])})")
+
     return aliases
 
 
